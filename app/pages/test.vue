@@ -1,12 +1,13 @@
 <template>
   <div>
-    <NavigationBar />
-    <slot />
+    haiwdwdw
   </div>
 </template>
 
 <script lang="ts" setup>
-
+  definePageMeta({
+    layout: 'default'
+  })
 </script>
 
 <style>

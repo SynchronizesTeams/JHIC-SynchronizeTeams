@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navigation-bar />
     <main>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, eum ex harum fugit libero ratione blanditiis, laborum vitae inventore dolorem reprehenderit accusantium ducimus veritatis odit quam culpa, aut aperiam! Omnis?
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci culpa accusamus dolorum nam quam velit earum! Ex, culpa libero sint minus quibusdam odio sunt obcaecati velit repellendus tempore, iure earum.
@@ -138,6 +137,7 @@
 </template>
 
 <script lang="ts" setup>
+
 
 </script>
 
