@@ -25,7 +25,7 @@
       >
         <div
           v-if="isMenuOpen"
-          class="absolute w-96 right-0 mt-3 bg-primary-white border border-gray-200 rounded-xl shadow-2xl py-2 z-50"
+          class="absolute w-96 right-0 mt-8 bg-primary-white border border-gray-200 rounded-xl shadow-2xl py-2 z-50"
         >
           <NuxtLink
             to="/"
