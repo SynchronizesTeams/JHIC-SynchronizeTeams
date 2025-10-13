@@ -1,80 +1,92 @@
 <template>
   <nav
     :class="[
-      'flex items-center w-full justify-between px-5 py-3 sticky top-3 z-50 transition-all duration-200',
+      ' px-5 py-3 sticky top-3 z-50 transition-all duration-200',
       isScrolled ? 'bg-primary-white shadow-lg rounded-2xl' : 'bg-transparent',
     ]"
   >
-    <nuxt-img class="w-80" src="/images/penus/Logo.png" />
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+      <NuxtLink to="/" class="flex items-center gap-2">
+        <nuxt-img src="/images/penus/Logo.png" alt="Logo" class="w-80" />
+      </NuxtLink>
 
-    <div class="relative">
+      <div
+        class="hidden md:flex  items-center gap-8 text-lg font-medium text-primary-gray"
+      >
+        <NuxtLink
+          v-for="item in menuItems"
+          :key="item.name"
+          :to="item.path"
+          class="relative group"
+        >
+          <span class="hover:text-secondary-red transition">{{ item.name }}</span>
+          <span
+            class="absolute left-0 bottom-0 w-0 h-[2px] bg-secondary-red transition-all duration-300 group-hover:w-full"
+          ></span>
+        </NuxtLink>
+      </div>
+
       <button
         @click="toggleMenu"
-        class="bg-button-gray text-primary-text px-5 py-2 font-space-grotesk rounded-xl cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+        class="md:hidden text-primary-gray focus:outline-none"
       >
-        {{ isMenuOpen ? 'X' : 'Menu' }}
-      </button>
-
-      <transition
-        enter-active-class="transition ease-out duration-200"
-        enter-from-class="opacity-0 -translate-y-2"
-        enter-to-class="opacity-100 translate-y-0"
-        leave-active-class="transition ease-in duration-150"
-        leave-from-class="opacity-100 translate-y-0"
-        leave-to-class="opacity-0 -translate-y-2"
-      >
-        <div
-          v-if="isMenuOpen"
-          class="absolute w-96 right-0 mt-8 bg-primary-white border border-gray-200 rounded-xl shadow-2xl py-2 z-50"
+        <svg
+          v-if="!isMenuOpen"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
         >
-          <NuxtLink
-            to="/"
-            class="block px-7 py-6 text-black text-4xl font-semibold relative group"
-            @click="closeMenu"
-          >
-            <p class="hover:text-secondary-red">Beranda</p>
-            <div
-              class="h-0.5 w-0 bg-secondary-red transition-all duration-300 group-hover:w-full"
-            ></div>
-          </NuxtLink>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
 
-          <NuxtLink
-            to="/about"
-            class="block px-7 py-6 text-black text-4xl font-semibold relative group"
-            @click="closeMenu"
-          >
-          <p class="hover:text-secondary-red">
-            Tentang Kami
-          </p>
-            <div
-              class="h-0.5 w-0 bg-secondary-red transition-all duration-300 group-hover:w-full"
-            ></div>
-          </NuxtLink>
-
-          <NuxtLink
-            to="/projects"
-            class="block px-7 py-6 text-black text-4xl font-semibold relative group"
-            @click="closeMenu"
-          >
-            <p class="hover:text-secondary-red">Visi Kami</p>
-            <div
-              class="h-0.5 w-0 bg-secondary-red transition-all duration-300 group-hover:w-full"
-            ></div>
-          </NuxtLink>
-
-          <NuxtLink
-            to="/contact"
-            class="block px-7 py-6 text-black text-4xl font-semibold relative group"
-            @click="closeMenu"
-          >
-            <p class="hover:text-secondary-red">Galeri</p>
-            <p
-              class="h-0.5 w-0 bg-secondary-red transition-all duration-300 group-hover:w-full"
-            ></p>
-          </NuxtLink>
-        </div>
-      </transition>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
     </div>
+
+    <transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="opacity-0 -translate-y-3"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-3"
+    >
+      <div
+        v-if="isMenuOpen"
+        class="md:hidden shadow-lg rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium"
+      >
+        <NuxtLink
+          v-for="item in menuItems"
+          :key="item.name"
+          :to="item.path"
+          @click="closeMenu"
+          class="hover:text-secondary-red transition"
+        >
+          {{ item.name }}
+        </NuxtLink>
+      </div>
+    </transition>
   </nav>
 </template>
 
@@ -82,33 +94,33 @@
 const isScrolled = ref(false);
 const isMenuOpen = ref(false);
 
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 0;
-};
+const menuItems = [
+  { name: "Beranda", path: "/" },
+  { name: "Tentang Kami", path: "/about" },
+  { name: "Visi Kami", path: "/projects" },
+  { name: "Galeri", path: "/contact" },
+];
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
-
-const handleClickOutside = (e: MouseEvent) => {
-  const target = e.target as HTMLElement;
-  if (!target.closest("nav")) {
-    isMenuOpen.value = false;
-  }
-};
-
 const closeMenu = () => {
   isMenuOpen.value = false;
 };
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 10;
+};
 
 onMounted(() => {
-  handleScroll();
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  window.addEventListener("click", handleClickOutside);
+  window.addEventListener("scroll", handleScroll);
 });
-
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
-  window.removeEventListener("click", handleClickOutside);
 });
 </script>
+
+<style scoped>
+nav {
+  transition: all 0.3s ease-in-out;
+}
+</style>
