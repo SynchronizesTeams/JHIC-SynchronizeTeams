@@ -1,15 +1,16 @@
 <template>
-  <div >
+  <div>
     <NavigationBar />
     <div class="px-6 py-3">
       <slot />
     </div>
     <Footer />
+
+    <InfographicPopup />
   </div>
 </template>
 
 <script lang="ts" setup>
-
 </script>
 
 <style>

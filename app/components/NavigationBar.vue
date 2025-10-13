@@ -1,12 +1,11 @@
 <template>
   <nav
     :class="[
-      'sticky top-3 z-50 transition-all',
-      isScrolled ? 'bg-primary-white shadow-lg rounded-2xl mx-5' : 'mx-0 bg-transparent',
-    ]">
-    <div :class="['max-w-7xl px-3 mx-auto py-3 flex items-center justify-between transition-all', 
-      isScrolled ? 'md:px-3' : 'md:px-1'
-    ]">
+      'sticky top-3 left-0 right-0 z-50 transition-all duration-200',
+      isScrolled ? 'bg-primary-white shadow-lg mx-6 rounded-2xl' : 'bg-transparent',
+    ]"
+  >
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <NuxtLink to="/" class="flex items-center gap-2">
         <nuxt-img src="/images/penus/Logo.png" alt="Logo" class="w-80" />
       </NuxtLink>
@@ -68,7 +67,8 @@
       leave-to-class="opacity-0 -translate-y-3">
       <div
         v-if="isMenuOpen"
-        class="md:hidden rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium">
+        class="md:hidden absolute left-4 right-4 top-full shadow-lg rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium bg-primary-white"
+      >
         <NuxtLink
           v-for="item in menuItems"
           :key="item.name"
