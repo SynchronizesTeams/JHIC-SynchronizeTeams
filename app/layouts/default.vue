@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavigationBar />
-    <div class="px-6 py-3">
+    <div class="py-3">
       <slot />
     </div>
     <Footer />
