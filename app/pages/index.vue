@@ -15,14 +15,16 @@
     <section>
       <LandingAnnouncement />
     </section>
+    <section>
+      <LandingPartnerSection />
+    </section>
+    <LandingHeaderTitle title="PRESTASI" align="left" />
+    <section>
+      <LandingAchievementSection />
+    </section>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-
-</script>
-
-<style>
-
-</style>
+<style></style>
