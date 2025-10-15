@@ -50,14 +50,14 @@
           <div
             v-for="teacher in teachers"
             :key="teacher.id"
-            class="flex-shrink-0 w-64 snap-center pt-6">
+            class="flex-shrink-0 w-52 snap-center pt-4">
             <div
-              class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2">
+              class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2">
               <div
                 class="relative bg-gradient-to-br from-gray-100 to-gray-200 aspect-square overflow-hidden">
                 <div class="absolute inset-0 flex items-center justify-center">
                   <svg
-                    class="w-32 h-32 text-gray-400 group-hover:text-secondary-red transition-colors duration-300"
+                    class="w-24 h-24 text-gray-400 group-hover:text-secondary-red transition-colors duration-300"
                     fill="currentColor"
                     viewBox="0 0 24 24">
                     <path
@@ -68,12 +68,12 @@
                   class="absolute inset-0 bg-gradient-to-t from-secondary-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              <div class="p-6 text-center">
+              <div class="p-4 text-center">
                 <h3
-                  class="text-xl font-bold text-gray-800 mb-2 group-hover:text-secondary-red transition-colors duration-300">
+                  class="text-md font-bold text-gray-800 mb-1 group-hover:text-secondary-red transition-colors duration-300">
                   {{ teacher.name }}
                 </h3>
-                <p class="text-gray-600 text-sm mb-3">{{ teacher.subject }}</p>
+                <p class="text-gray-600 text-xs mb-2">{{ teacher.subject }}</p>
               </div>
             </div>
           </div>

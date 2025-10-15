@@ -89,8 +89,8 @@ const isMenuOpen = ref(false);
 const menuItems = [
   { name: "Beranda", path: "/" },
   { name: "Tentang Kami", path: "/about" },
-  { name: "Visi Kami", path: "/projects" },
-  { name: "Galeri", path: "/contact" },
+  { name: "Berita", path: "/news" },
+  { name: "Galeri", path: "/galery" },
 ];
 
 const toggleMenu = () => {
