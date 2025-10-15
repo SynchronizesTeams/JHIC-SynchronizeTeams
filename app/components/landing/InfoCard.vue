@@ -1,27 +1,40 @@
 <template>
-  <div class="w-full rounded-lg bg-gray-100 p-4 md:p-8">
-    <div class="mb-6">
-      <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Profile Sekolah</h1>
-    </div>
-    
-    <div class="flex space-x-2 mb-6 border-b border-gray-300">
+  <div class="w-full rounded-lg p-4 md:p-8">
+    <div class="flex space-x-2 mb-6 border-b border-gray-300 w-full items-center justify-center">
       <button 
         v-for="tab in tabs" 
         :key="tab.id"
         @click="activeTab = tab.id"
         :class="[
-          'px-4 py-2 font-medium transition-colors',
+          'px-4 py-2 font-medium transition-colors duration-300 rounded-full cursor-pointer',
           activeTab === tab.id 
-            ? 'text-red-600 border-b-2 border-red-600' 
+            ? 'text-primary-white bg-red-900' 
             : 'text-gray-600 hover:text-gray-800'
         ]">
         {{ tab.label }}
       </button>
     </div>
+
     
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+    <div v-if="activeTab === 'visimisi'" class="text-center max-w-xl mx-auto my-6">
+      <div class="w-28 h-0.5 bg-black/25 mx-auto mb-8"></div>
+
+      <blockquote
+        class="text-xl font-semibold text-gray-800 leading-snug italic tracking-tight">
+        <p>"Succeeded By Character!</p>
+        <p class="mt-1">We Are Different!</p>
+        <p class="mt-1">The Future is Ours!"</p>
+      </blockquote>
+
+      <p class="mt-8 text-sm font-medium italic text-gray-500">
+        SMK Plus Pelita Nusantara
+      </p>
+
+      <div class="w-28 h-0.5 bg-black/25 mx-auto mt-8 mb-8"></div>
+    </div>
+    
+    <div v-if="activeTab !== 'visimisi'" class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
       <div class="h-64 md:h-80 rounded-md bg-[#C4C4C4]">
-        <!-- 图片区域 -->
       </div>
       
       <div class="flex flex-col justify-center">
@@ -51,12 +64,11 @@
       </div>
     </div>
     
-    <!-- 底部信息模块 -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+    <div v-if="activeTab !== 'profile'" class="flex items-center justify-center gap-4 mt-8">
       <div 
         v-for="info in currentTabContent.infoBoxes" 
         :key="info.title"
-        class="bg-gray-300 rounded-md p-4 h-32 flex flex-col justify-center items-center">
+        class="shadow-md rounded-md p-4 h-32 w-full flex flex-col justify-center items-center">
         <h3 class="text-lg font-bold text-gray-800">{{ info.title }}</h3>
         <p class="text-sm text-gray-600 mt-2 text-center">{{ info.content }}</p>
       </div>
@@ -67,15 +79,23 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 
-const activeTab = ref('profile');
+type TabKey = 'profile' | 'visimisi' | 'sapras';
 
-const tabs = [
+const activeTab = ref<TabKey>('profile');
+
+const tabs: { id: TabKey; label: string }[] = [
   { id: 'profile', label: 'Profile' },
   { id: 'visimisi', label: 'Visi & Misi' },
   { id: 'sapras', label: 'Sapras' }
 ];
 
-const tabContent = {
+const tabContent: Record<TabKey, {
+  title: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+  infoBoxes: { title: string; content: string }[];
+}> = {
   profile: {
     title: 'Profile PENUS',
     description: `
@@ -102,7 +122,6 @@ const tabContent = {
     infoBoxes: [
       { title: 'Visi', content: 'Menjadi sekolah unggulan' },
       { title: 'Misi', content: 'Pendidikan berkualitas' },
-      { title: 'Nilai', content: 'Success by character' }
     ]
   },
   sapras: {

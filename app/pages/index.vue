@@ -7,7 +7,6 @@
     <section>
       <LandingInfoCard />
     </section>
-    <LandingHeaderTitle title="VISI KAMI" align="right" />
   </div>
 </template>
 
