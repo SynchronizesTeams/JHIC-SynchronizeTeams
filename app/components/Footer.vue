@@ -1,11 +1,11 @@
 <template>
-  <footer class="w-full border-t-black border-t-[0.5px] px-10 py-10">
+  <footer
+    class="w-full border-t-black border-t-[0.5px] px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10">
     <div
-      class="max-w-7xl mx-auto flex justify-between items-start text-gray-700"
-    >
-      <div class="w-1/3 space-y-3">
+      class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between gap-8 lg:items-start text-gray-700">
+      <div class="space-y-3 lg:w-1/3">
         <div class="flex items-center gap-2">
-          <nuxt-img src="/images/penus/Logo.png" class="w-80" />
+          <nuxt-img src="/images/penus/Logo.png" class="w-52 sm:w-64 lg:w-80" />
         </div>
 
         <p class="text-sm leading-relaxed">
@@ -15,8 +15,8 @@
         </p>
       </div>
 
-      <div class="w-1/4 space-y-2">
-        <h2 class="text-xl font-bold text-black">Navigasi</h2>
+      <div class="space-y-2 lg:w-1/4">
+        <h2 class="text-lg sm:text-xl font-bold text-black">Navigasi</h2>
         <ul class="space-y-1">
           <li>
             <NuxtLink
@@ -64,8 +64,10 @@
       </div>
 
       <!-- ini mau isi aoaan cokk -->
-      <div class="w-1/4 space-y-2">
-        <h2 class="text-xl font-bold text-black">Layanan dan Kolaborasi</h2>
+      <div class="space-y-2 lg:w-1/4">
+        <h2 class="text-lg sm:text-xl font-bold text-black">
+          Layanan dan Kolaborasi
+        </h2>
         <ul class="space-y-1">
           <li>
             <NuxtLink
@@ -113,7 +115,7 @@
       </div>
     </div>
     <div>
-      <div class="flex items-center gap-4 pt-3">
+      <div class="flex items-center justify-center sm:justify-start gap-4 pt-6">
         <!-- ini mau isi icon tapi bingung mau make apaan -->
       </div>
     </div>

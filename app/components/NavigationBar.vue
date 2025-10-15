@@ -2,9 +2,10 @@
   <nav
     :class="[
       'sticky top-3 left-0 right-0 z-50 transition-all duration-200',
-      isScrolled ? 'bg-primary-white shadow-lg mx-6 rounded-2xl' : 'bg-transparent',
-    ]"
-  >
+      isScrolled
+        ? 'bg-primary-white shadow-lg mx-6 rounded-2xl'
+        : 'bg-transparent',
+    ]">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <NuxtLink to="/" class="flex items-center gap-2">
         <nuxt-img src="/images/penus/Logo.png" alt="Logo" class="w-80" />
@@ -67,8 +68,7 @@
       leave-to-class="opacity-0 -translate-y-3">
       <div
         v-if="isMenuOpen"
-        class="md:hidden absolute left-4 right-4 top-full shadow-lg rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium bg-primary-white"
-      >
+        class="md:hidden absolute left-4 right-4 top-full shadow-lg rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium bg-primary-white">
         <NuxtLink
           v-for="item in menuItems"
           :key="item.name"
@@ -89,8 +89,8 @@ const isMenuOpen = ref(false);
 const menuItems = [
   { name: "Beranda", path: "/" },
   { name: "Tentang Kami", path: "/about" },
-  { name: "Visi Kami", path: "/projects" },
-  { name: "Galeri", path: "/contact" },
+  { name: "Berita", path: "/news" },
+  { name: "Galeri", path: "/galery" },
 ];
 
 const toggleMenu = () => {
