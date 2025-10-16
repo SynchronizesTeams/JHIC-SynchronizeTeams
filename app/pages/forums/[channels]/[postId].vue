@@ -4,7 +4,7 @@
       <!-- Header with Back Button -->
       <div class="sticky top-0 z-10 bg-primary-gray/95 backdrop-blur-sm border-b border-primary-white/10 px-4 py-3">
         <button
-          @click="navigateTo(`/forums/${channel}`)"
+          @click="router.back"
           class="flex items-center gap-2 text-primary-white/70 hover:text-primary-white transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,18 +91,19 @@
 import { mockPosts, mockComments } from '~/utils/mockData'
 
 const route = useRoute()
-const channel = computed(() => route.params.channel as string)
+const router = useRouter()
+const channel = computed(() => route.params.channels as string)
 const postId = computed(() => route.params.postId as string)
 
-const post = computed(() => 
+const post = computed(() =>
   mockPosts.find(p => p.id === postId.value)
 )
 
-const comments = computed(() => 
+const comments = computed(() =>
   mockComments.filter(c => c.postId === postId.value)
 )
 
-const topLevelComments = computed(() => 
+const topLevelComments = computed(() =>
   comments.value.filter(c => !c.parentId)
 )
 
@@ -143,5 +144,31 @@ const handleCommentDownvote = (commentId: string) => {
 
 const handleReplyComment = (parentId: string, content: string) => {
   console.log('Reply to comment:', parentId, content)
+}
+
+// Track view count when post is loaded
+onMounted(() => {
+  if (post.value) {
+    // In a real app, this would make an API call to increment view count
+    // For now, we'll just log it and simulate the tracking
+    trackPostView(post.value.id)
+  }
+})
+
+const trackPostView = (postId: string) => {
+  // Check if this post has already been viewed in this session
+  const viewedPosts = sessionStorage.getItem('viewedPosts')
+  const viewedPostsArray = viewedPosts ? JSON.parse(viewedPosts) : []
+
+  if (!viewedPostsArray.includes(postId)) {
+    // Mark as viewed in this session
+    viewedPostsArray.push(postId)
+    sessionStorage.setItem('viewedPosts', JSON.stringify(viewedPostsArray))
+
+    // In a real app, you would call an API here to increment the view count
+    console.log(`Tracking view for post: ${postId}`)
+    // Example API call:
+    // await $fetch(`/api/posts/${postId}/view`, { method: 'POST' })
+  }
 }
 </script>

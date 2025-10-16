@@ -62,7 +62,8 @@ export const mockPosts: Post[] = [
     images: ['https://picsum.photos/400/300?random=1'],
     upvotes: 24,
     downvotes: 2,
-    commentsCount: 8
+    commentsCount: 8,
+    views: 342
   },
   {
     id: '2',
@@ -74,7 +75,8 @@ export const mockPosts: Post[] = [
     upvotes: 15,
     downvotes: 1,
     commentsCount: 12,
-    isPinned: true
+    isPinned: true,
+    views: 567
   },
   {
     id: '3',
@@ -85,7 +87,8 @@ export const mockPosts: Post[] = [
     channel: 'public',
     upvotes: 89,
     downvotes: 5,
-    commentsCount: 23
+    commentsCount: 23,
+    views: 1240
   },
   {
     id: '4',
@@ -97,7 +100,8 @@ export const mockPosts: Post[] = [
     images: ['https://picsum.photos/400/300?random=4', 'https://picsum.photos/400/300?random=5'],
     upvotes: 156,
     downvotes: 3,
-    commentsCount: 45
+    commentsCount: 45,
+    views: 2834
   },
   {
     id: '5',
@@ -108,7 +112,8 @@ export const mockPosts: Post[] = [
     channel: 'public',
     upvotes: 34,
     downvotes: 5,
-    commentsCount: 28
+    commentsCount: 28,
+    views: 891
   },
   {
     id: '6',
@@ -119,7 +124,8 @@ export const mockPosts: Post[] = [
     channel: 'public',
     upvotes: 203,
     downvotes: 8,
-    commentsCount: 67
+    commentsCount: 67,
+    views: 4521
   },
   {
     id: '7',
@@ -130,7 +136,8 @@ export const mockPosts: Post[] = [
     channel: 'public',
     upvotes: 78,
     downvotes: 12,
-    commentsCount: 89
+    commentsCount: 89,
+    views: 3267
   },
   {
     id: '8',
@@ -142,7 +149,8 @@ export const mockPosts: Post[] = [
     images: ['https://picsum.photos/400/300?random=8'],
     upvotes: 45,
     downvotes: 6,
-    commentsCount: 52
+    commentsCount: 52,
+    views: 1678
   },
   {
     id: '9',
@@ -153,7 +161,8 @@ export const mockPosts: Post[] = [
     channel: 'public',
     upvotes: 92,
     downvotes: 15,
-    commentsCount: 103
+    commentsCount: 103,
+    views: 2456
   },
   {
     id: '10',
@@ -165,7 +174,8 @@ export const mockPosts: Post[] = [
     upvotes: 234,
     downvotes: 7,
     commentsCount: 178,
-    isPinned: true
+    isPinned: true,
+    views: 8934
   }
 ]
 
