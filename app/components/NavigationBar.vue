@@ -88,6 +88,7 @@ const isMenuOpen = ref(false);
 
 const menuItems = [
   { name: "Beranda", path: "/" },
+  { name: "Forum", path: "/forums" },
   { name: "Tentang Kami", path: "/about" },
   { name: "Berita", path: "/news" },
   { name: "Galeri", path: "/galery" },
