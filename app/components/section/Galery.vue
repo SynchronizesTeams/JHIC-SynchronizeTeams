@@ -7,10 +7,6 @@
         :key="image.id || index"
         :class="[
           'group relative overflow-hidden rounded-xl shadow-lg cursor-pointer aspect-w-4 aspect-h-3',
-          // LOGIKA UNTUK LAYOUT 2-3 BERULANG PADA DESKTOP
-          // Pola berulang setiap 5 item (0,1,2,3,4)
-          // - Item ke-0 dan ke-1 (baris pertama) akan mengambil 3 kolom (lg:col-span-3) -> jadi 2 gambar per baris
-          // - Item ke-2, ke-3, dan ke-4 (baris kedua) akan mengambil 2 kolom (lg:col-span-2) -> jadi 3 gambar per baris
           (index % 5 < 2) ? 'lg:col-span-3' : 'lg:col-span-2'
         ]"
       >
@@ -35,9 +31,7 @@
 <script setup>
 import { computed } from 'vue';
 
-// Mendefinisikan props yang bisa diterima oleh komponen ini
 const props = defineProps({
-  // 'images' adalah array berisi objek gambar
   images: {
     type: Array,
     required: true,
