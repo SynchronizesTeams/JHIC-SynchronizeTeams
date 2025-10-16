@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-primary-gray py-16 px-4 rounded-2xl">
+  <section class="bg-primary-gray py-16 mx-2 rounded-2xl">
     <div class="mx-auto flex max-w-5xl flex-col items-center text-center text-primary-text">
       <div class="mb-12 space-y-3">
         <span class="inline-flex items-center rounded-full border border-primary-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em]">

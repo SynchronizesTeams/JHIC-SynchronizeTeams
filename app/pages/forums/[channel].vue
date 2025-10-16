@@ -1,26 +1,46 @@
 <template>
   <div class="min-h-screen bg-primary-gray">
-    <div class="max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+    <div class="max-w-2xl mx-auto">
       <!-- Channel Header -->
-      <div class="mb-4 sm:mb-6 px-1">
-        <h1 class="text-xl sm:text-2xl font-bold text-primary-text capitalize">{{ channel }}</h1>
-        <p class="text-primary-white/70 mt-1 text-sm sm:text-base">{{ channelDescription }}</p>
+      <div class="sticky top-0 z-10 bg-primary-gray/95 backdrop-blur-sm border-b border-primary-white/10 px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-xl sm:text-2xl font-bold text-primary-white capitalize">{{ channel }}</h1>
+            <p class="text-primary-white/60 mt-0.5 text-xs sm:text-sm">{{ channelDescription }}</p>
+          </div>
+          <button
+            @click="showCreatePost = true"
+            class="flex items-center gap-2 bg-secondary-red/20 hover:bg-secondary-red/30 border border-secondary-red/40 text-secondary-red px-4 py-2 rounded-xl transition-all active:scale-95"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            <span class="hidden sm:inline text-sm font-semibold">Post</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Create Post Button -->
-      <div class="mb-3 sm:mb-4">
-        <button 
+      <!-- Create Post Quick Access -->
+      <div class="px-4 py-3 border-b border-primary-white/10">
+        <button
           @click="showCreatePost = true"
-          class="w-full bg-button-gray border border-primary-white/20 rounded-xl p-3 sm:p-4 text-left hover:bg-button-gray/80 transition-all active:scale-[0.99]"
+          class="w-full bg-button-gray/50 hover:bg-button-gray/70 border border-primary-white/10 rounded-xl p-3 text-left transition-all group"
         >
-          <span class="text-primary-white/60 text-sm sm:text-base">Apa yang sedang kamu pikirkan?</span>
+          <div class="flex items-center gap-3">
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=User"
+              alt="Your avatar"
+              class="w-8 h-8 rounded-full"
+            >
+            <span class="text-primary-white/50 text-sm group-hover:text-primary-white/70 transition-colors">Apa yang sedang kamu pikirkan?</span>
+          </div>
         </button>
       </div>
 
       <!-- Posts Feed -->
-      <div v-if="posts.length > 0" class="space-y-0 border border-primary-white/10 rounded-xl overflow-hidden">
-        <PostCard 
-          v-for="post in posts" 
+      <div v-if="posts.length > 0" class="divide-y divide-primary-white/10">
+        <PostCard
+          v-for="post in posts"
           :key="post.id"
           :post="post"
           @upvote="handleUpvote(post.id)"
@@ -30,14 +50,27 @@
       </div>
 
       <!-- Empty State -->
-      <div v-else class="text-center py-12">
-        <p class="text-primary-white/60">Belum ada post di channel ini</p>
-        <p class="text-primary-white/40 text-sm mt-2">Channel: {{ channel }}</p>
-        <p class="text-primary-white/40 text-sm">Total posts loaded: {{ mockPosts.length }}</p>
+      <div v-else class="text-center py-16 px-4">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-button-gray/50 mb-4">
+          <svg class="w-8 h-8 text-primary-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <p class="text-primary-white/70 text-lg font-semibold mb-2">Belum ada post di channel ini</p>
+        <p class="text-primary-white/50 text-sm mb-6">Jadilah yang pertama untuk memposting!</p>
+        <button
+          @click="showCreatePost = true"
+          class="inline-flex items-center gap-2 bg-secondary-red/20 hover:bg-secondary-red/30 border border-secondary-red/40 text-secondary-red px-6 py-2.5 rounded-xl transition-all font-semibold"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          Buat Post Baru
+        </button>
       </div>
 
       <!-- Create Post Modal -->
-      <CreatePostModal 
+      <CreatePostModal
         v-if="showCreatePost"
         :channel="channel"
         @close="showCreatePost = false"
