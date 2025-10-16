@@ -109,7 +109,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import type { Comment } from '~/types/forum'
 
 const props = defineProps<{
@@ -126,7 +126,6 @@ const emit = defineEmits<{
 const showReplyForm = ref(false)
 const replyContent = ref('')
 
-// Mock current user
 const currentUser = ref({
   id: '1',
   name: 'John Doe',
