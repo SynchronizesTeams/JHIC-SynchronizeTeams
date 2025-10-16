@@ -5,7 +5,7 @@
       class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between gap-8 lg:items-start text-gray-700">
       <div class="space-y-3 lg:w-1/3">
         <div class="flex items-center gap-2">
-          <nuxt-img src="/images/penus/Logo.png" class="w-52 sm:w-64 lg:w-80" />
+          <NuxtImg src="/images/penus/Logo.png" class="w-52 sm:w-64 lg:w-80" />
         </div>
 
         <p class="text-sm leading-relaxed">

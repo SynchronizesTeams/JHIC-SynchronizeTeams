@@ -47,7 +47,7 @@
           </button>
 
           <div class="p-0">
-            <img
+            <NuxtImg
               ref="infographicImage"
               :src="imageSrc"
               alt="Infografis SMK PLUS PELITA NUSANTARA"

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section class="px-6">
+    <section class="px-6 pt-6">
       <SectionHero />
     </section>
     <HeaderTitle title="TENTANG KAMI" align="center" />
-    <section class="px-6">
+    <section class="px-6 bg-gradient-to-b">
       <SectionInfo />
     </section>
     <HeaderTitle title="TENAGA PENDIDIKAN" align="right" />
@@ -13,7 +13,7 @@
     </section>
     <HeaderTitle title="NEWS" align="center" />
     <section class="px-6">
-      <SectionAnnouncement />
+      <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList"/>
     </section>
     <section class="px-6">
       <SectionPartner />
@@ -34,6 +34,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { News } from '../types/news';
+
+const { newsList } = useNews();
+const mainNews = computed<News>(() => newsList.value[0]!);
+
 const galleryImages = ref<
   { id: number; src: string; alt: string; title: string }[]
 >([]);

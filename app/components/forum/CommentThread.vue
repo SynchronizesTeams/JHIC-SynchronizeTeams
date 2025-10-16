@@ -2,11 +2,11 @@
   <div class="bg-primary-gray border-b border-primary-white/10 p-3 sm:p-4">
     <!-- Main Comment -->
     <div class="flex space-x-3">
-      <img 
+      <NuxtImg 
         :src="comment.author.avatar" 
         :alt="comment.author.name"
         class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex-shrink-0"
-      >
+      />
       <div class="flex-1">
         <div class="flex items-center space-x-2">
           <span class="font-semibold text-primary-text text-xs sm:text-sm">{{ comment.author.name }}</span>
@@ -58,11 +58,11 @@
     <div v-if="showReplyForm" class="mt-3 ml-10 sm:ml-11">
       <div class="bg-button-gray rounded-lg p-2 sm:p-3">
         <div class="flex space-x-2">
-          <img 
+          <NuxtImg 
             :src="currentUser.avatar" 
             :alt="currentUser.name"
             class="w-6 h-6 rounded-full flex-shrink-0"
-          >
+          />
           <div class="flex-1">
             <textarea
               v-model="replyContent"

@@ -1,9 +1,9 @@
 <template>
   <div>
     <NavigationBar />
-    <div class="py-3">
+    <main>
       <slot />
-    </div>
+    </main>
     <Footer />
 
     <InfographicPopup />

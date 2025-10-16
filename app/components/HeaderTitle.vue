@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col gap-2 sm:gap-3 my-4 sm:my-6">
+  <div class="flex w-full flex-col gap-2 sm:gap-3 my-4 sm:my-6 ">
     <div class="h-px w-full bg-black" aria-hidden="true"></div>
     <h2
       :class="[

@@ -24,11 +24,11 @@
       <!-- Add Comment -->
       <div class="bg-white rounded-lg border border-gray-300 p-4 mb-6">
         <div class="flex space-x-3">
-          <img 
+          <NuxtImg 
             :src="currentUser.avatar" 
             :alt="currentUser.name"
             class="w-10 h-10 rounded-full"
-          >
+          />
           <div class="flex-1">
             <textarea
               v-model="newComment"
