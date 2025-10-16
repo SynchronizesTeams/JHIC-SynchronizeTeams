@@ -10,24 +10,33 @@
         class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
       <div class="relative z-10 text-center px-6">
         <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">
-          News & Announcements
+          Galery
         </h1>
         <p class="text-lg text-gray-200 max-w-2xl mx-auto">
-          Temukan berita dan pengumuman terbaru seputar SMK Plus Pelita
-          Nusantara.
+          Jelajahi momen dan kegiatan terbaik dari SMK Plus Pelita Nusantara.
         </p>
       </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-16">
-      <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList" />
+      <SectionGalery :display-count="20" :images="galleryImages" />
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { News } from '../../types/news';
+const galleryImages = ref<
+  { id: number; src: string; alt: string; title: string }[]
+>([]);
 
-const { newsList } = useNews();
-const mainNews = computed<News>(() => newsList.value[0]!);
+for (let i = 1; i <= 20; i++) {
+  galleryImages.value.push({
+    id: i,
+    src: `https://picsum.photos/seed/${i}/800/600`,
+    alt: `Gambar Literasi ${i}`,
+    title: `Literasi Pagi #${i}`,
+  });
+}
 </script>
+
+<style></style>
