@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen text-gray-900">
+  <div class="min-h-screen">
     <section
       class="relative flex items-center justify-center h-[60vh] overflow-hidden bg-black text-white mt-36 mx-6 rounded-3xl">
       <NuxtImg

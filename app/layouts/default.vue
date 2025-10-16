@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <NavigationBar />
+  <div class="bg-primary-white">
+    <CommonNavigationBar />
     <main>
       <slot />
     </main>

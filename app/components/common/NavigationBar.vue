@@ -1,10 +1,10 @@
 <template>
   <nav
     :class="[
-      'fixed top-3 left-0 right-0 z-50 transition-all duration-300 ',
+      'sticky md:fixed top-3 left-0 right-0 z-50 transition-all duration-300 ',
       isScrolled
         ? 'bg-transparent shadow-lg mx-6 rounded-2xl backdrop-blur-xl border border-primary-text/15'
-        : 'backdrop-blur-none mt-5 border-none border-primary-text/15',
+        : 'backdrop-blur-none pt-5 border-none border-primary-text/15',
     ]">
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <NuxtLink to="/" class="flex items-center gap-2">
