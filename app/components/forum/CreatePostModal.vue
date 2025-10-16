@@ -114,12 +114,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps<{
   channel: string
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   close: []
   post: [data: any]
 }>()
