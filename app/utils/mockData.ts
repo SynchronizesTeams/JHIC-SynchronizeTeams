@@ -180,9 +180,10 @@ export const mockPosts: Post[] = [
 ]
 
 export const mockComments: Comment[] = [
+  // Comments for Post #1 - "Halo semuanya! Senang bisa bergabung..."
   {
     id: '1',
-    content: 'Aku kerja di e-commerce, banyak challenge nya tapi worth it!',
+    content: 'Aku kerja di e-commerce sebagai backend engineer, banyak challenge nya tapi worth it!',
     author: mockUsers[2],
     createdAt: '2024-01-15T11:00:00Z',
     updatedAt: '2024-01-15T11:00:00Z',
@@ -192,7 +193,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: '2',
-    content: 'Wah keren! Apa aya tips buat interview di e-commerce?',
+    content: 'Wah keren! Ada tips buat interview di e-commerce?',
     author: mockUsers[1],
     createdAt: '2024-01-15T11:30:00Z',
     updatedAt: '2024-01-15T11:30:00Z',
@@ -203,7 +204,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: '3',
-    content: 'Fokus pada sistem design dan problem solving, biasanya yang diuji.',
+    content: 'Fokus pada sistem design dan problem solving, biasanya yang diuji. Plus pastiin kamu paham konsep database dan caching.',
     author: mockUsers[2],
     createdAt: '2024-01-15T12:00:00Z',
     updatedAt: '2024-01-15T12:00:00Z',
@@ -211,5 +212,399 @@ export const mockComments: Comment[] = [
     parentId: '2',
     upvotes: 5,
     downvotes: 0
+  },
+  {
+    id: '4',
+    content: 'Thanks for the tips! Aku lagi prepare nih, ada rekomendasi resources?',
+    author: mockUsers[1],
+    createdAt: '2024-01-15T12:30:00Z',
+    updatedAt: '2024-01-15T12:30:00Z',
+    postId: '1',
+    parentId: '3',
+    upvotes: 2,
+    downvotes: 0
+  },
+  {
+    id: '5',
+    content: 'Aku juga kerja di tech! Tapi di startup, atmosfer nya lebih santai daripada big corp.',
+    author: mockUsers[0],
+    createdAt: '2024-01-15T13:00:00Z',
+    updatedAt: '2024-01-15T13:00:00Z',
+    postId: '1',
+    upvotes: 6,
+    downvotes: 1
+  },
+  {
+    id: '6',
+    content: 'Startup emang lebih fleksibel ya? Gimana work-life balance nya?',
+    author: mockUsers[1],
+    createdAt: '2024-01-15T13:30:00Z',
+    updatedAt: '2024-01-15T13:30:00Z',
+    postId: '1',
+    parentId: '5',
+    upvotes: 4,
+    downvotes: 0
+  },
+
+  // Comments for Post #4 - "Barusan dapet offer..."
+  {
+    id: '7',
+    content: 'Selamat! 🎉 Boleh share proses interview nya kayak gimana?',
+    author: mockUsers[1],
+    createdAt: '2024-01-15T08:30:00Z',
+    updatedAt: '2024-01-15T08:30:00Z',
+    postId: '4',
+    upvotes: 15,
+    downvotes: 0
+  },
+  {
+    id: '8',
+    content: 'Congrats bro! Company nya boleh tau atau rahasia? 😄',
+    author: mockUsers[2],
+    createdAt: '2024-01-15T08:45:00Z',
+    updatedAt: '2024-01-15T08:45:00Z',
+    postId: '4',
+    upvotes: 12,
+    downvotes: 1
+  },
+  {
+    id: '9',
+    content: 'Thanks! Proses nya ada 3 tahap: HR screening, technical test, sama user interview. Yang paling challenging technical test nya karena live coding.',
+    author: mockUsers[0],
+    createdAt: '2024-01-15T09:00:00Z',
+    updatedAt: '2024-01-15T09:00:00Z',
+    postId: '4',
+    parentId: '7',
+    upvotes: 20,
+    downvotes: 0
+  },
+  {
+    id: '10',
+    content: 'Live coding nya pake bahasa apa? Dan dikasih waktu berapa lama?',
+    author: mockUsers[1],
+    createdAt: '2024-01-15T09:15:00Z',
+    updatedAt: '2024-01-15T09:15:00Z',
+    postId: '4',
+    parentId: '9',
+    upvotes: 8,
+    downvotes: 0
+  },
+  {
+    id: '11',
+    content: 'Bebas pilih bahasa, aku pake JavaScript. Dikasih 1 jam untuk 2 soal algoritma.',
+    author: mockUsers[0],
+    createdAt: '2024-01-15T09:30:00Z',
+    updatedAt: '2024-01-15T09:30:00Z',
+    postId: '4',
+    parentId: '10',
+    upvotes: 11,
+    downvotes: 0
+  },
+  {
+    id: '12',
+    content: 'Itu startup atau corporate? Karena biasanya startup proses nya lebih cepet.',
+    author: mockUsers[2],
+    createdAt: '2024-01-15T09:45:00Z',
+    updatedAt: '2024-01-15T09:45:00Z',
+    postId: '4',
+    parentId: '9',
+    upvotes: 6,
+    downvotes: 0
+  },
+  {
+    id: '13',
+    content: 'Wah mantap! Kapan mulai kerja nya?',
+    author: mockUsers[1],
+    createdAt: '2024-01-15T10:00:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
+    postId: '4',
+    upvotes: 9,
+    downvotes: 0
+  },
+  {
+    id: '14',
+    content: 'Bulan depan! Masih ada waktu buat istirahat dulu sebelum mulai 😊',
+    author: mockUsers[0],
+    createdAt: '2024-01-15T10:15:00Z',
+    updatedAt: '2024-01-15T10:15:00Z',
+    postId: '4',
+    parentId: '13',
+    upvotes: 7,
+    downvotes: 0
+  },
+
+  // Comments for Post #3 - "Sharing pengalaman interview..."
+  {
+    id: '15',
+    content: 'Boleh share contoh puzzle programming nya kayak gimana?',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T10:00:00Z',
+    updatedAt: '2024-01-13T10:00:00Z',
+    postId: '3',
+    upvotes: 25,
+    downvotes: 1
+  },
+  {
+    id: '16',
+    content: 'Biasanya seputar algoritma dan data structure. Ada binary tree, dynamic programming, sama graph problems.',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T10:30:00Z',
+    updatedAt: '2024-01-13T10:30:00Z',
+    postId: '3',
+    parentId: '15',
+    upvotes: 18,
+    downvotes: 0
+  },
+  {
+    id: '17',
+    content: 'Waduh advanced ya. Aku masih struggle sama dynamic programming nih 😅',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T11:00:00Z',
+    updatedAt: '2024-01-13T11:00:00Z',
+    postId: '3',
+    parentId: '16',
+    upvotes: 12,
+    downvotes: 0
+  },
+  {
+    id: '18',
+    content: 'Aku juga dulu gitu! Practice terus di LeetCode, lama-lama ngerti pola nya.',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T11:30:00Z',
+    updatedAt: '2024-01-13T11:30:00Z',
+    postId: '3',
+    parentId: '17',
+    upvotes: 15,
+    downvotes: 0
+  },
+  {
+    id: '19',
+    content: 'Startup nya masih exist sampe sekarang? Gimana kultur kerja nya?',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T12:00:00Z',
+    updatedAt: '2024-01-13T12:00:00Z',
+    postId: '3',
+    upvotes: 10,
+    downvotes: 0
+  },
+  {
+    id: '20',
+    content: 'Masih! Malah udah jadi unicorn sekarang. Kultur nya keren, sangat mendukung learning dan growth.',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T12:30:00Z',
+    updatedAt: '2024-01-13T12:30:00Z',
+    postId: '3',
+    parentId: '19',
+    upvotes: 14,
+    downvotes: 0
+  },
+  {
+    id: '21',
+    content: 'Wah inspiring banget! Makasih sharing nya 👍',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T13:00:00Z',
+    updatedAt: '2024-01-13T13:00:00Z',
+    postId: '3',
+    parentId: '20',
+    upvotes: 8,
+    downvotes: 0
+  },
+
+  // Comments for Post #6 - "Tips interview: jangan takut bilang..."
+  {
+    id: '22',
+    content: 'Setuju banget! Interviewer lebih appreciate honesty daripada ngaku-ngaku bisa.',
+    author: mockUsers[0],
+    createdAt: '2024-01-14T14:30:00Z',
+    updatedAt: '2024-01-14T14:30:00Z',
+    postId: '6',
+    upvotes: 45,
+    downvotes: 2
+  },
+  {
+    id: '23',
+    content: 'Bener sih, tapi tetep harus show willingness to learn ya?',
+    author: mockUsers[1],
+    createdAt: '2024-01-14T15:00:00Z',
+    updatedAt: '2024-01-14T15:00:00Z',
+    postId: '6',
+    parentId: '22',
+    upvotes: 30,
+    downvotes: 0
+  },
+  {
+    id: '24',
+    content: 'Absolutely! Yang penting tunjukin curiosity dan initiative buat belajar hal baru.',
+    author: mockUsers[0],
+    createdAt: '2024-01-14T15:30:00Z',
+    updatedAt: '2024-01-14T15:30:00Z',
+    postId: '6',
+    parentId: '23',
+    upvotes: 38,
+    downvotes: 1
+  },
+  {
+    id: '25',
+    content: 'Pengalaman aku malah pernah interview di tempat yang toxic. Pas bilang gak tau langsung di-judge keras 😔',
+    author: mockUsers[2],
+    createdAt: '2024-01-14T16:00:00Z',
+    updatedAt: '2024-01-14T16:00:00Z',
+    postId: '6',
+    upvotes: 22,
+    downvotes: 3
+  },
+  {
+    id: '26',
+    content: 'Wah red flag tuh. Bagus juga jadi tau kultur company nya dari interview process.',
+    author: mockUsers[1],
+    createdAt: '2024-01-14T16:30:00Z',
+    updatedAt: '2024-01-14T16:30:00Z',
+    postId: '6',
+    parentId: '25',
+    upvotes: 28,
+    downvotes: 0
+  },
+  {
+    id: '27',
+    content: 'Betul! Sekarang aku malah thankful gak lolos interview di sana. Ended up di tempat yang lebih supportive.',
+    author: mockUsers[2],
+    createdAt: '2024-01-14T17:00:00Z',
+    updatedAt: '2024-01-14T17:00:00Z',
+    postId: '6',
+    parentId: '26',
+    upvotes: 35,
+    downvotes: 0
+  },
+
+  // Comments for Post #9 - "Belajar React atau Vue..."
+  {
+    id: '28',
+    content: 'React! Lebih banyak job opportunities dan community support nya lebih gede.',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T16:30:00Z',
+    updatedAt: '2024-01-13T16:30:00Z',
+    postId: '9',
+    upvotes: 40,
+    downvotes: 8
+  },
+  {
+    id: '29',
+    content: 'Vue dong! Learning curve nya lebih gentle dan documentation nya lebih friendly.',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T17:00:00Z',
+    updatedAt: '2024-01-13T17:00:00Z',
+    postId: '9',
+    upvotes: 35,
+    downvotes: 5
+  },
+  {
+    id: '30',
+    content: 'Tergantung goal nya sih. Kalo mau cepet dapet kerja, React. Kalo mau belajar dengan lebih structured, Vue.',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T17:30:00Z',
+    updatedAt: '2024-01-13T17:30:00Z',
+    postId: '9',
+    upvotes: 55,
+    downvotes: 2
+  },
+  {
+    id: '31',
+    content: 'Aku prefer React karena ecosystem nya kaya banget. Banyak library pendukung.',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T18:00:00Z',
+    updatedAt: '2024-01-13T18:00:00Z',
+    postId: '9',
+    parentId: '30',
+    upvotes: 22,
+    downvotes: 4
+  },
+  {
+    id: '32',
+    content: 'Vue juga ecosystem nya bagus kok! Nuxt, Vite, Pinia semua well-maintained.',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T18:30:00Z',
+    updatedAt: '2024-01-13T18:30:00Z',
+    postId: '9',
+    parentId: '30',
+    upvotes: 28,
+    downvotes: 3
+  },
+  {
+    id: '33',
+    content: 'Honestly, just pick one and stick with it. Fundamental nya mirip-mirip kok.',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T19:00:00Z',
+    updatedAt: '2024-01-13T19:00:00Z',
+    postId: '9',
+    parentId: '32',
+    upvotes: 48,
+    downvotes: 1
+  },
+
+  // Additional comments for Post #10 - "Pengalaman magang..."
+  {
+    id: '34',
+    content: 'Boleh jelasin benefit dan drawback masing-masing?',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T14:30:00Z',
+    updatedAt: '2024-01-13T14:30:00Z',
+    postId: '10',
+    upvotes: 60,
+    downvotes: 2
+  },
+  {
+    id: '35',
+    content: 'Startup: fast pace, bisa touching banyak hal, tapi kadang overwhelming. Big corp: structured, mentorship bagus, tapi bureaucracy nya ribet.',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T15:00:00Z',
+    updatedAt: '2024-01-13T15:00:00Z',
+    postId: '10',
+    parentId: '34',
+    upvotes: 75,
+    downvotes: 3
+  },
+  {
+    id: '36',
+    content: 'Dari segi gaji gimana? Lebih worth mana?',
+    author: mockUsers[2],
+    createdAt: '2024-01-13T15:30:00Z',
+    updatedAt: '2024-01-13T15:30:00Z',
+    postId: '10',
+    parentId: '35',
+    upvotes: 42,
+    downvotes: 1
+  },
+  {
+    id: '37',
+    content: 'Big corp biasanya gaji lebih tinggi dan benefit lebih lengkap. Tapi startup bisa offer equity yang potentially valuable.',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T16:00:00Z',
+    updatedAt: '2024-01-13T16:00:00Z',
+    postId: '10',
+    parentId: '36',
+    upvotes: 55,
+    downvotes: 2
+  },
+  {
+    id: '38',
+    content: 'Work-life balance nya gimana di kedua tempat?',
+    author: mockUsers[1],
+    createdAt: '2024-01-13T16:30:00Z',
+    updatedAt: '2024-01-13T16:30:00Z',
+    postId: '10',
+    parentId: '35',
+    upvotes: 38,
+    downvotes: 0
+  },
+  {
+    id: '39',
+    content: 'Big corp lebih respect work hours. Startup bisa lebih demanding tapi ada flexibility juga.',
+    author: mockUsers[0],
+    createdAt: '2024-01-13T17:00:00Z',
+    updatedAt: '2024-01-13T17:00:00Z',
+    postId: '10',
+    parentId: '38',
+    upvotes: 44,
+    downvotes: 1
   }
 ]
