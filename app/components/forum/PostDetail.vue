@@ -58,7 +58,7 @@
 
     <!-- Post Stats & Actions -->
     <div class="mt-6 pt-4 border-t border-primary-white/10">
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 flex-wrap">
         <!-- Upvote Button -->
         <button
           @click="$emit('upvote', post.id)"
@@ -89,6 +89,15 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
           </svg>
           <span class="text-sm font-bold">{{ post.commentsCount }}</span>
+        </div>
+
+        <!-- View Count -->
+        <div class="flex items-center gap-2 px-4 py-2 text-primary-white/60">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          <span class="text-sm font-bold">{{ formatViews(post.views) }}</span>
         </div>
 
         <!-- Share Button -->
@@ -147,5 +156,14 @@ const getImageHeight = (imageCount: number) => {
 
 const openImage = (imageUrl: string) => {
   console.log('Open image:', imageUrl)
+}
+
+const formatViews = (views: number): string => {
+  if (views >= 1000000) {
+    return `${(views / 1000000).toFixed(1)}M`
+  } else if (views >= 1000) {
+    return `${(views / 1000).toFixed(1)}K`
+  }
+  return views.toString()
 }
 </script>

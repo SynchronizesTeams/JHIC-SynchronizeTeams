@@ -19,6 +19,7 @@ export interface Post {
   userVote?: 'up' | 'down' | null
   commentsCount: number
   isPinned?: boolean
+  views: number
 }
 
 export interface Comment {

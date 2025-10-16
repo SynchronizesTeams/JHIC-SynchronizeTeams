@@ -45,7 +45,6 @@
           :post="post"
           @upvote="handleUpvote(post.id)"
           @downvote="handleDownvote(post.id)"
-          @comment="navigateToPost(post.id)"
         />
       </div>
 
@@ -86,6 +85,7 @@ import PostCard from '~/components/forum/PostCard.vue'
 import CreatePostModal from '~/components/forum/CreatePostModal.vue'
 
 const route = useRoute()
+const router = useRouter()
 const channel = computed(() => route.params.channel as string)
 
 const channelData = computed(() => 
@@ -114,9 +114,7 @@ const handleDownvote = (postId: string) => {
   // TODO: Implement downvote logic
 }
 
-const navigateToPost = (postId: string) => {
-  navigateTo(`/forums/${channel.value}/${postId}`)
-}
+
 
 const handleCreatePost = (postData: any) => {
   console.log('Create post:', postData)
