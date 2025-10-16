@@ -4,7 +4,7 @@
       <SectionHero />
     </section>
     <HeaderTitle title="TENTANG KAMI" align="center" />
-    <section class="px-6">
+    <section class="px-6 bg-gradient-to-b">
       <SectionInfo />
     </section>
     <HeaderTitle title="TENAGA PENDIDIKAN" align="right" />
