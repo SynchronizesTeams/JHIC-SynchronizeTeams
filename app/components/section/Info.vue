@@ -41,17 +41,16 @@
     </div>
 
     <div
-      v-if="activeTab !== 'visimisi'"
+      v-if="activeTab === 'profile'"
       class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
       <div
         class="h-64 md:h-80 rounded-lg overflow-hidden relative bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 shadow-inner flex items-center justify-center">
-        <div class="w-full h-full flex items-center justify-center">
-        </div>
+        <div class="w-full h-full flex items-center justify-center"></div>
         <div
           class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-red-100/40 blur-2xl pointer-events-none"></div>
       </div>
 
-      <div v-if="activeTab !== 'sapras'" class="flex flex-col justify-center">
+      <div class="flex flex-col justify-center">
         <h2
           class="text-xl md:text-2xl font-extrabold text-gray-800 flex items-center gap-2">
           <span class="text-red-700">|</span>
@@ -83,6 +82,8 @@
       </div>
     </div>
 
+    <Sapras v-if="activeTab === 'sapras'" />
+
     <div
       v-if="activeTab === 'visimisi'"
       class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-8">
@@ -113,6 +114,8 @@
 </template>
 
 <script lang="ts" setup>
+import Sapras from "@/components/Sapras.vue";
+
 type TabKey = "profile" | "visimisi" | "sapras";
 
 const activeTab = ref<TabKey>("profile");
@@ -155,31 +158,12 @@ const tabContent: Record<
       {
         title: "Visi",
         content:
-          "Mewujudkan SMK Plus Pelita Nusantara yang unggul dalam mutu dan prestasi menghasilkan peserta didik yang berkarakter terampil, entrepreneur dan religius.",
+          "Mewujudkan SMK yang unggul dalam mutu dan prestasi menghasilkan peserta didik yang berkarakter terampil, entrepreneur dan religius.",
       },
       { title: "Misi", content: "Pendidikan berkualitas" },
     ],
   },
-  sapras: {
-    title: "Sarana Prasarana PENUS",
-    description: `
-      <p class="mb-2">SMK Plus Pelita Nusantara dilengkapi dengan fasilitas pendukung pembelajaran yang modern dan memadai:</p>
-      <ul class="list-disc pl-5">
-        <li>Laboratorium Komputer</li>
-        <li>Workshop Praktikum</li>
-        <li>Perpustakaan Digital</li>
-        <li>Ruang Multimedia</li>
-        <li>Lapangan Olahraga</li>
-      </ul>
-    `,
-    linkText: "Lihat Fasilitas",
-    linkUrl: "#",
-    infoBoxes: [
-      { title: "Lab Komputer", content: "30 unit PC terbaru" },
-      { title: "Workshop", content: "Peralatan praktikum lengkap" },
-      { title: "Perpustakaan", content: "Koleksi digital dan fisik" },
-    ],
-  },
+  sapras: {},
 };
 
 const currentTabContent = computed(() => tabContent[activeTab.value]);
