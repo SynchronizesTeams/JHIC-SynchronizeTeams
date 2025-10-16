@@ -4,27 +4,30 @@
       <LandingHeroSection />
     </section>
     <LandingHeaderTitle title="TENTANG KAMI" align="left" />
-    <section>
+    <section class="px-6">
       <LandingInfoSection />
     </section>
     <LandingHeaderTitle title="TENAGA PENDIDIKAN" align="center" />
-    <section>
+    <section class="px-6">
       <LandingTeachersSection />
     </section>
     <LandingHeaderTitle title="NEWS" align="right" />
-    <section>
+    <section class="px-6">
       <LandingAnnouncement />
     </section>
-    <section>
+    <section class="px-6">
       <LandingPartnerSection />
     </section>
     <LandingHeaderTitle title="PRESTASI" align="left" />
-    <section>
+    <section class="px-6">
       <LandingAchievementSection />
     </section>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
 
-<style></style>
+</script>
+
+<style scoped>
+</style>

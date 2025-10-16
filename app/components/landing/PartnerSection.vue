@@ -6,7 +6,7 @@
       </h2>
 
       <div class="relative overflow-hidden">
-        <div class="animate-partner-scroll flex space-x-8">
+        <div class="animate-partner-scroll flex space-x-8 py-5">
           <div
             v-for="(partner, index) in [...partners, ...partners, ...partners]"
             :key="index"
@@ -27,27 +27,27 @@
 const partners = ref([
   {
     name: "Mitra A",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+A",
+    logoUrl: "",
   },
   {
     name: "Mitra B",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+B",
+    logoUrl: "",
   },
   {
     name: "Mitra C",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+C",
+    logoUrl: "",
   },
   {
     name: "Mitra D",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+D",
+    logoUrl: "",
   },
   {
     name: "Mitra E",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+E",
+    logoUrl: "",
   },
   {
     name: "Mitra F",
-    logoUrl: "https://via.placeholder.com/128x80?text=Logo+F",
+    logoUrl: "",
   },
 ]);
 </script>
