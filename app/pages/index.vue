@@ -1,33 +1,33 @@
 <template>
   <div>
-    <section class="px-6 pt-6">
+    <section id="home" class="px-6 pt-6">
       <SectionHero />
     </section>
     <HeaderTitle title="TENTANG KAMI" align="center" />
-    <section class="px-6 bg-gradient-to-b">
+    <section id="about" class="px-6 bg-gradient-to-b">
       <SectionInfo />
     </section>
     <HeaderTitle title="TENAGA PENDIDIKAN" align="right" />
-    <section class="px-6">
+    <section id="teachers" class="px-6">
       <SectionTeachers />
     </section>
     <HeaderTitle title="NEWS" align="center" />
-    <section class="px-6">
+    <section id="news" class="px-6">
       <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList"/>
     </section>
-    <section class="px-6">
+    <section id="partner" class="px-6">
       <SectionPartner />
     </section>
     <HeaderTitle title="PRESTASI" align="left" />
-    <section class="px-6">
+    <section id="achievment" class="px-6">
       <SectionAchievement />
     </section>
     <HeaderTitle title="TESTIMONI" align="center" />
-    <section class="px-6">
+    <section id="testimonials" class="px-6">
       <SectionTestimonials :testimonials="testimonialsData" />
     </section>
     <HeaderTitle title="GALERI" align="right" />
-    <section class="px-6">
+    <section id="galery" class="px-6">
       <SectionGalery :images="galleryImages" />
     </section>
   </div>

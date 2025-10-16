@@ -21,43 +21,43 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/"
+              to="#home"
               >Beranda</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/profil-sekolah"
+              to="#about"
               >Profil Sekolah</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/pengumuman"
-              >Pengumuman dan Berita</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink
-              class="hover:text-secondary-red transition-all duration-300"
-              to="/tenaga-pendidik"
+              to="#teachers"
               >Tenaga Pendidik</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/galeri"
-              >Galeri</NuxtLink
+              to="#news"
+              >Pengumuman dan Berita</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/buku-tamu"
+              to="#"
               >Buku Tamu</NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink
+              class="hover:text-secondary-red transition-all duration-300"
+              to="#galery"
+              >Galeri</NuxtLink
             >
           </li>
         </ul>
@@ -72,35 +72,35 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/"
+              to="#home"
               >Beranda</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/profil-sekolah"
+              to="#about"
               >Profil Sekolah</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/pengumuman"
+              to="#news"
               >Pengumuman dan Berita</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/tenaga-pendidik"
+              to="#teachers"
               >Tenaga Pendidik</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/galeri"
+              to="#galery"
               >Galeri</NuxtLink
             >
           </li>
