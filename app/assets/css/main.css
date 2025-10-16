@@ -14,3 +14,7 @@
     /* Fonts */
     --font-space-grotesk: "Space Grotesk", sans-serif;
 }
+
+body {
+    @apply bg-primary-white;
+}
