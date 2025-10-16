@@ -8,7 +8,7 @@
         <div
           class="absolute inset-0 bg-black/40 flex items-end p-6 transition-all duration-300 group-hover:bg-black/60">
           <div class="text-white w-full">
-            <h1 class="text-3xl font-extrabold mb-2 leading-tight">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 leading-tight">
               {{ mainNews.title }}
             </h1>
 
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
       <div
         v-for="news in secondaryNews"
         :key="news.id"
@@ -60,17 +60,15 @@
 <script setup>
 import { ref } from "vue";
 
-// Data untuk Berita Utama
 const mainNews = ref({
   id: 101,
   title: "Inovasi Terbaru Pendidikan: Peluncuran Kurikulum Abad 21",
   description:
     "Pemerintah resmi meluncurkan kurikulum baru yang fokus pada penguatan keterampilan digital dan berpikir kritis, menandai era baru dalam sistem pendidikan nasional. Implementasi akan dimulai pada tahun ajaran mendatang.",
   imageUrl:
-    "https://images.unsplash.com/photo-1542435503-921d58fb3e87?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Ganti dengan URL gambar Anda
+    "",
 });
 
-// Data untuk 4 Berita Sekunder
 const secondaryNews = ref([
   {
     id: 1,
@@ -78,7 +76,7 @@ const secondaryNews = ref([
     description:
       "Telah dibuka pendaftaran untuk workshop intensif pemrograman dasar selama 3 hari. Kuota terbatas!",
     imageUrl:
-      "https://images.unsplash.com/photo-1550009158-9dab1d216223?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "D",
   },
   {
     id: 2,
@@ -86,7 +84,7 @@ const secondaryNews = ref([
     description:
       "Pengumuman penerima beasiswa unggulan untuk studi lanjut di Tokyo University. Selamat kepada para pemenang!",
     imageUrl:
-      "https://images.unsplash.com/photo-1540321151677-96a84c2ff841?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "",
   },
   {
     id: 3,
@@ -94,7 +92,7 @@ const secondaryNews = ref([
     description:
       "Kini akses ke ribuan jurnal internasional tersedia gratis untuk seluruh civitas akademika. Peresmian hari ini.",
     imageUrl:
-      "https://images.unsplash.com/photo-1532012195252-5006b0d1e57c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "",
   },
   {
     id: 4,
@@ -102,13 +100,12 @@ const secondaryNews = ref([
     description:
       "Tim SMA kami berhasil meraih medali emas dalam kompetisi fisika tahunan, mengalahkan 100 tim lainnya.",
     imageUrl:
-      "https://images.unsplash.com/photo-1556761175-5973ef4d20ed?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "",
   },
 ]);
 </script>
 
 <style scoped>
-/* Utility CSS untuk membatasi baris teks */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

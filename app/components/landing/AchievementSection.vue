@@ -45,31 +45,31 @@ const scrollContainer = ref(null);
 const achievements = ref([
   {
     title: "Juara 1 Lomba Web Dev Nasional",
-    imageUrl: "https://via.placeholder.com/320x192?text=Prestasi+1",
+    imageUrl: "",
     description:
       "Memenangkan kompetisi pengembangan web tingkat nasional pada tahun 2024, mengalahkan lebih dari 500 tim.",
   },
   {
     title: "Sertifikasi Internasional ISO 9001",
-    imageUrl: "https://via.placeholder.com/320x192?text=Prestasi+2",
+    imageUrl: "",
     description:
       "Kami telah berhasil mendapatkan sertifikasi ISO 9001, menjamin kualitas manajemen dan layanan kami.",
   },
   {
     title: "Penghargaan Inovasi Terbaik",
-    imageUrl: "https://via.placeholder.com/320x192?text=Prestasi+3",
+    imageUrl: "",
     description:
       "Diakui sebagai yang terbaik dalam kategori inovasi teknologi untuk solusi perangkat lunak terbaru kami.",
   },
   {
     title: "Kontributor Open Source Terbaik",
-    imageUrl: "https://via.placeholder.com/320x192?text=Prestasi+4",
+    imageUrl: "",
     description:
       "Tim kami secara aktif berkontribusi pada komunitas sumber terbuka global, diakui tahun 2023.",
   },
   {
     title: "Mitra Pendidikan Unggulan",
-    imageUrl: "https://via.placeholder.com/320x192?text=Prestasi+5",
+    imageUrl: "",
     description:
       "Dipercaya sebagai mitra utama dalam program vokasi dan pendidikan industri.",
   },
