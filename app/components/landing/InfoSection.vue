@@ -61,9 +61,9 @@
           class="mt-4 text-gray-700 prose prose-sm max-w-none"
           v-html="currentTabContent.description"></div>
 
-        <a
+        <NuxtLink
           v-if="currentTabContent.linkUrl"
-          :href="currentTabContent.linkUrl"
+          :to="currentTabContent.linkUrl"
           class="mt-6 inline-flex items-center gap-2 font-medium text-red-600 transition-all hover:translate-x-1">
           {{ currentTabContent.linkText }}
           <svg
@@ -78,7 +78,7 @@
               stroke-linejoin="round"
               d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
-        </a>
+        </NuxtLink>
       </div>
     </div>
 

@@ -5,11 +5,11 @@
     </div>
     
     <div class="flex items-center">
-      <img 
+      <NuxtImg 
         :src="testimonial.avatar" 
         :alt="`Avatar of ${testimonial.name}`"
         class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-gray-200"
-      >
+      />
       <div>
         <p class="font-bold text-gray-800">{{ testimonial.name }}</p>
         <p class="text-sm text-gray-500">{{ testimonial.position }}</p>

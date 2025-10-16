@@ -18,11 +18,11 @@
       <div class="p-3 sm:p-4">
         <!-- User Info -->
         <div class="flex items-center space-x-3 mb-4">
-          <img 
+          <NuxtImg 
             :src="currentUser?.avatar" 
             :alt="currentUser?.name"
             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
-          >
+          />
           <div>
             <div class="font-semibold text-sm sm:text-base text-primary-text">{{ currentUser?.name }}</div>
             <div class="text-xs sm:text-sm text-primary-white/60">Posting di <span class="capitalize">{{ channel }}</span></div>
@@ -59,11 +59,11 @@
               :key="index"
               class="relative"
             >
-              <img 
+              <NuxtImg 
                 :src="image.preview" 
                 :alt="`Upload ${index + 1}`"
                 class="w-full h-24 sm:h-32 object-cover rounded-lg"
-              >
+              />
               <button
                 @click="removeImage(index)"
                 class="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full w-6 h-6 flex items-center justify-center"

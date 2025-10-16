@@ -12,7 +12,7 @@
             :key="index"
             class="flex-shrink-0 w-32 h-20 p-2 bg-white rounded-lg shadow-md flex items-center justify-center transition-transform duration-300 hover:scale-105"
             :title="partner.name">
-            <img
+            <NuxtImg
               :src="partner.logoUrl"
               :alt="partner.name"
               class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />

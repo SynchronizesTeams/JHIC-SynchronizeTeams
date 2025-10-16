@@ -15,7 +15,7 @@
           :key="index"
           class="flex-shrink-0 w-80 md:w-auto bg-gray-500 rounded-xl cursor-grab active:cursor-grabbing shadow-lg overflow-hidden group transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
           <div class="relative">
-            <img
+            <NuxtImg
               :src="achievement.imageUrl"
               :alt="achievement.title"
               class="w-full h-48 object-cover" />

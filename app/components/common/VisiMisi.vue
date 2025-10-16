@@ -19,11 +19,11 @@
         class="w-28 h-0.5 bg-gradient-to-r from-red-500 to-red-900 mx-auto mt-8 mb-8 rounded"></div>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-8">
       <div
         v-for="info in props.infoBoxes"
         :key="info.title"
-        class="group bg-white/60 backdrop-blur-sm rounded-xl p-4 h-fit flex flex-col justify-center items-center text-center shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1">
+        class="group bg-white/60 backdrop-blur-sm rounded-xl p-4 h-full flex flex-col justify-center items-center text-center shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1">
         <div
           class="flex items-center justify-center w-12 h-12 rounded-full bg-red-50 mb-3">
           <svg

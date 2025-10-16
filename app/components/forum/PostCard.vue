@@ -2,11 +2,11 @@
   <div class="bg-button-gray border-b border-primary-white/10 p-3 sm:p-4 hover:bg-button-gray/90 transition-colors">
     <!-- Post Header -->
     <div class="flex items-start space-x-3">
-      <img 
+      <NuxtImg 
         :src="post.author.avatar" 
         :alt="post.author.name"
         class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
-      >
+      />
       <div class="flex-1 min-w-0">
         <div class="flex items-center flex-wrap gap-x-2 gap-y-1">
           <span class="font-semibold text-primary-text text-sm sm:text-base">{{ post.author.name }}</span>
@@ -32,14 +32,14 @@
         class="mt-2 sm:mt-3 grid gap-1.5 sm:gap-2"
         :class="post.images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'"
       >
-        <img 
+        <NuxtImg 
           v-for="(image, index) in post.images" 
           :key="index"
           :src="image" 
           :alt="`Post image ${index + 1}`"
           class="rounded-lg w-full h-40 sm:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
           @click="openImage(image)"
-        >
+        />
       </div>
     </div>
 

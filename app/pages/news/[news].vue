@@ -1,7 +1,9 @@
 <template>
   <div class="text-primary-gray min-h-screen mt-14">
     <div class="max-w-5xl mx-auto px-6 py-16">
-      <NuxtLink to="/news" class="text-primary-gray/90 hover:text-primary-gray mb-8 block">
+      <NuxtLink
+        to="/news"
+        class="text-primary-gray/90 hover:text-primary-gray mb-8 block">
         ← Back to News
       </NuxtLink>
 
@@ -13,17 +15,15 @@
       </div>
 
       <div class="aspect-video rounded-2xl overflow-hidden mb-10">
-        <img
+        <NuxtImg
           :src="article.cover"
           alt="cover"
-          class="object-cover w-full h-full"
-        />
+          class="object-cover w-full h-full" />
       </div>
 
       <div
         class="prose text-primary-gray max-w-none text-lg leading-relaxed"
-        v-html="article.content"
-      />
+        v-html="article.content" />
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@
           ref="background"
           class="w-full transform scale-110 transition-transform duration-700 ease-out"
           :style="{ transform: `scale(${1 + parallaxValue * 0.1})` }">
-          <img
+          <NuxtImg
             src="/videoplaceholder.png"
             alt="Hero Background"
             class="w-full h-full object-cover object-center" />
