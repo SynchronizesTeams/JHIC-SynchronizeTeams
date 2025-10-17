@@ -1,106 +1,41 @@
 [
   {
     "id": 1,
-    "title": "Juara 1 JHIC",
-    "description": "Prestasi luar biasa dalam kompetisi JHIC tingkat nasional",
+    "title": "Lorem Ipsum Dolor Sit",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.",
     "image": "https://picsum.photos/seed/achievement1/800/600",
     "achievement_date": "2025-01-15",
     "News": {
       "id": 1,
-      "title": "Tim SMK Penerbangan Juara JHIC 2025",
-      "slug": "tim-smk-penerbangan-juara-jhic-2025",
-      "excerpt": "Tim SMK Penerbangan Bandung berhasil meraih juara 1 dalam kompetisi JHIC tingkat nasional, mengalahkan lebih dari 100 sekolah peserta."
+      "title": "Aenean Leo Ligula",
+      "slug": "aenean-leo-ligula",
+      "excerpt": "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim."
     }
   },
   {
     "id": 2,
-    "title": "Juara 1 Lomba Web Dev Nasional",
-    "description": "Memenangkan kompetisi web development tingkat nasional",
+    "title": "Praesent Libero",
+    "description": "Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
     "image": "https://picsum.photos/seed/achievement2/800/600",
     "achievement_date": "2024-12-10",
     "News": {
       "id": 2,
-      "title": "Prestasi Gemilang Web Development Competition 2024",
-      "slug": "prestasi-gemilang-web-development-2024",
-      "excerpt": "Siswa SMK Penerbangan berhasil memenangkan kompetisi pengembangan web tingkat nasional, mengalahkan lebih dari 500 tim dari seluruh Indonesia."
+      "title": "Duis Sagittis Ipsum",
+      "slug": "duis-sagittis-ipsum",
+      "excerpt": "Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla."
     }
   },
   {
     "id": 3,
-    "title": "Sertifikasi Internasional ISO 9001",
-    "description": "Sekolah mendapat sertifikasi ISO 9001",
+    "title": "Class Aptent Taciti",
+    "description": "Sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
     "image": "https://picsum.photos/seed/achievement3/800/600",
     "achievement_date": "2024-11-20",
     "News": {
       "id": 3,
-      "title": "SMK Penerbangan Raih Sertifikasi ISO 9001",
-      "slug": "smk-penerbangan-raih-sertifikasi-iso-9001",
-      "excerpt": "Sekolah telah berhasil mendapatkan sertifikasi ISO 9001, menjamin kualitas manajemen dan layanan pendidikan yang terbaik."
-    }
-  },
-  {
-    "id": 4,
-    "title": "Penghargaan Inovasi Terbaik",
-    "description": "Diakui sebagai inovator terbaik bidang teknologi",
-    "image": "https://picsum.photos/seed/achievement4/800/600",
-    "achievement_date": "2024-10-05",
-    "News": {
-      "id": 4,
-      "title": "Penghargaan Inovasi Teknologi Pendidikan",
-      "slug": "penghargaan-inovasi-teknologi-pendidikan",
-      "excerpt": "Diakui sebagai yang terbaik dalam kategori inovasi teknologi untuk solusi pembelajaran digital yang inovatif."
-    }
-  },
-  {
-    "id": 5,
-    "title": "Kontributor Open Source Terbaik",
-    "description": "Tim aktif berkontribusi pada komunitas open source",
-    "image": "https://picsum.photos/seed/achievement5/800/600",
-    "achievement_date": "2024-09-15",
-    "News": {
-      "id": 5,
-      "title": "Siswa SMK Penerbangan Aktif di Open Source",
-      "slug": "siswa-smk-penerbangan-aktif-di-open-source",
-      "excerpt": "Tim siswa kami secara aktif berkontribusi pada komunitas sumber terbuka global, diakui sebagai kontributor terbaik tahun 2024."
-    }
-  },
-  {
-    "id": 6,
-    "title": "Mitra Pendidikan Unggulan",
-    "description": "Dipercaya sebagai mitra pendidikan vokasi",
-    "image": "https://picsum.photos/seed/achievement6/800/600",
-    "achievement_date": "2024-08-20",
-    "News": {
-      "id": 6,
-      "title": "Kerjasama Strategis dengan Industri",
-      "slug": "kerjasama-strategis-dengan-industri",
-      "excerpt": "Dipercaya sebagai mitra utama dalam program vokasi dan pendidikan industri oleh berbagai perusahaan teknologi terkemuka."
-    }
-  },
-  {
-    "id": 7,
-    "title": "Juara Olimpiade Sains Nasional",
-    "description": "Prestasi dalam bidang sains dan matematika",
-    "image": "https://picsum.photos/seed/achievement7/800/600",
-    "achievement_date": "2024-07-12",
-    "News": {
-      "id": 7,
-      "title": "Siswa Raih Medali Emas OSN 2024",
-      "slug": "siswa-raih-medali-emas-osn-2024",
-      "excerpt": "Siswa SMK Penerbangan berhasil meraih medali emas dalam Olimpiade Sains Nasional bidang matematika dan fisika."
-    }
-  },
-  {
-    "id": 8,
-    "title": "Best Digital Marketing Campaign",
-    "description": "Kampanye digital terbaik tingkat sekolah",
-    "image": "https://picsum.photos/seed/achievement8/800/600",
-    "achievement_date": "2024-06-18",
-    "News": {
-      "id": 8,
-      "title": "Kampanye Digital Siswa SMK Raih Penghargaan",
-      "slug": "kampanye-digital-siswa-smk-raih-penghargaan",
-      "excerpt": "Proyek kampanye digital siswa jurusan multimedia berhasil meraih penghargaan kampanye terbaik tingkat nasional."
+      "title": "Curabitur Tortor",
+      "slug": "curabitur-tortor",
+      "excerpt": "Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem."
     }
   }
 ]
