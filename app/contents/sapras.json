@@ -49,7 +49,7 @@
     "image": "/images/sapras/perpus.jpg"
   },
   {
-    "title": "LAB RPL",
+    "title": "Lab RPL",
     "description": "Laboratorium komputer yang modern dan identik. Ruangan lab ini diatur secara rapi dengan deretan meja praktek yang masing-masing dilengkapi unit komputer, dirancang khusus untuk kegiatan pelatihan dan praktik keterampilan di bidang teknologi dan informatika.",
     "linkText": "Lihat Detail",
     "linkUrl": "#",
@@ -63,7 +63,7 @@
     "image": "/images/sapras/labmm.jpg"
   },
   {
-    "title": "Lab Pemasaran",
+    "title": "Lab PKM",
     "description": "Ruangan praktik bisnis (LPB), lengkap dengan jajaran meja dan kursi.",
     "linkText": "Lihat Detail",
     "linkUrl": "#",
@@ -75,5 +75,19 @@
     "linkText": "Lihat Detail",
     "linkUrl": "#",
     "image": "/images/sapras/mikrotik.jpg"
+  },
+  {
+    "title": "Kantin",
+    "description": "Kantin yang dilengkapi meja kursi. dengan beberapa bagian tempat layanan, serta metode pembayaran yang menggunakan kartu kantin digital.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kantin.jpg"
+  },
+  {
+    "title": "KBS mart",
+    "description": "Ruang koperasi sekaligus minimarket kecil, bersih, dan terang dengan rak makanan ringan, minuman, dan AC.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kbs.jpg"
   }
 ]
