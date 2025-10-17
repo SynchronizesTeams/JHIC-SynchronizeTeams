@@ -1,5 +1,6 @@
 import type { User, Post, Comment, Channel } from '~/types/forum'
 import type { Portal, PortalProfile } from '~/types/portal'
+import type { PersonalProfile } from '~/types/personalProfile'
 
 export const mockUsers: User[] = [
   {
@@ -707,5 +708,118 @@ export const mockPortals: Portal[] = [
     category: 'community',
     isActive: true,
     order: 8
+  }
+]
+
+// Personal Profile mock data
+export const mockPersonalProfiles: PersonalProfile[] = [
+  {
+    username: 'johndoe',
+    name: 'John Doe',
+    email: 'john.doe@smkpnb.sch.id',
+    phone: '+62 812-3456-7890',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
+    bio: 'Alumni SMK Penerbangan Bandung | Software Engineer | Tech Enthusiast',
+    coverImage: 'https://picsum.photos/1200/300?random=user1',
+    theme: 'light',
+    createdAt: '2024-01-01T00:00:00Z',
+    updatedAt: '2024-01-15T10:00:00Z',
+    links: [
+      {
+        id: '1',
+        title: 'LinkedIn Profile',
+        url: 'https://linkedin.com/in/johndoe',
+        icon: '💼',
+        order: 1,
+        isActive: true,
+        clicks: 245
+      },
+      {
+        id: '2',
+        title: 'GitHub',
+        url: 'https://github.com/johndoe',
+        icon: '💻',
+        order: 2,
+        isActive: true,
+        clicks: 189
+      },
+      {
+        id: '3',
+        title: 'Portfolio Website',
+        url: 'https://johndoe.dev',
+        icon: '🌐',
+        order: 3,
+        isActive: true,
+        clicks: 321
+      },
+      {
+        id: '4',
+        title: 'Instagram',
+        url: 'https://instagram.com/johndoe',
+        icon: '📸',
+        order: 4,
+        isActive: true,
+        clicks: 156
+      },
+      {
+        id: '5',
+        title: 'YouTube Channel',
+        url: 'https://youtube.com/@johndoe',
+        icon: '🎥',
+        order: 5,
+        isActive: true,
+        clicks: 98
+      }
+    ]
+  },
+  {
+    username: 'janesmith',
+    name: 'Jane Smith',
+    email: 'jane.smith@smkpnb.sch.id',
+    phone: '+62 813-9876-5432',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane',
+    bio: 'UI/UX Designer | Creative Thinker | Coffee Lover ☕',
+    coverImage: 'https://picsum.photos/1200/300?random=user2',
+    theme: 'light',
+    createdAt: '2024-01-05T00:00:00Z',
+    updatedAt: '2024-01-14T15:30:00Z',
+    links: [
+      {
+        id: '1',
+        title: 'Behance Portfolio',
+        url: 'https://behance.net/janesmith',
+        icon: '🎨',
+        order: 1,
+        isActive: true,
+        clicks: 412
+      },
+      {
+        id: '2',
+        title: 'Dribbble',
+        url: 'https://dribbble.com/janesmith',
+        icon: '🏀',
+        order: 2,
+        isActive: true,
+        clicks: 367
+      },
+      {
+        id: '3',
+        title: 'Twitter',
+        url: 'https://twitter.com/janesmith',
+        icon: '🐦',
+        order: 3,
+        isActive: true,
+        clicks: 289
+      },
+      {
+        id: '4',
+        title: 'Medium Blog',
+        url: 'https://medium.com/@janesmith',
+        icon: '📝',
+        order: 4,
+        isActive: true,
+        clicks: 178
+      }
+    ]
   }
 ]

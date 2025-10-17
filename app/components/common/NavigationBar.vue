@@ -18,9 +18,9 @@
     />
 
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
-      <NuxtLink to="/" class="flex items-center gap-2">
+      <button @click="handleLogoClick" class="flex items-center gap-2 cursor-pointer">
         <nuxt-img src="/images/penus/Logo.png" alt="Logo" class="w-80" />
-      </NuxtLink>
+      </button>
 
       <div
         class="hidden md:flex items-center gap-8 text-lg font-medium transition-colors"
@@ -28,18 +28,18 @@
           isScrolled ? 'text-primary-gray' : 'text-primary-white',
           !isScrolled && 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]'
         ]">
-        <NuxtLink
+        <button
           v-for="item in menuItems"
           :key="item.name"
-          :to="item.path"
-          class="relative group">
+          @click="handleNavClick(item)"
+          class="relative group cursor-pointer">
           <!-- TEKS blend ke latar belakang halaman -->
           <span class="transition mix-blend-difference md:mix-blend-normal hover:text-secondary-red">
             {{ item.name }}
           </span>
           <span
             class="absolute left-0 bottom-0 w-0 h-[2px] bg-secondary-red transition-all duration-300 group-hover:w-full"></span>
-        </NuxtLink>
+        </button>
       </div>
 
       <button
@@ -89,55 +89,124 @@
       <div
         v-if="isMenuOpen"
         class="md:hidden absolute left-4 right-4 top-full shadow-lg rounded-b-2xl px-5 py-4 flex flex-col space-y-4 text-primary-gray font-medium bg-primary-white">
-        <NuxtLink
+        <button
           v-for="item in menuItems"
           :key="item.name"
-          :to="item.path"
-          @click="closeMenu"
-          class="hover:text-secondary-red transition">
+          @click="handleNavClick(item)"
+          class="hover:text-secondary-red transition text-left">
           {{ item.name }}
-        </NuxtLink>
+        </button>
       </div>
     </transition>
   </nav>
 </template>
 
 <script lang="ts" setup>
-const isScrolled = ref(false);
-const isMenuOpen = ref(false);
+const route = useRoute()
+const router = useRouter()
+const isScrolled = ref(false)
+const isMenuOpen = ref(false)
 
 const menuItems = [
-  { name: "Beranda", path: "/" },
-  { name: "Forum", path: "/forums" },
-  { name: "Portals", path: "/portals" },
-  { name: "Tentang Kami", path: "/about" },
-  { name: "Berita", path: "/news" },
-  { name: "Galeri", path: "/galery" },
-];
+  { name: "Beranda", path: "/", section: "home" },
+  { name: "Tentang Kami", path: "/about", section: "about" },
+  { name: "Berita", path: "/news", section: "news" },
+  { name: "Galeri", path: "/galery", section: "galery" },
+  { name: "Forum", path: "/forums", section: null },
+  { name: "Portals", path: "/portals", section: null },
+]
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
+  isMenuOpen.value = !isMenuOpen.value
+}
+
 const closeMenu = () => {
-  isMenuOpen.value = false;
-};
+  isMenuOpen.value = false
+}
+
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 10;
-};
+  isScrolled.value = window.scrollY > 10
+}
+
+const handleLogoClick = () => {
+  if (route.path === '/') {
+    // Jika di homepage, scroll ke atas
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  } else {
+    // Jika tidak di homepage, navigate ke homepage
+    router.push('/')
+  }
+}
+
+const handleNavClick = (item: { name: string; path: string; section: string | null }) => {
+  closeMenu()
+
+  // Jika ada section dan sedang di homepage
+  if (item.section && route.path === '/') {
+    const element = document.getElementById(item.section)
+    if (element) {
+      const navHeight = 100 // Approximate navbar height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - navHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      return
+    }
+  }
+
+  // Jika section tapi tidak di homepage, navigate dulu baru scroll
+  if (item.section && route.path !== '/') {
+    router.push('/').then(() => {
+      // Tunggu sebentar untuk render
+      setTimeout(() => {
+        const element = document.getElementById(item.section!)
+        if (element) {
+          const navHeight = 100
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+          const offsetPosition = elementPosition - navHeight
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
+    })
+    return
+  }
+
+  // Jika tidak ada section, navigate biasa
+  router.push(item.path)
+}
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
+  window.addEventListener("scroll", handleScroll)
+})
+
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  window.removeEventListener("scroll", handleScroll)
+})
 </script>
 
 <style scoped>
 nav {
   transition: all 0.3s ease-in-out;
 }
+
 /* Catatan:
    - Hindari ancestor dengan isolation:isolate/transform/filter/opacity < 1,
      karena bisa memutus efek blend. */
+</style>
+
+<style>
+/* Global smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
 </style>
