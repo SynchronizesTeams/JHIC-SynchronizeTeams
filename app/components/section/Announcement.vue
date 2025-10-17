@@ -29,7 +29,10 @@
     </NuxtLink>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-      <NuxtLink v-for="news in secondaryNews" :key="news.title" :to="`/news/${news.slug}`">
+      <NuxtLink
+        v-for="news in secondaryNews"
+        :key="news.title"
+        :to="`/news/${news.slug}`">
         <div
           class="rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1">
           <div
@@ -56,6 +59,12 @@
         </div>
       </NuxtLink>
     </div>
+    <NuxtLink
+      v-if="useRoute().path === '/'"
+      to="/news"
+      class="flex mx-auto mt-8 items-center justify-center w-fit px-4 py-2 rounded-xl font-bold text-lg bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105">
+      Lihat Lainnya
+    </NuxtLink>
   </div>
 </template>
 

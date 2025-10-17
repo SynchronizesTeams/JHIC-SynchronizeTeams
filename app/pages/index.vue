@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-gradient-to-b from-primary-white via-white/30 to-primary-white">
     <section id="home" class="px-6 pt-6">
       <SectionHero />
     </section>
@@ -17,6 +17,10 @@
     </section>
     <section id="partner" class="px-6">
       <SectionPartner />
+    </section>
+    <HeaderTitle title="EKSTRAKULIKULER" align="left" />
+    <section>
+      <CommonEkskul />
     </section>
     <HeaderTitle title="PRESTASI" align="left" />
     <section id="achievment" class="px-6">

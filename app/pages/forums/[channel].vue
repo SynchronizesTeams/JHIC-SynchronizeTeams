@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-primary-white to-white py-4 px-4">
+  <div class="min-h-screen bg-gradient-to-b from-primary-white via-white/50 to-primary-white py-4 px-4">
     <div class="max-w-2xl mx-auto">
       <!-- Main Container with Rounded Border (Threads Style) -->
       <div class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg">
