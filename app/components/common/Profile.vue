@@ -43,7 +43,7 @@
 
 <script lang="ts" setup>
 import type { SectionProfileContent } from '~/types/info';
-import profileJson from "~/contents/profile.json"
+import profileJson from "~/contents/profilesection.json"
 
 const content: SectionProfileContent = profileJson.profile
 </script>

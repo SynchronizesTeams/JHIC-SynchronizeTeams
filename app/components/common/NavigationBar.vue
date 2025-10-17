@@ -1,10 +1,10 @@
 <template>
   <nav
     :class="[
-      'sticky top-3 left-0 right-0 z-50 transition-all duration-300 mb-',
+      'sticky top-3 left-0 right-0 z-50 transition-all duration-300 border border-transparent',
       isScrolled
         ? 'bg-transparent shadow-lg mx-6 rounded-2xl backdrop-blur-xl border border-primary-text/15'
-        : 'backdrop-blur-none pt-5 border-none border-2 border-b border-primary-text/20',
+        : 'backdrop-blur-none border-none border-transparent',
     ]">
 
     <!-- BACKDROP LAYER (pake ini biar bisa mix blend mode) -->

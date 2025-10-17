@@ -1,37 +1,79 @@
 [
   {
-    "title": "Laboratorium RPL",
-    "description": "<p>Laboratorium Rekayasa Perangkat Lunak dilengkapi dengan komputer modern dan koneksi jaringan LAN yang stabil.</p><ul class='list-disc pl-5'><li>PC high-end untuk coding dan desain</li><li>Proyektor interaktif</li><li>Akses internet cepat</li></ul>",
+    "title": "Workshop TKJ",
+    "description": "Ini adalah workshop Teknik Komputer dan Jaringan (TKJ). Ruangan ini terang, bersih, dan dilengkapi dengan meja kerja, komputer, peralatan jaringan dan elektronika (termasuk demonstrasi panel surya), serta lemari penyimpanan. Fungsinya sebagai tempat praktik dan pembelajaran di bidang teknologi informasi.",
     "linkText": "Lihat Detail",
     "linkUrl": "#",
-    "image": "https://picsum.photos/seed/labrpl/1200/800"
+    "image": "/images/sapras/wstkj.jpg"
   },
   {
-    "title": "Workshop Teknik Komputer",
-    "description": "<p>Tempat praktik perakitan, perbaikan, dan pemeliharaan perangkat keras komputer.</p><ul class='list-disc pl-5'><li>Peralatan servis lengkap</li><li>Ruang pendingin nyaman</li><li>Panduan instruktur ahli</li></ul>",
-    "linkText": "Kunjungi Workshop",
+    "title": "Workshop PKM",
+    "description": "Ruangan Layanan Pelanggan/Informasi yang Bersih dan Minimalis, area layanan pelanggan atau resepsionis yang rapi. Terdapat dua meja konter utama. Di sisi kiri terdapat meja kerja 'Customer Service' dengan komputer. Ruangan ini menggunakan AC, serta dilengkapi beberapa kursi tunggu berwarna hitam di sisi kanan. Ruangan yang terorganisir, dirancang untuk memberikan pelayanan atau informasi.",
+    "linkText": "Lihat Detail",
     "linkUrl": "#",
-    "image": "https://picsum.photos/seed/workshop/1200/800"
+    "image": "/images/sapras/wspkm.jpg"
   },
   {
-    "title": "Perpustakaan Digital",
-    "description": "<p>Menjadi pusat referensi dan pembelajaran berbasis digital bagi seluruh siswa.</p><ul class='list-disc pl-5'><li>Akses e-book dan jurnal ilmiah</li><li>Ruang baca nyaman</li><li>Wi-Fi gratis</li></ul>",
-    "linkText": "Jelajahi Koleksi",
+    "title": "Workshop Multimedia",
+    "description": "Studio produksi digital yang dilengkapi Green Screen, kamera (di tripod), pencahayaan studio, serta beberapa laptop dan komputer yang digunakan untuk aktivitas syuting dan editing video. Fasilitas pendukung seperti AC dan monitor TV juga.",
+    "linkText": "Lihat Detail",
     "linkUrl": "#",
-    "image": "https://picsum.photos/seed/library/1200/800"
+    "image": "/images/sapras/wsmm.jpg"
   },
   {
-    "title": "Ruang Multimedia",
-    "description": "<p>Ruang kreatif untuk produksi video, animasi, dan presentasi digital.</p><ul class='list-disc pl-5'><li>Peralatan audio visual modern</li><li>Studio mini untuk editing</li><li>Green screen</li></ul>",
-    "linkText": "Lihat Galeri",
+    "title": "Toilet",
+    "description": "Ruangan dengan dinding dan lantai yang bersih, Terdapat beberapa wastafel dengan cermin di tengah, dan cermin panjang berdiri.",
+    "linkText": "Lihat Detail",
     "linkUrl": "#",
-    "image": "https://picsum.photos/seed/multimedia/1200/800"
+    "image": "/images/sapras/toilet.jpg"
   },
   {
-    "title": "Lapangan Olahraga",
-    "description": "<p>Tempat berolahraga dan menyalurkan semangat sportivitas bagi seluruh siswa.</p><ul class='list-disc pl-5'><li>Lapangan futsal & basket</li><li>Ruang ganti dan kamar mandi bersih</li><li>Area penonton luas</li></ul>",
-    "linkText": "Lihat Fasilitas",
+    "title": "Ruang LSP",
+    "description": "Kantor formal yang rapi, dilengkapi lemari arsip, dan peralatan seperti proyektor dan printer, berfungsi sebagai ruang kerja staf.",
+    "linkText": "Lihat Detail",
     "linkUrl": "#",
-    "image": "https://picsum.photos/seed/sport/1200/800"
+    "image": "/images/sapras/rlsp.jpg"
+  },
+  {
+    "title": "Ruang Kelas",
+    "description": "Ruang kelas modern dengan susunan meja dan kursi belajar individu yang rapi. Memiliki layar proyektor besar, dirancang untuk kegiatan belajar mengajar atau pelatihan.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kelas.jpg"
+  },
+  {
+    "title": "Ruangan Perpustakaan",
+    "description": "Ruang baca yang memadukan koleksi buku fisik pada rak-rak tinggi, area diskusi santai (meja kecil dengan kursi), serta fasilitas modern berupa meja layanan dan komputer untuk penelusuran katalog digital.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/perpus.jpg"
+  },
+  {
+    "title": "LAB RPL",
+    "description": "Laboratorium komputer yang modern dan identik. Ruangan lab ini diatur secara rapi dengan deretan meja praktek yang masing-masing dilengkapi unit komputer, dirancang khusus untuk kegiatan pelatihan dan praktik keterampilan di bidang teknologi dan informatika.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/labrpl.jpg"
+  },
+  {
+    "title": "Lab Multimedia",
+    "description": "Laboratorium komputer yang modern dan identik. Ruangan kelas ini diatur secara rapi dengan deretan meja praktek yang masing-masing dilengkapi unit komputer, dirancang khusus untuk kegiatan pelatihan dan praktik keterampilan di bidang teknologi dan Desain.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/labmm.jpg"
+  },
+  {
+    "title": "Lab Pemasaran",
+    "description": "Ruangan praktik bisnis (LPB), lengkap dengan jajaran meja dan kursi.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/lablpb.jpg"
+  },
+  {
+    "title": "Lab Mikrotik",
+    "description": "Ruangan yang bersih dan modern, dilengkapi meja praktik, beberapa unit komputer.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/mikrotik.jpg"
   }
 ]
