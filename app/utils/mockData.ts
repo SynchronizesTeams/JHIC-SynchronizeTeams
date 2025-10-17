@@ -3,6 +3,7 @@ import type { Portal, PortalProfile } from '~/types/portal'
 import type { PersonalProfile } from '~/types/personalProfile'
 import type { Teacher } from '~/types/teacher'
 import type { Achievement } from '~/types/achievement'
+import type { User as UserProfile } from '~/types/user'
 
 export const mockUsers: User[] = [
   {
@@ -1041,3 +1042,17 @@ export const mockAchievements: Achievement[] = [
     }
   }
 ]
+
+// Current User mock data for dashboard
+export const mockCurrentUser: UserProfile = {
+  id: 1,
+  no_induk: '2021001',
+  name: 'John Doe',
+  email: 'john.doe@smkpnb.sch.id',
+  role: 'alumni',
+  photo_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
+  phone: '+62 812-3456-7890',
+  alamat: 'Jl. Raya Bandung No. 123, Bandung, Jawa Barat 40123',
+  jabatan: 'Software Engineer',
+  tahun_ajaran_mulai: '2021'
+}

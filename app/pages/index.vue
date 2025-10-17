@@ -30,7 +30,7 @@
       <div class="flex justify-center mt-8 mb-12">
         <NuxtLink
           to="/achievements"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-2xl font-semibold hover:from-secondary-red/90 hover:to-secondary-red transition-all shadow-lg hover:shadow-xl hover:scale-105"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg"
         >
           <span>Lihat Semua Prestasi</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
     <section id="galery" class="px-6">
       <SectionGalery :images="galleryImages" :display-count="7" />
 
-      <!-- View All Button -->
+      <!-- View All Button
       <div class="flex justify-center mt-8 mb-12">
         <NuxtLink
           to="/galery"
@@ -58,7 +58,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </NuxtLink>
-      </div>
+      </div> -->
     </section>
     <HeaderTitle title="FAQ" align="center" />
     <section id="faq" class="px-6">

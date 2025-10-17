@@ -59,7 +59,7 @@
       </p>
       <a
         href="/about"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-secondary-red text-primary-white rounded-full font-semibold hover:bg-secondary-red/90 transition-colors shadow-sm"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
