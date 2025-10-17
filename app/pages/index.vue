@@ -11,7 +11,7 @@
     <section id="teachers" class="px-6">
       <SectionTeachers />
     </section>
-    <HeaderTitle title="NEWS" align="center" />
+    <HeaderTitle title="BERITA TERBARU" align="center" />
     <section id="news" class="px-6">
       <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList"/>
     </section>
@@ -29,6 +29,10 @@
     <HeaderTitle title="GALERI" align="right" />
     <section id="galery" class="px-6">
       <SectionGalery :images="galleryImages" />
+    </section>
+    <HeaderTitle title="FAQ" align="center" />
+    <section id="faq" class="px-6">
+      <SectionFaq :faqs="faqData" />
     </section>
   </div>
 </template>
@@ -77,6 +81,49 @@ const testimonialsData = ref([
     position: "Alumni, Network Administrator di GlobalNet",
     avatar: "https://i.pravatar.cc/150?img=3",
   },
+]);
+
+const faqData = ref([
+  {
+    id: 1,
+    question: "Apa saja jurusan yang tersedia di SMK Penerbangan Bandung?",
+    answer: "SMK Penerbangan Bandung menyediakan beberapa jurusan unggulan seperti Teknik Penerbangan, Teknik Komputer dan Jaringan, Rekayasa Perangkat Lunak, dan Multimedia. Setiap jurusan dirancang dengan kurikulum yang relevan dengan kebutuhan industri."
+  },
+  {
+    id: 2,
+    question: "Bagaimana proses pendaftaran siswa baru?",
+    answer: "Pendaftaran siswa baru dapat dilakukan secara online melalui portal PPDB kami. Calon siswa perlu menyiapkan dokumen persyaratan seperti ijazah SMP/sederajat, KK, akta kelahiran, dan foto. Setelah mendaftar, akan ada tes seleksi berupa tes akademik dan wawancara."
+  },
+  {
+    id: 3,
+    question: "Apakah tersedia program beasiswa?",
+    answer: "Ya, kami menyediakan berbagai program beasiswa untuk siswa berprestasi dan kurang mampu. Beasiswa meliputi beasiswa prestasi akademik, beasiswa olahraga/seni, dan beasiswa dari mitra industri. Informasi lengkap dapat dilihat di portal resmi kami."
+  },
+  {
+    id: 4,
+    question: "Bagaimana sistem praktik kerja industri (Prakerin)?",
+    answer: "Siswa akan menjalani Prakerin selama 3-6 bulan di perusahaan mitra kami. Program ini bertujuan memberikan pengalaman kerja nyata di industri. Kami bermitra dengan berbagai perusahaan ternama di bidang teknologi dan penerbangan untuk memastikan siswa mendapat pengalaman terbaik."
+  },
+  {
+    id: 5,
+    question: "Fasilitas apa saja yang tersedia untuk siswa?",
+    answer: "SMK Penerbangan Bandung dilengkapi dengan fasilitas modern seperti laboratorium komputer, workshop teknik, perpustakaan digital, ruang multimedia, lapangan olahraga, kantin, dan area wifi. Semua fasilitas dirancang untuk mendukung proses pembelajaran yang optimal."
+  },
+  {
+    id: 6,
+    question: "Apakah lulusan bisa langsung bekerja?",
+    answer: "Ya, lulusan kami memiliki peluang langsung bekerja karena kurikulum yang berbasis kompetensi industri. Banyak alumni kami yang terserap di perusahaan-perusahaan besar. Kami juga memiliki job fair dan program career development untuk membantu siswa memasuki dunia kerja."
+  },
+  {
+    id: 7,
+    question: "Apakah bisa melanjutkan ke perguruan tinggi?",
+    answer: "Tentu saja! Lulusan SMK juga memiliki kesempatan yang sama untuk melanjutkan ke perguruan tinggi melalui berbagai jalur seperti SNBP, SNBT, atau jalur mandiri. Banyak alumni kami yang melanjutkan pendidikan ke universitas ternama di Indonesia."
+  },
+  {
+    id: 8,
+    question: "Berapa biaya pendidikan di SMK Penerbangan Bandung?",
+    answer: "Biaya pendidikan bervariasi tergantung jurusan yang dipilih. Kami menyediakan informasi rinci mengenai biaya pendidikan saat proses pendaftaran. Selain itu, tersedia juga program cicilan dan berbagai skema pembayaran yang dapat memudahkan orang tua siswa."
+  }
 ]);
 </script>
 

@@ -1,5 +1,5 @@
-<template class="min-h-screen">
-  <div class="min-h-screen bg-gradient-to-br from-primary-white to-white">
+<template class="">
+  <div class="min-h-screen bg-primary-white">
 
     <div class="max-w-2xl mx-auto px-4 py-8">
       <!-- Profile Section -->
@@ -29,7 +29,7 @@
           </div>
 
           <!-- Username & Display Name -->
-          <h1 class="text-2xl font-bold text-primary-gray mb-1">@{{ profile.username }}</h1>
+          <h1 class="text-2xl font-bold text-secondary-red mb-1">@{{ profile.username }}</h1>
           <p class="text-primary-gray/60 text-sm mb-4">{{ profile.bio }}</p>
         </div>
 
