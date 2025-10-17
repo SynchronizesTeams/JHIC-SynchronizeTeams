@@ -68,6 +68,12 @@
               <div
                 class="text-gray-600 prose prose-sm max-w-none"
                 v-html="currentEkskul.description"></div>
+              <NuxtLink
+                v-if="route.path === '/'"
+                :to="`/ekskul/${currentEkskul.slug}`"
+                class="flex mx-auto mt-8 items-center justify-center w-fit px-4 py-2 rounded-xl font-bold text-lg bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105">
+                Lihat Detailnya
+              </NuxtLink>
             </div>
           </transition>
         </div>
@@ -82,38 +88,37 @@
 
 <script setup lang="ts">
 interface EkskulItem {
+  slug: string;
   title: string;
   description: string;
   image: string;
   logo: string;
 }
 
-const defaultEkskul: EkskulItem = {
-  title: "Memuat...",
-  description: "<p>Silakan tunggu...</p>",
-  image: "https://picsum.photos/800/600?blur",
-  logo: "https://picsum.photos/150?blur",
-};
-
 const ekskulList = ref<EkskulItem[]>([]);
 const isLoading = ref(true);
 const currentIndex = ref(0);
 
+const route = useRoute();
+
 const fetchEkskulData = () => {
   ekskulList.value = [
     {
+      slug: "pramuka",
       title: "Pramuka",
       description: `<p>Gerakan Pramuka Indonesia adalah organisasi pendidikan nonformal yang menyelenggarakan pendidikan kepanduan.</p>`,
       image: "https://picsum.photos/seed/pramuka/1200/800",
       logo: "https://picsum.photos/seed/pramuka-logo/200",
     },
     {
+      slug: "paskibra",
       title: "Paskibra",
       description: `<p>Pasukan Pengibar Bendera Pusaka melatih kedisiplinan, ketahanan fisik, dan menumbuhkan rasa cinta tanah air.</p>`,
       image: "https://picsum.photos/seed/paskibra/1200/800",
       logo: "https://picsum.photos/seed/paskibra-logo/200",
     },
     {
+      slug: "futsal",
       title: "Futsal",
       description: `<p>Ekstrakurikuler Futsal menjadi wadah bagi siswa untuk menyalurkan bakat dalam olahraga dan membangun kerja sama tim.</p>`,
       image: "https://picsum.photos/seed/futsal/1200/800",
@@ -133,19 +138,20 @@ const prevItem = () => {
     ekskulList.value.length;
 };
 
-const currentEkskul = computed<EkskulItem>(
-  () => ekskulList.value[currentIndex.value] ?? defaultEkskul
-);
+const currentEkskul = computed<EkskulItem>(() => ekskulList.value[currentIndex.value]!);
 
-let interval: ReturnType<typeof setInterval>;
+let interval: ReturnType<typeof setInterval> | null = null;
 
 const startRotation = () => {
-  clearInterval(interval);
+  if (interval !== null) clearInterval(interval);
   interval = setInterval(nextItem, 5000);
 };
 
 const stopRotation = () => {
-  clearInterval(interval);
+  if (interval !== null) {
+    clearInterval(interval);
+    interval = null;
+  }
 };
 
 onMounted(() => {
