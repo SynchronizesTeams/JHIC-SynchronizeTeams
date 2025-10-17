@@ -11,7 +11,7 @@
         </p>
       </div>
 
-      <div class="grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid w-full px-5 md:px-0 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <NuxtLink
           v-for="channel in channels"
           :key="channel.id"
