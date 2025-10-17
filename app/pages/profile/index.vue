@@ -176,17 +176,98 @@ import profileDataJson from "~/contents/profilepage.json"
 
 const profile: Ref<ProfileData> = ref(profileDataJson as ProfileData)
 
-// SEO
+// Enhanced SEO Meta Tags
+useSeoMeta({
+  title: 'Profile Sekolah',
+  description: 'Profil lengkap SMK Plus Pelita Nusantara - Sejarah, visi misi, program keahlian, fasilitas, dan keunggulan sekolah kejuruan unggulan yang menghasilkan SDM terampil, entrepreneur, dan religius.',
+  ogTitle: 'Profile Sekolah - SMK Plus Pelita Nusantara',
+  ogDescription: 'Kenali lebih dekat SMK Plus Pelita Nusantara - sekolah kejuruan unggulan dengan program keahlian teknologi dan fasilitas modern.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/profile',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Profile Sekolah - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Kenali lebih dekat SMK Plus Pelita Nusantara - sekolah kejuruan unggulan dengan program keahlian teknologi dan fasilitas modern.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
 useHead({
-  title: "Profile Sekolah - SMK Plus Pelita Nusantara",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Profil lengkap SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan unggulan yang menghasilkan SDM terampil, entrepreneur, dan religius",
-    },
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/profile' }
   ],
-});
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        'name': 'Profile Sekolah - SMK Plus Pelita Nusantara',
+        'description': 'Profil lengkap SMK Plus Pelita Nusantara termasuk sejarah, visi misi, program keahlian, dan fasilitas',
+        'url': 'https://smkpluspelitanusantara.sch.id/profile',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Profile Sekolah',
+              'item': 'https://smkpluspelitanusantara.sch.id/profile'
+            }
+          ]
+        },
+        'mainEntity': {
+          '@type': 'EducationalOrganization',
+          'name': 'SMK Plus Pelita Nusantara',
+          'alternateName': 'PENUS',
+          'url': 'https://smkpluspelitanusantara.sch.id',
+          'logo': 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+          'description': 'Sekolah Menengah Kejuruan unggulan yang menghasilkan sumber daya manusia Terampil, Entrepreneur, dan Religius',
+          'address': {
+            '@type': 'PostalAddress',
+            'addressCountry': 'ID',
+            'addressLocality': 'Bandung'
+          },
+          'hasOfferCatalog': {
+            '@type': 'OfferCatalog',
+            'name': 'Program Keahlian',
+            'itemListElement': [
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Course',
+                  'name': 'Teknik Komputer dan Jaringan',
+                  'description': 'Mempelajari instalasi, konfigurasi, dan maintenance sistem komputer dan jaringan'
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Course',
+                  'name': 'Rekayasa Perangkat Lunak',
+                  'description': 'Mengembangkan kemampuan dalam pemrograman dan pengembangan aplikasi'
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Course',
+                  'name': 'Multimedia',
+                  'description': 'Menguasai desain grafis, video editing, dan produksi konten digital'
+                }
+              }
+            ]
+          }
+        }
+      })
+    }
+  ]
+})
 </script>
 
 <style scoped></style>
