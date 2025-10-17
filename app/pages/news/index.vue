@@ -20,7 +20,10 @@
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-16">
-      <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList" />
+      <div v-if="newsList.length > 0">
+        <SectionAnnouncement :main-news="mainNews" :secondary-news="secondaryNews" />
+      </div>
+      <div v-else class="text-center text-gray-500">Memuat berita...</div>
     </section>
   </div>
 </template>
@@ -74,10 +77,11 @@ useHead({
           ]
         }
       })
-    }
+    } as any
   ]
 })
 
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
+const secondaryNews = computed<News[]>(() => newsList.value.slice(1));
 </script>

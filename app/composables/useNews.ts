@@ -1,9 +1,8 @@
 import type { News } from '../types/news';
-import newsData from '~/contents/news.json';
 
 export const useNews = () => {
   const api = useApi();
-  const newsList = ref<News[]>(newsData as News[]);
+  const newsList = ref<News[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
