@@ -89,7 +89,16 @@
         </div>
 
         <!-- Posts Feed -->
-        <div v-if="posts.length > 0">
+        <div v-if="loading" class="text-center py-16 px-6">
+          <div class="flex items-center justify-center">
+            <svg class="animate-spin h-12 w-12 text-secondary-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div v-else-if="posts.length > 0">
           <PostCard
             v-for="post in posts"
             :key="post.id"
@@ -132,33 +141,76 @@
 </template>
 
 <script setup lang="ts">
-import { mockPosts, mockChannels } from '~/utils/mockData'
 import PostCard from '~/components/forum/PostCard.vue'
 import CreatePostModal from '~/components/forum/CreatePostModal.vue'
 
 const route = useRoute()
 const router = useRouter()
-const channel = computed(() => route.params.channel as string)
+const api = useApi()
 
-const channelData = computed(() =>
-  mockChannels.find(c => c.slug === channel.value)
-)
+const channel = computed(() => route.params.channel as string)
+const channelData = ref<any>(null)
+const allChannels = ref<any[]>([])
+const posts = ref<any[]>([])
+const loading = ref(true)
+const showCreatePost = ref(false)
+const showChannelDropdown = ref(false)
 
 const channelDescription = computed(() =>
   channelData.value?.description || 'Forum diskusi'
 )
 
-const posts = computed(() => {
-  const channelPosts = mockPosts.filter(post => post.channel === channel.value)
-  // Fallback: if no posts for this channel, show all public posts
-  return channelPosts.length > 0 ? channelPosts : mockPosts.filter(post => post.channel === 'public')
+// Fetch forum sections
+const fetchForumSections = async () => {
+  try {
+    const response: any = await api.forumSection.getAll()
+    allChannels.value = response.data || response || []
+
+    // Find current channel data
+    channelData.value = allChannels.value.find((c: any) => c.slug === channel.value)
+  } catch (err) {
+    console.error('Error fetching forum sections:', err)
+    // Fallback to mock data
+    const { mockChannels } = await import('~/utils/mockData')
+    allChannels.value = mockChannels
+    channelData.value = mockChannels.find(c => c.slug === channel.value)
+  }
+}
+
+// Fetch posts for current channel
+const fetchPosts = async () => {
+  try {
+    loading.value = true
+    const response: any = await api.forumPost.getAll()
+    const allPosts = response.data || response || []
+
+    // Filter posts by current channel (by section_id)
+    if (channelData.value) {
+      posts.value = allPosts.filter((post: any) => post.section_id === channelData.value.id)
+    } else {
+      posts.value = allPosts
+    }
+  } catch (err) {
+    console.error('Error fetching posts:', err)
+    // Fallback to mock data
+    const { mockPosts } = await import('~/utils/mockData')
+    posts.value = mockPosts.filter(post => post.channel === channel.value)
+  } finally {
+    loading.value = false
+  }
+}
+
+// Initialize data
+onMounted(async () => {
+  await fetchForumSections()
+  await fetchPosts()
 })
 
-const showCreatePost = ref(false)
-
-// Channel dropdown
-const showChannelDropdown = ref(false)
-const allChannels = computed(() => mockChannels)
+// Watch channel changes
+watch(() => channel.value, async () => {
+  channelData.value = allChannels.value.find((c: any) => c.slug === channel.value)
+  await fetchPosts()
+})
 
 const navigateToChannel = (channelSlug: string) => {
   showChannelDropdown.value = false
@@ -181,21 +233,45 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 
-const handleUpvote = (postId: string) => {
-  console.log('Upvote post:', postId)
-  // TODO: Implement upvote logic
+const handleUpvote = async (postId: string) => {
+  try {
+    await api.forumPost.upvote(Number(postId))
+    // Refresh posts to get updated vote counts
+    await fetchPosts()
+  } catch (err) {
+    console.error('Error upvoting post:', err)
+  }
 }
 
-const handleDownvote = (postId: string) => {
-  console.log('Downvote post:', postId)
-  // TODO: Implement downvote logic
+const handleDownvote = async (postId: string) => {
+  try {
+    await api.forumPost.downvote(Number(postId))
+    // Refresh posts to get updated vote counts
+    await fetchPosts()
+  } catch (err) {
+    console.error('Error downvoting post:', err)
+  }
 }
 
+const handleCreatePost = async (postData: any) => {
+  try {
+    if (!channelData.value) {
+      console.error('No channel data')
+      return
+    }
 
+    await api.forumPost.create({
+      section_id: channelData.value.id,
+      title: postData.title,
+      content: postData.content,
+      image: postData.image
+    })
 
-const handleCreatePost = (postData: any) => {
-  console.log('Create post:', postData)
-  showCreatePost.value = false
-  // TODO: Implement create post logic
+    showCreatePost.value = false
+    // Refresh posts to show new post
+    await fetchPosts()
+  } catch (err) {
+    console.error('Error creating post:', err)
+  }
 }
 </script>

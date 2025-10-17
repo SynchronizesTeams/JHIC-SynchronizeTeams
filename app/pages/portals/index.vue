@@ -29,7 +29,7 @@
           </div>
 
           <!-- Username & Display Name -->
-          <h1 class="text-2xl font-bold text-secondary-red mb-1">@{{ profile.username }}</h1>
+          <h1 class="text-2xl font-bold text-secondary-red mb-1">@smkpnb</h1>
           <p class="text-primary-gray/60 text-sm mb-4">{{ profile.bio }}</p>
         </div>
 
@@ -40,6 +40,9 @@
         <!-- Header -->
         <div class="px-6 py-4 border-b border-primary-gray/10">
           <h2 class="text-lg font-bold text-primary-gray">Link Penting</h2>
+          <p v-if="isLoading" class="text-sm text-primary-gray/60 mt-1">Memuat...</p>
+          <p v-else-if="error" class="text-sm text-red-500 mt-1">{{ error }}</p>
+          <p v-else-if="portals.length === 0" class="text-sm text-primary-gray/60 mt-1">Belum ada portal yang tersedia</p>
         </div>
 
         <!-- Links List -->
@@ -198,19 +201,95 @@
 </template>
 
 <script setup lang="ts">
-import { mockPortals, mockPortalProfile } from '~/utils/mockData'
-import type { Portal } from '~/types/portal'
 import NavigationBar from '~/components/common/NavigationBar.vue'
 
-const profile = ref(mockPortalProfile)
-const portals = computed(() => mockPortals.filter(p => p.isActive).sort((a, b) => a.order - b.order))
+const { portals: schoolPortals, isLoading, error, fetchPortals } = usePortals()
+
+// School profile data - not user specific
+const profile = computed(() => ({
+  username: 'smkpnb',
+  displayName: 'SMK Plus Pelita Nusantara',
+  bio: 'Portal resmi SMK Plus Pelita Nusantara - Hub untuk berbagai informasi dan link penting sekolah',
+  avatar: '/penus-icon.webp',
+  coverImage: null
+}))
+
+// Default portal data jika API belum tersedia
+const defaultPortals = [
+  {
+    id: 1,
+    title: 'E-Learning',
+    url: 'https://elearning.smkpnb.sch.id',
+    icon: '📚',
+    order: 1,
+    is_active: true
+  },
+  {
+    id: 2,
+    title: 'Perpustakaan Digital',
+    url: 'https://perpus.smkpnb.sch.id',
+    icon: '📖',
+    order: 2,
+    is_active: true
+  },
+  {
+    id: 3,
+    title: 'Sistem Informasi Akademik',
+    url: 'https://sia.smkpnb.sch.id',
+    icon: '🎓',
+    order: 3,
+    is_active: true
+  },
+  {
+    id: 4,
+    title: 'Portal Alumni',
+    url: 'https://alumni.smkpnb.sch.id',
+    icon: '👨‍🎓',
+    order: 4,
+    is_active: true
+  },
+  {
+    id: 5,
+    title: 'Pengumuman',
+    url: 'https://pengumuman.smkpnb.sch.id',
+    icon: '📢',
+    order: 5,
+    is_active: true
+  }
+]
+
+// Transform school portals for display
+const portals = computed(() => {
+  // Use default portals if API fails or returns empty
+  const portalData = schoolPortals.value.length > 0 ? schoolPortals.value : defaultPortals
+  
+  return portalData
+    .filter(portal => portal.is_active !== false)
+    .sort((a, b) => (a.order || 999) - (b.order || 999))
+    .map((portal) => ({
+      ...portal,
+      name: portal.title,
+      description: `Akses ${portal.title}`,
+      icon: portal.icon || '🔗',
+      isActive: true
+    }))
+})
+
+// Fetch school portals on mount
+onMounted(async () => {
+  try {
+    await fetchPortals()
+  } catch (error) {
+    console.error('Failed to fetch school portals:', error)
+  }
+})
 
 // Modal state
 const isModalOpen = ref(false)
-const selectedPortal = ref<Portal | null>(null)
+const selectedPortal = ref<any>(null)
 
 // Modal functions
-const openModal = (portal: Portal) => {
+const openModal = (portal: any) => {
   selectedPortal.value = portal
   isModalOpen.value = true
   // Prevent body scroll when modal is open

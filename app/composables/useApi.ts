@@ -18,6 +18,19 @@ interface AuthCredentials {
   password: string;
 }
 
+interface UserProfile {
+  name?: string;
+  no_induk?: string;
+  role?: string;
+  phone?: string;
+  alamat?: string;
+  tahun_ajaran_mulai?: string;
+  jabatan?: string;
+  email?: string;
+  password?: string;
+  photo_url?: File;
+}
+
 interface ImageUpload {
   category: string;
   file_path: File;
@@ -59,16 +72,24 @@ interface Event {
   image?: File;
 }
 
+interface Portal {
+  title: string;
+  url: string;
+  order?: number;
+  is_active?: boolean;
+  icon?: File;
+}
+
 export const useApi = () => {
   const config = useRuntimeConfig();
   const BASE_URL = config.public.apiBase;
   
   // Helper function untuk mendapatkan headers dengan token (hanya jika token tersedia)
   // Return type dibuat eksplisit agar kompatibel dengan HeadersInit
-  const getAuthHeaders = (): Record<string, string> | undefined => {
+  const getAuthHeaders = (): Record<string, string> => {
     const auth = useAuth();
     const token = (auth.token.value || '').trim();
-    return token ? { Authorization: `Bearer ${token}` } : undefined;
+    return token ? { Authorization: `Bearer ${token}` } : {};
   };
 
   // Helper function untuk membuat FormData dari object
@@ -109,9 +130,18 @@ export const useApi = () => {
       },
 
       login: async (credentials: AuthCredentials) => {
-        return await $fetch(`${BASE_URL}/login`, {
+        return await $fetch(`${BASE_URL}/api/v1/auth/login`, {
           method: 'POST',
           body: credentials
+        });
+      },
+
+      editProfile: async (profileData: UserProfile) => {
+        const formData = createFormData(profileData);
+        return await $fetch(`${BASE_URL}/api/v1/auth/edit`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: formData
         });
       },
 
@@ -143,21 +173,70 @@ export const useApi = () => {
     // User Links API
     userLinks: {
       create: async (linkData: UserLink) => {
-        const formData = createFormData(linkData);
-        return await $fetch(`${BASE_URL}/api/v1/user-links/add`, {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: formData
-        });
+        try {
+          // Always use FormData as backend expects it
+          const formData = new FormData();
+          formData.append('title', linkData.title);
+          formData.append('url', linkData.url);
+          
+          // Only append icon if it's a File
+          if (linkData.icon instanceof File) {
+            formData.append('icon', linkData.icon);
+          }
+          
+          const headers = getAuthHeaders();
+          
+          console.log('Creating user link:', {
+            title: linkData.title,
+            url: linkData.url,
+            hasIcon: linkData.icon instanceof File
+          });
+          console.log('API URL:', `${BASE_URL}/api/v1/user-links/add`);
+          console.log('Auth token:', headers.Authorization ? 'Present' : 'Missing');
+          
+          return await $fetch(`${BASE_URL}/api/v1/user-links/add`, {
+            method: 'POST',
+            headers,
+            body: formData
+          });
+        } catch (error: any) {
+          console.error('API Error creating user link:', error);
+          console.error('Error response:', error.data);
+          console.error('Error status:', error.status);
+          throw error;
+        }
       },
 
       update: async (id: number, linkData: UserLink) => {
-        const formData = createFormData(linkData);
-        return await $fetch(`${BASE_URL}/api/v1/user-links/edit/${id}`, {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: formData
-        });
+        try {
+          // Always use FormData as backend expects it
+          const formData = new FormData();
+          formData.append('title', linkData.title);
+          formData.append('url', linkData.url);
+          
+          // Only append icon if it's a File
+          if (linkData.icon instanceof File) {
+            formData.append('icon', linkData.icon);
+          }
+          
+          const headers = getAuthHeaders();
+          
+          console.log('Updating user link:', {
+            id,
+            title: linkData.title,
+            url: linkData.url,
+            hasIcon: linkData.icon instanceof File
+          });
+          
+          return await $fetch(`${BASE_URL}/api/v1/user-links/edit/${id}`, {
+            method: 'POST',
+            headers,
+            body: formData
+          });
+        } catch (error: any) {
+          console.error('API Error updating user link:', error);
+          throw error;
+        }
       },
 
       delete: async (id: number) => {
@@ -309,6 +388,128 @@ export const useApi = () => {
           method: 'POST',
           headers: getAuthHeaders(),
           body: formData
+        });
+      },
+
+      getAll: async () => {
+        return await $fetch(`${BASE_URL}/api/v1/event/showAll`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      },
+
+      getById: async (id: number) => {
+        return await $fetch(`${BASE_URL}/api/v1/event/show/${id}`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      },
+
+      update: async (id: number, eventData: Event) => {
+        const formData = createFormData(eventData);
+        return await $fetch(`${BASE_URL}/api/v1/event/edit/${id}`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: formData
+        });
+      },
+
+      delete: async (id: number) => {
+        return await $fetch(`${BASE_URL}/api/v1/event/delete/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+      },
+
+      getByCategory: async (category: string) => {
+        return await $fetch(`${BASE_URL}/api/v1/event/showByCategory?category=${category}`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      }
+    },
+
+    // Guest Book API
+    guestBook: {
+      create: async (guestBookData: {
+        title: string;
+        instance_name: string;
+        contact_person: string;
+        email: string;
+        phone: string;
+        request_date: string;
+        description: string;
+      }) => {
+        const formData = createFormData(guestBookData);
+        return await $fetch(`${BASE_URL}/api/v1/guest-book/create`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: formData
+        });
+      },
+
+      getAll: async () => {
+        return await $fetch(`${BASE_URL}/api/v1/guest-book/showAll`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      },
+
+      getById: async (id: number) => {
+        return await $fetch(`${BASE_URL}/api/v1/guest-book/show/${id}`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      },
+
+      updateStatus: async (id: number, status: string) => {
+        const formData = createFormData({ status });
+        return await $fetch(`${BASE_URL}/api/v1/guest-book/updateStatus/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: formData
+        });
+      }
+    },
+
+    // Portal API (School Portals, different from user links)
+    portal: {
+      create: async (portalData: Portal) => {
+        const formData = createFormData(portalData);
+        return await $fetch(`${BASE_URL}/api/v1/portal/create`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: formData
+        });
+      },
+
+      update: async (id: number, portalData: Portal) => {
+        const formData = createFormData(portalData);
+        return await $fetch(`${BASE_URL}/api/v1/portal/edit/${id}`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: formData
+        });
+      },
+
+      delete: async (id: number) => {
+        return await $fetch(`${BASE_URL}/api/v1/portal/delete/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+      },
+
+      getById: async (id: number) => {
+        return await $fetch(`${BASE_URL}/api/v1/portal/show/${id}`, {
+          method: 'GET',
+          headers: getAuthHeaders()
+        });
+      },
+
+      getAll: async () => {
+        return await $fetch(`${BASE_URL}/api/v1/portal/showAll`, {
+          method: 'GET',
+          headers: getAuthHeaders()
         });
       }
     }

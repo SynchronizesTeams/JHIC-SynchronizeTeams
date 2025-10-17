@@ -63,7 +63,6 @@
         </ul>
       </div>
 
-      <!-- ini mau isi aoaan cokk -->
       <div class="space-y-2 lg:w-1/4">
         <h2 class="text-lg sm:text-xl font-bold text-black">
           Layanan dan Kolaborasi
@@ -72,43 +71,29 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#home"
-              >Beranda</NuxtLink
+              to="/forums"
+              >Forum Diskusi</NuxtLink
             >
           </li>
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#about"
-              >Profil Sekolah</NuxtLink
+              to="/portals"
+              >Portal Layanan</NuxtLink
             >
           </li>
-          <li>
+          <li v-if="user">
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#news"
-              >Pengumuman dan Berita</NuxtLink
+              :to="`/dashboard/${user.name || 'profile'}`"
+              >Personal Profile</NuxtLink
             >
           </li>
-          <li>
+          <li v-else>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#teachers"
-              >Tenaga Pendidik</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink
-              class="hover:text-secondary-red transition-all duration-300"
-              to="#galery"
-              >Galeri</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink
-              class="hover:text-secondary-red transition-all duration-300"
-              to="/#calendar"
-              >Buku Tamu</NuxtLink
+              to="/login"
+              >Login</NuxtLink
             >
           </li>
         </ul>
@@ -142,6 +127,7 @@
 
 <script setup lang="ts">
 const currentYear = computed(() => new Date().getFullYear())
+const { user } = useAuth()
 </script>
 
 <style scoped></style>

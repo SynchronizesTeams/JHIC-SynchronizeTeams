@@ -9,6 +9,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
+      proxy: {
+        '/api': {
+          target: 'https://jhic-infra.synchronizeteams.my.id',
+          changeOrigin: true,
+          secure: true
+        }
+      },
       hmr: {
         protocol: 'ws',
         host: '33d30327dd7c.ngrok-free.app',
@@ -24,9 +31,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || '',
-      apiBase: 'https://jhic-infra.synchronizeteams.my.id'
+      apiBase: process.env.NODE_ENV === 'development' ? '' : 'https://jhic-infra.synchronizeteams.my.id'
     }
   },
+
+  ssr: false, // Client-side rendering
 
   site: {
     url: 'https://smkpluspelitanusantara.sch.id',
