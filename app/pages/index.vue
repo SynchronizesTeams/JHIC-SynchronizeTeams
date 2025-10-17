@@ -26,7 +26,7 @@
     </section>
     <HeaderTitle title="KALENDER & BUKU TAMU" align="center" />
     <section id="calendar" class="px-6">
-      <SectionCalendarGuestBook :events="calendarEvents" />
+      <SectionCalendarGuestBook />
     </section>
     <HeaderTitle title="EKSTRAKULIKULER" align="left" />
     <section>
@@ -78,7 +78,7 @@ import faqsDataJson from "~/contents/faqs.json";
 import testimonialsDataJson from "~/contents/testimonials.json";
 const { galleryImages, loading: galleryLoading, error: galleryError } = useGallery();
 import type { News } from '../types/news';
-import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
+import { mockAchievements } from '~/utils/mockData'
 
 // SEO Meta Tags
 useSeoMeta({
@@ -127,7 +127,6 @@ const secondaryNews = computed<News[]>(() => newsList.value);
 
 
 const achievementsData = ref(mockAchievements)
-const calendarEvents = ref(mockCalendarEvents)
 
 const testimonialsData = ref(testimonialsDataJson as any);
 

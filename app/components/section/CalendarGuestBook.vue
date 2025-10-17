@@ -307,8 +307,15 @@
 import type { CalendarEvent } from '~/types/calendar'
 
 const props = defineProps<{
-  events: CalendarEvent[]
+  events?: CalendarEvent[]
 }>()
+
+// Use composables
+const { events: apiEvents, loading: eventsLoading, fetchEvents, getEventsByDate } = useEvents()
+const { createGuestBook, loading: guestBookLoading } = useGuestBook()
+
+// Use events from props or API
+const allEvents = computed(() => props.events || apiEvents.value)
 
 const monthNames = [
   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
@@ -376,7 +383,11 @@ const calendarDays = computed<CalendarDay[]>(() => {
       month === currentDate.getMonth() &&
       year === currentDate.getFullYear()
 
-    const hasEvent = props.events.some(event => event.event_date === dateString)
+    const hasEvent = allEvents.value.some(event => {
+      const eventDate = event.event_date || event.start_date
+      const endDate = event.end_date || eventDate
+      return dateString >= eventDate && dateString <= endDate
+    })
 
     days.push({
       day,
@@ -405,7 +416,16 @@ const calendarDays = computed<CalendarDay[]>(() => {
 
 const eventsForSelectedDate = computed(() => {
   if (!selectedDate.value) return []
-  return props.events.filter(event => event.event_date === selectedDate.value)
+
+  // Use getEventsByDate from composable which handles date ranges
+  const eventsOnDate = getEventsByDate(selectedDate.value)
+
+  // Fallback to simple filter for backward compatibility
+  if (eventsOnDate.length === 0) {
+    return allEvents.value.filter(event => event.event_date === selectedDate.value)
+  }
+
+  return eventsOnDate
 })
 
 const previousMonth = () => {
@@ -456,29 +476,32 @@ const submitGuestBook = async () => {
   submitStatus.value = 'idle'
 
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // Call API to create guest book entry
+    const result = await createGuestBook(guestBookForm.value)
 
-    console.log('Guest Book Submitted:', guestBookForm.value)
+    if (result.success) {
+      console.log('Guest Book Submitted Successfully:', result.data)
+      submitStatus.value = 'success'
 
-    submitStatus.value = 'success'
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        guestBookForm.value = {
+          title: '',
+          instance_name: '',
+          contact_person: '',
+          email: '',
+          phone: '',
+          request_date: '',
+          description: ''
+        }
+        submitStatus.value = 'idle'
+        isFormExpanded.value = false
+      }, 2000)
+    } else {
+      throw new Error(result.error || 'Gagal mengirim buku tamu')
+    }
 
-    // Reset form after 2 seconds
-    setTimeout(() => {
-      guestBookForm.value = {
-        title: '',
-        instance_name: '',
-        contact_person: '',
-        email: '',
-        phone: '',
-        request_date: '',
-        description: ''
-      }
-      submitStatus.value = 'idle'
-      isFormExpanded.value = false
-    }, 2000)
-
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error submitting guest book:', error)
     submitStatus.value = 'error'
 
@@ -490,10 +513,15 @@ const submitGuestBook = async () => {
   }
 }
 
-// Auto-select today's date on mount
-onMounted(() => {
+// Auto-select today's date on mount and fetch events if not provided via props
+onMounted(async () => {
   const today = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`
   selectedDate.value = today
+
+  // Fetch events from API if not provided via props
+  if (!props.events || props.events.length === 0) {
+    await fetchEvents()
+  }
 })
 </script>
 

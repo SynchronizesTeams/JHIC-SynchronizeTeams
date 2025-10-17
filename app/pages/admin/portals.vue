@@ -1,23 +1,12 @@
 <template>
   <div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-      <!-- Back Button -->
-      <NuxtLink
-        to="/dashboard/user"
-        class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-      >
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Kembali ke Dashboard
-      </NuxtLink>
-
+    <div class="max-w-6xl mx-auto">
       <!-- Header -->
       <div class="bg-white rounded-xl shadow-lg p-8 mb-6">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-3xl font-bold text-gray-900">Kelola Link</h1>
-            <p class="text-gray-600 mt-2">Tambah dan kelola link personal Anda</p>
+            <h1 class="text-3xl font-bold text-gray-900">Kelola Portal Sekolah</h1>
+            <p class="text-gray-600 mt-2">Kelola link portal resmi sekolah</p>
           </div>
           <button
             @click="showAddModal = true"
@@ -26,7 +15,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
-            Tambah Link
+            Tambah Portal
           </button>
         </div>
       </div>
@@ -44,32 +33,38 @@
         <p class="text-red-600">{{ error }}</p>
       </div>
 
-      <!-- Links List -->
-      <div v-else-if="userLinks.length > 0" class="space-y-4">
+      <!-- Portals List -->
+      <div v-else-if="portals.length > 0" class="space-y-4">
         <div
-          v-for="link in userLinks"
-          :key="link.id"
+          v-for="portal in sortedPortals"
+          :key="portal.id"
           class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-2xl">
-                {{ link.icon || '🔗' }}
+                {{ portal.icon || '🌐' }}
               </div>
               <div>
-                <h3 class="text-lg font-semibold text-gray-900">{{ link.title }}</h3>
+                <h3 class="text-lg font-semibold text-gray-900">{{ portal.title }}</h3>
                 <a
-                  :href="link.url"
+                  :href="portal.url"
                   target="_blank"
                   class="text-blue-500 hover:underline text-sm"
                 >
-                  {{ link.url }}
+                  {{ portal.url }}
                 </a>
+                <div class="mt-1 flex items-center gap-4 text-sm">
+                  <span class="text-gray-500">Order: {{ portal.order || 999 }}</span>
+                  <span :class="portal.is_active ? 'text-green-600' : 'text-red-600'">
+                    {{ portal.is_active ? 'Aktif' : 'Nonaktif' }}
+                  </span>
+                </div>
               </div>
             </div>
             <div class="flex items-center gap-2">
               <button
-                @click="editLink(link)"
+                @click="editPortal(portal)"
                 class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                 title="Edit"
               >
@@ -78,7 +73,7 @@
                 </svg>
               </button>
               <button
-                @click="confirmDelete(link)"
+                @click="confirmDelete(portal)"
                 class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                 title="Hapus"
               >
@@ -94,15 +89,15 @@
       <!-- Empty State -->
       <div v-else class="bg-white rounded-xl shadow-lg p-12 text-center">
         <svg class="w-20 h-20 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
         </svg>
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">Belum ada link</h3>
-        <p class="text-gray-600 mb-6">Tambahkan link pertama Anda untuk mulai</p>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Belum ada portal</h3>
+        <p class="text-gray-600 mb-6">Tambahkan portal pertama untuk sekolah</p>
         <button
           @click="showAddModal = true"
           class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
         >
-          Tambah Link Pertama
+          Tambah Portal Pertama
         </button>
       </div>
     </div>
@@ -116,20 +111,20 @@
       >
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6" @click.stop>
           <h2 class="text-xl font-bold text-gray-900 mb-6">
-            {{ showEditModal ? 'Edit Link' : 'Tambah Link Baru' }}
+            {{ showEditModal ? 'Edit Portal' : 'Tambah Portal Baru' }}
           </h2>
           
-          <form @submit.prevent="showEditModal ? updateLink() : addLink()" class="space-y-4">
+          <form @submit.prevent="showEditModal ? updatePortal() : addPortal()" class="space-y-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">
-                Judul Link
+                Judul Portal
               </label>
               <input
                 v-model="formData.title"
                 type="text"
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Contoh: Instagram"
+                placeholder="Contoh: E-Learning"
               />
             </div>
             
@@ -142,7 +137,7 @@
                 type="url"
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="https://instagram.com/username"
+                placeholder="https://elearning.smkpnb.sch.id"
               />
             </div>
             
@@ -155,8 +150,33 @@
                 type="text"
                 maxlength="2"
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="📱"
+                placeholder="📚"
               />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Urutan Tampil
+              </label>
+              <input
+                v-model.number="formData.order"
+                type="number"
+                min="1"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="1"
+              />
+            </div>
+
+            <div class="flex items-center">
+              <input
+                v-model="formData.is_active"
+                type="checkbox"
+                id="is_active"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label for="is_active" class="ml-2 block text-sm text-gray-900">
+                Portal Aktif
+              </label>
             </div>
 
             <div class="flex gap-3 mt-6">
@@ -172,7 +192,7 @@
                 :disabled="isSubmitting"
                 class="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
               >
-                {{ isSubmitting ? 'Menyimpan...' : (showEditModal ? 'Simpan Perubahan' : 'Tambah Link') }}
+                {{ isSubmitting ? 'Menyimpan...' : (showEditModal ? 'Simpan Perubahan' : 'Tambah Portal') }}
               </button>
             </div>
           </form>
@@ -188,9 +208,9 @@
         @click.self="showDeleteModal = false"
       >
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6" @click.stop>
-          <h2 class="text-xl font-bold text-gray-900 mb-4">Hapus Link?</h2>
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Hapus Portal?</h2>
           <p class="text-gray-600 mb-6">
-            Apakah Anda yakin ingin menghapus link "{{ linkToDelete?.title }}"? Tindakan ini tidak dapat dibatalkan.
+            Apakah Anda yakin ingin menghapus portal "{{ portalToDelete?.title }}"? Tindakan ini tidak dapat dibatalkan.
           </p>
           
           <div class="flex gap-3">
@@ -215,25 +235,30 @@
 </template>
 
 <script setup lang="ts">
-import type { UserLink } from '~/composables/useUserLinks'
+import type { SchoolPortal } from '~/composables/usePortals'
 
 const router = useRouter()
-const { token } = useAuth()
-const { userLinks, isLoading, error, fetchUserLinks, createUserLink, updateUserLink, deleteUserLink } = useUserLinks()
+const { user, token } = useAuth()
+const { portals, isLoading, error, fetchPortals, createPortal, updatePortal: updatePortalApi, deletePortal } = usePortals()
 const { showNotification } = useNotification()
 
-// Check authentication
+// Check if user is admin
 onMounted(async () => {
-  if (!token.value) {
+  if (!token.value || user.value?.role !== 'admin') {
     router.push('/login')
     return
   }
   
   try {
-    await fetchUserLinks()
+    await fetchPortals()
   } catch (error) {
-    console.error('Failed to fetch user links:', error)
+    console.error('Failed to fetch portals:', error)
   }
+})
+
+// Sort portals by order
+const sortedPortals = computed(() => {
+  return [...portals.value].sort((a, b) => (a.order || 999) - (b.order || 999))
 })
 
 // Modal states
@@ -241,14 +266,16 @@ const showAddModal = ref(false)
 const showEditModal = ref(false)
 const showDeleteModal = ref(false)
 const isSubmitting = ref(false)
-const linkToDelete = ref<UserLink | null>(null)
-const linkToEdit = ref<UserLink | null>(null)
+const portalToDelete = ref<SchoolPortal | null>(null)
+const portalToEdit = ref<SchoolPortal | null>(null)
 
 // Form data
 const formData = ref({
   title: '',
   url: '',
-  icon: ''
+  icon: '',
+  order: 1,
+  is_active: true
 })
 
 // Reset form
@@ -256,7 +283,9 @@ const resetForm = () => {
   formData.value = {
     title: '',
     url: '',
-    icon: ''
+    icon: '',
+    order: 1,
+    is_active: true
   }
 }
 
@@ -266,65 +295,63 @@ const closeModals = () => {
   showEditModal.value = false
   showDeleteModal.value = false
   resetForm()
-  linkToEdit.value = null
-  linkToDelete.value = null
+  portalToEdit.value = null
+  portalToDelete.value = null
 }
 
-// Add new link
-const addLink = async () => {
+// Add new portal
+const addPortal = async () => {
   isSubmitting.value = true
   try {
-    console.log('Submitting form data:', formData.value)
-    const result = await createUserLink(formData.value)
-    console.log('Create link result:', result)
+    await createPortal(formData.value)
     showNotification({
       type: 'success',
       title: 'Berhasil',
-      message: 'Link berhasil ditambahkan'
-    })
-    closeModals()
-  } catch (error: any) {
-    console.error('Error creating link:', error)
-    const errorMessage = error?.data?.message || error?.message || 'Gagal menambahkan link'
-    showNotification({
-      type: 'error',
-      title: 'Gagal',
-      message: errorMessage
-    })
-  } finally {
-    isSubmitting.value = false
-  }
-}
-
-// Edit link
-const editLink = (link: UserLink) => {
-  linkToEdit.value = link
-  formData.value = {
-    title: link.title,
-    url: link.url,
-    icon: link.icon || ''
-  }
-  showEditModal.value = true
-}
-
-// Update link
-const updateLink = async () => {
-  if (!linkToEdit.value?.id) return
-  
-  isSubmitting.value = true
-  try {
-    await updateUserLink(linkToEdit.value.id, formData.value)
-    showNotification({
-      type: 'success',
-      title: 'Berhasil',
-      message: 'Link berhasil diperbarui'
+      message: 'Portal berhasil ditambahkan'
     })
     closeModals()
   } catch (error) {
     showNotification({
       type: 'error',
       title: 'Gagal',
-      message: 'Gagal memperbarui link'
+      message: 'Gagal menambahkan portal'
+    })
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
+// Edit portal
+const editPortal = (portal: SchoolPortal) => {
+  portalToEdit.value = portal
+  formData.value = {
+    title: portal.title,
+    url: portal.url,
+    icon: portal.icon || '',
+    order: portal.order || 1,
+    is_active: portal.is_active !== false
+  }
+  showEditModal.value = true
+}
+
+// Update portal
+const updatePortal = async () => {
+  if (!portalToEdit.value?.id) return
+  
+  isSubmitting.value = true
+  try {
+    await updatePortalApi(portalToEdit.value.id, formData.value)
+    showNotification({
+      type: 'success',
+      title: 'Berhasil',
+      message: 'Portal berhasil diperbarui'
+    })
+    closeModals()
+  } catch (error) {
+    showNotification({
+      type: 'error',
+      title: 'Gagal',
+      message: 'Gagal memperbarui portal'
     })
   } finally {
     isSubmitting.value = false
@@ -332,30 +359,30 @@ const updateLink = async () => {
 }
 
 // Confirm delete
-const confirmDelete = (link: UserLink) => {
-  linkToDelete.value = link
+const confirmDelete = (portal: SchoolPortal) => {
+  portalToDelete.value = portal
   showDeleteModal.value = true
 }
 
 // Handle delete
 const handleDelete = async () => {
-  if (!linkToDelete.value?.id) return
+  if (!portalToDelete.value?.id) return
   
   isSubmitting.value = true
   try {
-    await deleteUserLink(linkToDelete.value.id)
+    await deletePortal(portalToDelete.value.id)
     showNotification({
       type: 'success',
       title: 'Berhasil',
-      message: 'Link berhasil dihapus'
+      message: 'Portal berhasil dihapus'
     })
     showDeleteModal.value = false
-    linkToDelete.value = null
+    portalToDelete.value = null
   } catch (error) {
     showNotification({
       type: 'error',
       title: 'Gagal',
-      message: 'Gagal menghapus link'
+      message: 'Gagal menghapus portal'
     })
   } finally {
     isSubmitting.value = false
@@ -364,7 +391,7 @@ const handleDelete = async () => {
 
 // SEO
 useSeoMeta({
-  title: 'Kelola Link - Dashboard',
-  description: 'Kelola link personal Anda'
+  title: 'Kelola Portal - Admin Dashboard',
+  description: 'Kelola portal resmi sekolah'
 })
 </script>

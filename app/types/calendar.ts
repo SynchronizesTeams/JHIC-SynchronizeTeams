@@ -2,7 +2,12 @@ export interface CalendarEvent {
   id: number
   title: string
   description: string
-  event_date: string // format: YYYY-MM-DD
+  event_date?: string // format: YYYY-MM-DD (for backward compatibility)
+  start_date?: string // format: YYYY-MM-DD
+  end_date?: string // format: YYYY-MM-DD
+  category?: string
+  location?: string
+  organizer?: string
   image: string
   created_at?: string
   updated_at?: string
