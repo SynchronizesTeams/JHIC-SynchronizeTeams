@@ -1,6 +1,7 @@
 import type { User, Post, Comment, Channel } from '~/types/forum'
 import type { Portal, PortalProfile } from '~/types/portal'
 import type { PersonalProfile } from '~/types/personalProfile'
+import type { Teacher } from '~/types/teacher'
 
 export const mockUsers: User[] = [
   {
@@ -821,5 +822,113 @@ export const mockPersonalProfiles: PersonalProfile[] = [
         clicks: 178
       }
     ]
+  }
+]
+
+// Teacher mock data
+export const mockTeachers: Teacher[] = [
+  {
+    id: 1,
+    nig: '09832101',
+    full_name: 'Dr. Ahmad Hidayat',
+    position: 'Guru',
+    subject: 'Matematika',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmad',
+    description: 'Guru Matematika dengan pengalaman mengajar lebih dari 15 tahun. Spesialisasi dalam Aljabar dan Kalkulus. Saya percaya bahwa matematika adalah bahasa universal yang dapat dipahami semua orang dengan pendekatan yang tepat.',
+    user: {
+      id: 1,
+      name: 'ahmadh'
+    }
+  },
+  {
+    id: 2,
+    nig: '09832102',
+    full_name: 'Siti Nurhaliza, M.Pd',
+    position: 'Guru',
+    subject: 'Bahasa Indonesia',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Siti',
+    description: 'Guru Bahasa Indonesia yang passionate dalam mengembangkan kemampuan literasi siswa. Aktif dalam berbagai kegiatan sastra dan penulisan kreatif.',
+    user: {
+      id: 2,
+      name: 'sitinur'
+    }
+  },
+  {
+    id: 3,
+    nig: '09832103',
+    full_name: 'Budi Santoso, S.Si',
+    position: 'Guru',
+    subject: 'Fisika',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Budi',
+    description: 'Mengajar Fisika dengan pendekatan eksperimental dan praktis. Membantu siswa memahami konsep fisika melalui eksperimen dan aplikasi kehidupan sehari-hari.',
+    user: {
+      id: 3,
+      name: 'budis'
+    }
+  },
+  {
+    id: 4,
+    nig: '09832104',
+    full_name: 'Rina Kusuma, M.Si',
+    position: 'Guru',
+    subject: 'Kimia',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rina',
+    description: 'Guru Kimia yang berpengalaman dalam olimpiade sains. Membimbing siswa untuk memahami kimia organik dan anorganik dengan metode yang menyenangkan.',
+    user: {
+      id: 4,
+      name: 'rinak'
+    }
+  },
+  {
+    id: 5,
+    nig: '09832105',
+    full_name: 'Dedi Prasetyo, S.Pd',
+    position: 'Guru',
+    subject: 'Biologi',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Dedi',
+    description: 'Guru Biologi dengan fokus pada ekologi dan konservasi. Aktif dalam kegiatan lingkungan dan penelitian biodiversitas.',
+    user: {
+      id: 5,
+      name: 'dedip'
+    }
+  },
+  {
+    id: 6,
+    nig: '09832106',
+    full_name: 'Lisa Andriani, M.Pd',
+    position: 'Guru',
+    subject: 'Bahasa Inggris',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa',
+    description: 'Guru Bahasa Inggris yang berpengalaman mengajar TOEFL dan IELTS. Membantu siswa meningkatkan kemampuan speaking, writing, reading, dan listening.',
+    user: {
+      id: 6,
+      name: 'lisaa'
+    }
+  },
+  {
+    id: 7,
+    nig: '09832107',
+    full_name: 'Hendra Wijaya, S.Sos',
+    position: 'Guru',
+    subject: 'Sosiologi',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Hendra',
+    description: 'Mengajar Sosiologi dengan pendekatan kritis dan kontekstual. Membimbing siswa memahami fenomena sosial di masyarakat.',
+    user: {
+      id: 7,
+      name: 'hendraw'
+    }
+  },
+  {
+    id: 8,
+    nig: '09832108',
+    full_name: 'Maya Putri, S.Pd',
+    position: 'Guru',
+    subject: 'Seni Budaya',
+    photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Maya',
+    description: 'Guru Seni Budaya yang passionate dalam mengembangkan kreativitas siswa. Aktif dalam berbagai pameran seni dan kegiatan budaya.',
+    user: {
+      id: 8,
+      name: 'mayap'
+    }
   }
 ]
