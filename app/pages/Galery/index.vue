@@ -51,11 +51,53 @@ const galleryImages = ref<{ id: number; src: string; alt: string; title: string 
   galleryDataJson as any
 );
 
-// SEO
+// Enhanced SEO Meta Tags
+useSeoMeta({
+  title: 'Galeri Foto & Video',
+  description: 'Galeri foto dan dokumentasi kegiatan SMK Plus Pelita Nusantara. Jelajahi momen-momen berharga, kegiatan sekolah, prestasi siswa, dan berbagai acara yang telah dilaksanakan.',
+  ogTitle: 'Galeri Foto & Video - SMK Plus Pelita Nusantara',
+  ogDescription: 'Jelajahi dokumentasi visual kegiatan dan momen berharga di SMK Plus Pelita Nusantara.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/Galery',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Galeri Foto & Video - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Jelajahi dokumentasi visual kegiatan dan momen berharga di SMK Plus Pelita Nusantara.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
 useHead({
-  title: 'Galeri - SMK Plus Pelita Nusantara',
-  meta: [
-    { name: 'description', content: 'Galeri foto kegiatan dan momen berharga SMK Plus Pelita Nusantara' }
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/Galery' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ImageGallery',
+        'name': 'Galeri SMK Plus Pelita Nusantara',
+        'description': 'Dokumentasi kegiatan dan momen berharga',
+        'url': 'https://smkpluspelitanusantara.sch.id/Galery',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Galeri',
+              'item': 'https://smkpluspelitanusantara.sch.id/Galery'
+            }
+          ]
+        }
+      })
+    }
   ]
 })
 </script>

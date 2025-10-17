@@ -4,7 +4,7 @@
       'sticky top-3 left-0 right-0 z-50 transition-all duration-300 mb-',
       isScrolled
         ? 'bg-transparent shadow-lg mx-6 rounded-2xl backdrop-blur-xl border border-primary-text/15'
-        : 'backdrop-blur-none pt-5 border-none border-primary-text/15',
+        : 'backdrop-blur-none pt-5 border-none border-2 border-b border-primary-text/20',
     ]">
 
     <!-- BACKDROP LAYER (pake ini biar bisa mix blend mode) -->
@@ -25,7 +25,7 @@
       <div
         class="hidden md:flex items-center gap-8 text-lg font-medium transition-colors"
         :class="[
-          isScrolled ? 'text-primary-gray' : 'text-primary-white',
+          isScrolled ? 'text-primary-gray' : 'text-primary-text',
           !isScrolled && 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]'
         ]">
         <button
@@ -108,9 +108,20 @@ const router = useRouter()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 
+<<<<<<< HEAD
 type NavItem = { name: string; path: string; section: string | null }
 const logoSrc: string = navigationData.logoSrc
 const menuItems: NavItem[] = navigationData.menuItems as NavItem[]
+=======
+const menuItems = [
+  { name: "Beranda", path: "/", section: "home" },
+  { name: "Tentang Kami", path: "/about", section: "about" },
+  { name: "Berita", path: "/news", section: "news" },
+  { name: "Forum", path: "/forums", section: null },
+  { name: "Portals", path: "/portals", section: null },
+  { name: "PPDB", path: "https://ppdb.smkpluspnb.sch.id", section: null },
+]
+>>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value

@@ -28,6 +28,56 @@
 <script lang="ts" setup>
 import type { News } from '../../types/news';
 
+// SEO Meta Tags
+useSeoMeta({
+  title: 'Berita & Pengumuman',
+  description: 'Temukan berita dan pengumuman terbaru seputar SMK Plus Pelita Nusantara. Informasi terkini tentang kegiatan sekolah, prestasi siswa, dan program pendidikan.',
+  ogTitle: 'Berita & Pengumuman - SMK Plus Pelita Nusantara',
+  ogDescription: 'Informasi terbaru tentang kegiatan, prestasi, dan program pendidikan SMK Plus Pelita Nusantara.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/news',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Berita & Pengumuman - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Informasi terbaru tentang kegiatan, prestasi, dan program pendidikan SMK Plus Pelita Nusantara.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/news' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        'name': 'Berita & Pengumuman',
+        'description': 'Kumpulan berita dan pengumuman terbaru SMK Plus Pelita Nusantara',
+        'url': 'https://smkpluspelitanusantara.sch.id/news',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Berita',
+              'item': 'https://smkpluspelitanusantara.sch.id/news'
+            }
+          ]
+        }
+      })
+    }
+  ]
+})
+
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
 </script>

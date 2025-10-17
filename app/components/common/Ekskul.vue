@@ -20,7 +20,7 @@
 
           <button
             @click="prevItem"
-            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/40 rounded-full text-gray-800 backdrop-blur-sm transition-all hover:bg-white/80 opacity-0 group-hover:opacity-100">
+            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/60 rounded-full text-gray-800 backdrop-blur-sm transition-all hover:bg-white/90 hover:scale-110">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -36,7 +36,7 @@
           </button>
           <button
             @click="nextItem"
-            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/40 rounded-full text-gray-800 backdrop-blur-sm transition-all hover:bg-white/80 opacity-0 group-hover:opacity-100">
+            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/60 rounded-full text-gray-800 backdrop-blur-sm transition-all hover:bg-white/90 hover:scale-110">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -71,8 +71,11 @@
               <NuxtLink
                 v-if="route.path === '/'"
                 :to="`/ekskul/${currentEkskul.slug}`"
-                class="flex mx-auto mt-8 items-center justify-center w-fit px-4 py-2 rounded-xl font-bold text-lg bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105">
-                Lihat Detailnya
+                class="inline-flex items-center gap-2 mx-auto mt-8 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg">
+                <span>Lihat Detail</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
               </NuxtLink>
             </div>
           </transition>
