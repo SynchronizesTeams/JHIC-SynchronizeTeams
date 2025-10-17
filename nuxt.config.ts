@@ -16,178 +16,14 @@ export default defineNuxtConfig({
       allowedHosts: [
         '33d30327dd7c.ngrok-free.app'
       ]
-    },
-    build: {
-      // Optimize bundle size
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'gsap': ['gsap'],
-            'vue-essentials': ['vue', 'vue-router']
-          }
-        }
-      }
     }
   },
 
   modules: ["@nuxt/image", "@nuxtjs/sitemap"],
 
-  // Image optimization config
-  image: {
-    formats: ['webp', 'avif', 'png', 'jpg'],
-    quality: 80,
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536,
-    }
-  },
-
   runtimeConfig: {
     public: {
       vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || ''
-    }
-  },
-
-  // Route rules for ISR, SSG, and caching
-  routeRules: {
-    // Homepage: ISR with 1 hour revalidation
-    '/': {
-      isr: 3600,
-      headers: {
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
-      }
-    },
-
-    // News pages: ISR
-    '/news': {
-      isr: 1800,
-      headers: {
-        'Cache-Control': 'public, max-age=1800, s-maxage=1800, stale-while-revalidate=3600'
-      }
-    },
-    '/news/**': {
-      isr: 3600,
-      headers: {
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
-      }
-    },
-
-    // Gallery: ISR (rarely changes)
-    '/Galery': {
-      isr: 7200,
-      headers: {
-        'Cache-Control': 'public, max-age=7200, s-maxage=7200, stale-while-revalidate=86400'
-      }
-    },
-
-    // Achievements: ISR
-    '/achievements': {
-      isr: 3600,
-      headers: {
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
-      }
-    },
-
-    // Portals: ISR
-    '/portals': {
-      isr: 3600,
-      headers: {
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
-      }
-    },
-
-    // Teacher pages: ISR
-    '/teacher/**': {
-      isr: 7200,
-      headers: {
-        'Cache-Control': 'public, max-age=7200, s-maxage=7200, stale-while-revalidate=86400'
-      }
-    },
-
-    // Ekskul pages: ISR
-    '/ekskul/**': {
-      isr: 7200,
-      headers: {
-        'Cache-Control': 'public, max-age=7200, s-maxage=7200, stale-while-revalidate=86400'
-      }
-    },
-
-    // School Profile: ISR (static information)
-    '/profile': {
-      isr: 7200,
-      headers: {
-        'Cache-Control': 'public, max-age=7200, s-maxage=7200, stale-while-revalidate=86400'
-      }
-    },
-
-    // Forums index: ISR for SEO and fast initial load
-    '/forums': {
-      isr: 1800,
-      headers: {
-        'Cache-Control': 'public, max-age=1800, s-maxage=1800, stale-while-revalidate=3600'
-      }
-    },
-
-    // Forum detail pages: SPA mode (lots of interaction)
-    '/forums/[channel]': {
-      ssr: false
-    },
-    '/forums/[channels]/[postId]': {
-      ssr: false
-    },
-
-    // Dashboard: SPA mode (admin)
-    '/dashboard/**': {
-      ssr: false,
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
-      }
-    },
-
-    // Personal Profile: SPA mode (user specific)
-    '/personal-profile/**': {
-      ssr: false
-    },
-
-    // Test pages: No SSR
-    '/test-notifications': {
-      ssr: false
-    },
-
-    // Static assets: Cache forever with immutable
-    '/_nuxt/**': {
-      headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    },
-    '/images/**': {
-      headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    },
-    '/fonts/**': {
-      headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    },
-
-    // Service Worker: No cache
-    '/sw.js': {
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Service-Worker-Allowed': '/'
-      }
-    },
-
-    // Manifest: Cache for 1 day
-    '/manifest.webmanifest': {
-      headers: {
-        'Cache-Control': 'public, max-age=86400'
-      }
     }
   },
 
@@ -202,7 +38,6 @@ export default defineNuxtConfig({
     routes: async () => {
       return [
         '/',
-        '/profile',
         '/news',
         '/forums',
         '/achievements',
@@ -218,20 +53,6 @@ export default defineNuxtConfig({
     Sitemap: 'https://smkpluspelitanusantara.sch.id/sitemap.xml',
   },
 
-  // Performance optimizations
-  experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true,
-    viewTransition: true,
-  },
-
-  // Optimize build
-  nitro: {
-    compressPublicAssets: true,
-    minify: true,
-    preset: 'node-server',
-  },
-
   app: {
     head: {
       title: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
@@ -244,10 +65,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/webp', href: '/penus-icon.webp' },
         { rel: 'apple-touch-icon', href: '/penus-icon.webp' },
         { rel: 'shortcut icon', type: 'image/webp', href: '/penus-icon.webp' },
-        { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id' },
-        // Preconnect to external domains
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' }
+        { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id' }
       ],
       meta: [
         { charset: 'utf-8' },

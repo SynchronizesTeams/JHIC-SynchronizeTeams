@@ -8,24 +8,16 @@
         v-for="(image, index) in displayedImages"
         :key="image.id || index"
         :class="[
-          'group relative overflow-hidden rounded-xl shadow-lg cursor-pointer',
+          'group relative overflow-hidden rounded-xl shadow-lg cursor-pointer aspect-w-4 aspect-h-3',
           index % 5 < 2 ? 'lg:col-span-3' : 'lg:col-span-2',
         ]">
-        <!-- Optimized Image Component -->
-        <OptimizedImage
+        <NuxtImg
           :src="image.src"
           :alt="image.alt"
-          :width="800"
-          :height="600"
-          aspect-ratio="4/3"
-          format="webp"
-          :quality="85"
-          image-class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-          container-class="w-full h-full"
-        />
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" />
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 p-4 pointer-events-none">
+          class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10"></div>
+        <div class="absolute bottom-0 left-0 p-4">
           <h3 class="text-white text-lg font-bold drop-shadow-md">
             {{ image.title }}
           </h3>
@@ -70,6 +62,10 @@ const displayedImages = computed(() => {
 });
 </script>
 
-<style scoped>
-/* Aspect ratio handled by OptimizedImage component */
+<style>
+/* Plugin Tailwind aspect-ratio diperlukan buat `aspect-w-4 aspect-h-3`.
+  Install: npm install -D @tailwindcss/aspect-ratio
+  Trs import di main.css (LOW PRIORITY):
+  @plugin "@tailwindcss/aspect-ratio"
+*/
 </style>
