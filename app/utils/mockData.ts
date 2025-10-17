@@ -1,4 +1,5 @@
 import type { User, Post, Comment, Channel } from '~/types/forum'
+import type { Portal, PortalProfile } from '~/types/portal'
 
 export const mockUsers: User[] = [
   {
@@ -606,5 +607,105 @@ export const mockComments: Comment[] = [
     parentId: '38',
     upvotes: 44,
     downvotes: 1
+  }
+]
+
+// Portal mock data
+export const mockPortalProfile: PortalProfile = {
+  username: 'smkpnb',
+  displayName: 'SMK Penerbangan Bandung',
+  bio: 'Portal resmi SMK Penerbangan Bandung - Hub untuk berbagai informasi dan link penting sekolah',
+  avatar: 'https://api.dicebear.com/7.x/initials/svg?seed=SMKPNB&backgroundColor=ef4444',
+  coverImage: 'https://picsum.photos/1200/300?random=cover'
+}
+
+export const mockPortals: Portal[] = [
+  {
+    id: '1',
+    name: 'Website Resmi',
+    description: 'Website resmi SMK Penerbangan Bandung',
+    url: 'https://smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=website',
+    icon: '🌐',
+    category: 'official',
+    isActive: true,
+    order: 1
+  },
+  {
+    id: '2',
+    name: 'Portal Akademik',
+    description: 'Sistem informasi akademik siswa dan guru',
+    url: 'https://akademik.smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=akademik',
+    icon: '📚',
+    category: 'academic',
+    isActive: true,
+    order: 2
+  },
+  {
+    id: '3',
+    name: 'E-Learning',
+    description: 'Platform pembelajaran online',
+    url: 'https://elearning.smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=elearning',
+    icon: '💻',
+    category: 'academic',
+    isActive: true,
+    order: 3
+  },
+  {
+    id: '4',
+    name: 'Perpustakaan Digital',
+    description: 'Akses ke koleksi buku dan jurnal digital',
+    url: 'https://library.smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=library',
+    icon: '📖',
+    category: 'academic',
+    isActive: true,
+    order: 4
+  },
+  {
+    id: '5',
+    name: 'Instagram',
+    description: 'Follow kami di Instagram untuk update terbaru',
+    url: 'https://instagram.com/smkpnb',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=instagram',
+    icon: '📸',
+    category: 'social',
+    isActive: true,
+    order: 5
+  },
+  {
+    id: '6',
+    name: 'YouTube',
+    description: 'Channel YouTube resmi SMK Penerbangan Bandung',
+    url: 'https://youtube.com/@smkpnb',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=youtube',
+    icon: '🎥',
+    category: 'social',
+    isActive: true,
+    order: 6
+  },
+  {
+    id: '7',
+    name: 'PPDB Online',
+    description: 'Pendaftaran Peserta Didik Baru',
+    url: 'https://ppdb.smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=ppdb',
+    icon: '📝',
+    category: 'official',
+    isActive: true,
+    order: 7
+  },
+  {
+    id: '8',
+    name: 'Alumni Network',
+    description: 'Jaringan dan komunitas alumni',
+    url: 'https://alumni.smkpnb.sch.id',
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=alumni',
+    icon: '🎓',
+    category: 'community',
+    isActive: true,
+    order: 8
   }
 ]
