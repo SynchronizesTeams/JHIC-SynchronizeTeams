@@ -114,14 +114,34 @@
         </ul>
       </div>
     </div>
-    <div>
-      <div class="flex items-center justify-center sm:justify-start gap-4 pt-6">
-        <!-- ini mau isi icon tapi bingung mau make apaan -->
+
+    <!-- Support and Aims To Section -->
+    <div class="mt-8 pt-6 border-t border-gray-200">
+      <div class="flex flex-col items-center justify-center space-y-6">
+        <h3 class="text-lg sm:text-xl font-bold text-gray-700">Support and aims to</h3>
+        <div class="flex justify-center w-full">
+          <div class="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-4xl">
+            <NuxtImg
+              src="/images/all-logo.png"
+              alt="Support Partners"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="mt-6 pt-4 border-t border-gray-200">
+      <div class="text-center text-sm text-gray-600">
+        <p>&copy; {{ currentYear }} SMK Plus Pelita Nusantara. All rights reserved.</p>
       </div>
     </div>
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const currentYear = computed(() => new Date().getFullYear())
+</script>
 
 <style scoped></style>
