@@ -122,8 +122,6 @@ const mainNews = computed<News>(() => newsList.value[0]!);
 const achievementsData = ref(mockAchievements)
 const calendarEvents = ref(mockCalendarEvents)
 
-/* Gallery data now loads from API via useGallery composable */
-
 const testimonialsData = ref(testimonialsDataJson as any);
 
 const faqData = ref(faqsDataJson as any);

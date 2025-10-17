@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <Galery :display-count="galleryImages.length" :images="galleryImages" />
+      <SectionGalery :display-count="galleryImages.length" :images="galleryImages" />
 
       <div class="flex justify-center mt-12">
         <NuxtLink
@@ -109,7 +109,7 @@ useHead({
           ],
         },
       }),
-    },
+    } as any,
   ],
 });
 </script>

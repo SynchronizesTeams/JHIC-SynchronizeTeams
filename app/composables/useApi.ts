@@ -126,14 +126,14 @@ export const useApi = () => {
     // Image API
     image: {
       getAll: async () => {
-        return await $fetch(`${BASE_URL}/api/v1/image/showAll`, {
+        return await $fetch(`${BASE_URL}/api/v1/public/image/showAll`, {
           method: 'GET',
           headers: getAuthHeaders()
         });
       },
 
       getByCategory: async (category: string) => {
-        return await $fetch(`${BASE_URL}/api/v1/image/show?category=${category}`, {
+        return await $fetch(`${BASE_URL}/api/v1/public/image/show?category=${category}`, {
           method: 'GET',
           headers: getAuthHeaders()
         });
