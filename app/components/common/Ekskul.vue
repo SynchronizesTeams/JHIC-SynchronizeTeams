@@ -87,6 +87,7 @@
 </template>
 
 <script setup lang="ts">
+import extracurricularsData from '~/contents/extracurriculars.json';
 interface EkskulItem {
   slug: string;
   title: string;
@@ -95,38 +96,12 @@ interface EkskulItem {
   logo: string;
 }
 
-const ekskulList = ref<EkskulItem[]>([]);
-const isLoading = ref(true);
+const ekskulList = ref<EkskulItem[]>(extracurricularsData as EkskulItem[]);
+const isLoading = ref(false);
 const currentIndex = ref(0);
 
 const route = useRoute();
 
-const fetchEkskulData = () => {
-  ekskulList.value = [
-    {
-      slug: "pramuka",
-      title: "Pramuka",
-      description: `<p>Gerakan Pramuka Indonesia adalah organisasi pendidikan nonformal yang menyelenggarakan pendidikan kepanduan.</p>`,
-      image: "https://picsum.photos/seed/pramuka/1200/800",
-      logo: "https://picsum.photos/seed/pramuka-logo/200",
-    },
-    {
-      slug: "paskibra",
-      title: "Paskibra",
-      description: `<p>Pasukan Pengibar Bendera Pusaka melatih kedisiplinan, ketahanan fisik, dan menumbuhkan rasa cinta tanah air.</p>`,
-      image: "https://picsum.photos/seed/paskibra/1200/800",
-      logo: "https://picsum.photos/seed/paskibra-logo/200",
-    },
-    {
-      slug: "futsal",
-      title: "Futsal",
-      description: `<p>Ekstrakurikuler Futsal menjadi wadah bagi siswa untuk menyalurkan bakat dalam olahraga dan membangun kerja sama tim.</p>`,
-      image: "https://picsum.photos/seed/futsal/1200/800",
-      logo: "https://picsum.photos/seed/futsal-logo/200",
-    },
-  ];
-  isLoading.value = false;
-};
 
 const nextItem = () => {
   currentIndex.value = (currentIndex.value + 1) % ekskulList.value.length;
@@ -155,7 +130,6 @@ const stopRotation = () => {
 };
 
 onMounted(() => {
-  fetchEkskulData();
   if (ekskulList.value.length > 1) {
     startRotation();
   }

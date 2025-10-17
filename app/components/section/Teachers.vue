@@ -84,43 +84,37 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
+import teachersData from '~/contents/teachers.json';
 
 const router = useRouter();
-const scrollContainer = ref(null);
+const scrollContainer = ref<HTMLElement | null>(null);
 const currentPage = ref(0);
 
-const teachers = ref([
-  { id: 1, name: "Dr. Ahmad Hidayat", subject: "Matematika" },
-  { id: 2, name: "Siti Nurhaliza, M.Pd", subject: "Bahasa Indonesia" },
-  { id: 3, name: "Budi Santoso, S.Si", subject: "Fisika" },
-  { id: 4, name: "Rina Kusuma, M.Si", subject: "Kimia" },
-  { id: 5, name: "Dedi Prasetyo, S.Pd", subject: "Biologi" },
-  { id: 6, name: "Lisa Andriani, M.Pd", subject: "Bahasa Inggris" },
-  { id: 7, name: "Hendra Wijaya, S.Sos", subject: "Sosiologi" },
-  { id: 8, name: "Maya Putri, S.Pd", subject: "Seni Budaya" },
-]);
+interface TeacherItem { id: number; name: string; subject: string }
+const teachers = ref<TeacherItem[]>(teachersData as TeacherItem[]);
 
-const goToTeacher = (teacherId) => {
+const goToTeacher = (teacherId: number) => {
   router.push(`/teacher/${teacherId}`);
 };
 
 const scrollLeft = () => {
-  if (scrollContainer.value) {
+  const el = scrollContainer.value;
+  if (el) {
     const cardWidth = 256 + 24;
-    scrollContainer.value.scrollBy({
-      left: -cardWidth * 3,
-      behavior: "smooth",
-    });
+    const targetLeft = el.scrollLeft - cardWidth * 3;
+    el.scrollTo({ left: targetLeft, behavior: "smooth" });
     updateCurrentPage();
   }
 };
 
 const scrollRight = () => {
-  if (scrollContainer.value) {
+  const el = scrollContainer.value;
+  if (el) {
     const cardWidth = 256 + 24;
-    scrollContainer.value.scrollBy({ left: cardWidth * 3, behavior: "smooth" });
+    const targetLeft = el.scrollLeft + cardWidth * 3;
+    el.scrollTo({ left: targetLeft, behavior: "smooth" });
     updateCurrentPage();
   }
 };
@@ -138,10 +132,10 @@ onMounted(() => {
   if (!el) return;
 
   let isDown = false;
-  let startX;
-  let scrollLeft;
+  let startX: number;
+  let scrollLeft: number;
 
-  el.addEventListener("mousedown", (e) => {
+  el.addEventListener("mousedown", (e: MouseEvent) => {
     isDown = true;
     el.classList.add("active");
     startX = e.pageX - el.offsetLeft;
@@ -151,7 +145,7 @@ onMounted(() => {
   el.addEventListener("mouseleave", () => (isDown = false));
   el.addEventListener("mouseup", () => (isDown = false));
 
-  el.addEventListener("mousemove", (e) => {
+  el.addEventListener("mousemove", (e: MouseEvent) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - el.offsetLeft;

@@ -22,16 +22,13 @@
 
     <!-- Gallery Section -->
     <section class="max-w-7xl mx-auto px-6 py-16">
-      <!-- Header -->
       <div class="mb-8">
         <h2 class="text-3xl font-bold text-primary-gray mb-2">Semua Galeri</h2>
         <p class="text-primary-gray/60">Koleksi lengkap foto kegiatan dan momen berharga</p>
       </div>
 
-      <!-- Gallery Grid -->
       <Galery :display-count="galleryImages.length" :images="galleryImages" />
 
-      <!-- Back to Home Button -->
       <div class="flex justify-center mt-12">
         <NuxtLink
           to="/#galery"
@@ -48,22 +45,11 @@
 </template>
 
 <script lang="ts" setup>
-import NavigationBar from '~/components/common/NavigationBar.vue'
-import Galery from '~/components/section/Galery.vue'
+import galleryDataJson from '~/contents/gallery.json'
 
-const galleryImages = ref<
-  { id: number; src: string; alt: string; title: string }[]
->([]);
-
-// Generate more images for full gallery
-for (let i = 1; i <= 50; i++) {
-  galleryImages.value.push({
-    id: i,
-    src: `https://picsum.photos/seed/${i}/800/600`,
-    alt: `Gambar Kegiatan ${i}`,
-    title: `Kegiatan Sekolah #${i}`,
-  });
-}
+const galleryImages = ref<{ id: number; src: string; alt: string; title: string }[]>(
+  galleryDataJson as any
+);
 
 // SEO
 useHead({

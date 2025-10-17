@@ -28,9 +28,9 @@
           <h1 class="text-2xl font-bold text-secondary-red mb-1">
             {{ ekskul.title }}
           </h1>
-          <p class="text-primary-gray/60 text-sm mb-4">
-            {{ ekskul.description }}
-          </p>
+          <div
+            class="text-primary-gray/60 text-sm mb-4 prose prose-sm max-w-none"
+            v-html="ekskul.description"></div>
         </div>
       </div>
 
@@ -99,6 +99,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import extracurricularsData from '~/contents/extracurriculars.json';
+import extracurricularLinks from '~/contents/extracurricular-links.json';
 
 interface EkskulLink {
   label: string;
@@ -116,77 +118,13 @@ interface EkskulItem {
 }
 
 const route = useRoute();
-const ekskulList = [
-  {
-    slug: "pramuka",
-    title: "Pramuka",
-    description:
-      "Organisasi kepanduan yang membentuk karakter dan kedisiplinan siswa.",
-    image: "https://picsum.photos/seed/pramuka/1200/800",
-    logo: "https://picsum.photos/seed/pramuka-logo/200",
-    links: [
-      {
-        label: "Instagram",
-        url: "https://instagram.com/",
-        desc: "Lihat kegiatan dan informasi terbaru",
-      },
-      {
-        label: "Formulir Pendaftaran",
-        url: "#",
-        desc: "Bergabung menjadi anggota Pramuka",
-      },
-      {
-        label: "Galeri Kegiatan",
-        url: "#",
-        desc: "Dokumentasi acara dan kegiatan tahunan",
-      },
-    ],
-  },
-  {
-    slug: "paskibra",
-    title: "Paskibra",
-    description:
-      "Membentuk disiplin, ketahanan fisik, dan semangat kebangsaan.",
-    image: "https://picsum.photos/seed/paskibra/1200/800",
-    logo: "https://picsum.photos/seed/paskibra-logo/200",
-    links: [
-      {
-        label: "Instagram",
-        url: "https://instagram.com/",
-        desc: "Kegiatan dan prestasi Paskibra",
-      },
-      { label: "Video Latihan", url: "#", desc: "Cuplikan latihan dan lomba" },
-      { label: "Daftar Sekarang", url: "#", desc: "Gabung bersama tim kami" },
-    ],
-  },
-  {
-    slug: "futsal",
-    title: "Futsal",
-    description: "Melatih sportivitas dan kekompakan melalui olahraga futsal.",
-    image: "https://picsum.photos/seed/futsal/1200/800",
-    logo: "https://picsum.photos/seed/futsal-logo/200",
-    links: [
-      {
-        label: "Instagram",
-        url: "https://instagram.com/",
-        desc: "Update hasil pertandingan dan event",
-      },
-      {
-        label: "Jadwal Latihan",
-        url: "#",
-        desc: "Lihat jadwal latihan mingguan",
-      },
-      {
-        label: "Pendaftaran",
-        url: "#",
-        desc: "Daftar jadi pemain futsal sekolah",
-      },
-    ],
-  },
-] as const satisfies readonly [EkskulItem, ...EkskulItem[]];
+const ekskulList: EkskulItem[] = (extracurricularsData as Array<Omit<EkskulItem, 'links'>>).map((item) => ({
+  ...item,
+  links: (extracurricularLinks as Record<string, EkskulLink[]>)[item.slug] ?? []
+}));
 
 const ekskul = computed<EkskulItem>(() => {
   const slug = route.params.ekskul as string;
-  return ekskulList.find((e) => e.slug === slug) ?? ekskulList[0];
+  return (ekskulList.find((e) => e.slug === slug) ?? ekskulList[0])!;
 });
 </script>

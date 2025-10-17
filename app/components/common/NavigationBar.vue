@@ -19,7 +19,7 @@
 
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <button @click="handleLogoClick" class="flex items-center gap-2 cursor-pointer">
-        <nuxt-img src="/images/penus/Logo.png" alt="Logo" class="w-80" />
+        <nuxt-img :src="logoSrc" alt="Logo" class="w-80" />
       </button>
 
       <div
@@ -102,19 +102,15 @@
 </template>
 
 <script lang="ts" setup>
+import navigationData from '~/contents/navigation.json'
 const route = useRoute()
 const router = useRouter()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 
-const menuItems = [
-  { name: "Beranda", path: "/", section: "home" },
-  { name: "Tentang Kami", path: "/about", section: "about" },
-  { name: "Berita", path: "/news", section: "news" },
-  { name: "Galeri", path: "/galery", section: "galery" },
-  { name: "Forum", path: "/forums", section: null },
-  { name: "Portals", path: "/portals", section: null },
-]
+type NavItem = { name: string; path: string; section: string | null }
+const logoSrc: string = navigationData.logoSrc
+const menuItems: NavItem[] = navigationData.menuItems as NavItem[]
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -198,10 +194,6 @@ onBeforeUnmount(() => {
 nav {
   transition: all 0.3s ease-in-out;
 }
-
-/* Catatan:
-   - Hindari ancestor dengan isolation:isolate/transform/filter/opacity < 1,
-     karena bisa memutus efek blend. */
 </style>
 
 <style>

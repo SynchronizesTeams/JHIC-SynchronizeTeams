@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Dr. Ahmad Hidayat", "subject": "Matematika" },
+  { "id": 2, "name": "Siti Nurhaliza, M.Pd", "subject": "Bahasa Indonesia" },
+  { "id": 3, "name": "Budi Santoso, S.Si", "subject": "Fisika" },
+  { "id": 4, "name": "Rina Kusuma, M.Si", "subject": "Kimia" },
+  { "id": 5, "name": "Dedi Prasetyo, S.Pd", "subject": "Biologi" },
+  { "id": 6, "name": "Lisa Andriani, M.Pd", "subject": "Bahasa Inggris" },
+  { "id": 7, "name": "Hendra Wijaya, S.Sos", "subject": "Sosiologi" },
+  { "id": 8, "name": "Maya Putri, S.Pd", "subject": "Seni Budaya" }
+]

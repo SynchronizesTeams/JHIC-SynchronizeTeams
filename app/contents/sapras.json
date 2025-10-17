@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Laboratorium RPL",
+    "description": "<p>Laboratorium Rekayasa Perangkat Lunak dilengkapi dengan komputer modern dan koneksi jaringan LAN yang stabil.</p><ul class='list-disc pl-5'><li>PC high-end untuk coding dan desain</li><li>Proyektor interaktif</li><li>Akses internet cepat</li></ul>",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "https://picsum.photos/seed/labrpl/1200/800"
+  },
+  {
+    "title": "Workshop Teknik Komputer",
+    "description": "<p>Tempat praktik perakitan, perbaikan, dan pemeliharaan perangkat keras komputer.</p><ul class='list-disc pl-5'><li>Peralatan servis lengkap</li><li>Ruang pendingin nyaman</li><li>Panduan instruktur ahli</li></ul>",
+    "linkText": "Kunjungi Workshop",
+    "linkUrl": "#",
+    "image": "https://picsum.photos/seed/workshop/1200/800"
+  },
+  {
+    "title": "Perpustakaan Digital",
+    "description": "<p>Menjadi pusat referensi dan pembelajaran berbasis digital bagi seluruh siswa.</p><ul class='list-disc pl-5'><li>Akses e-book dan jurnal ilmiah</li><li>Ruang baca nyaman</li><li>Wi-Fi gratis</li></ul>",
+    "linkText": "Jelajahi Koleksi",
+    "linkUrl": "#",
+    "image": "https://picsum.photos/seed/library/1200/800"
+  },
+  {
+    "title": "Ruang Multimedia",
+    "description": "<p>Ruang kreatif untuk produksi video, animasi, dan presentasi digital.</p><ul class='list-disc pl-5'><li>Peralatan audio visual modern</li><li>Studio mini untuk editing</li><li>Green screen</li></ul>",
+    "linkText": "Lihat Galeri",
+    "linkUrl": "#",
+    "image": "https://picsum.photos/seed/multimedia/1200/800"
+  },
+  {
+    "title": "Lapangan Olahraga",
+    "description": "<p>Tempat berolahraga dan menyalurkan semangat sportivitas bagi seluruh siswa.</p><ul class='list-disc pl-5'><li>Lapangan futsal & basket</li><li>Ruang ganti dan kamar mandi bersih</li><li>Area penonton luas</li></ul>",
+    "linkText": "Lihat Fasilitas",
+    "linkUrl": "#",
+    "image": "https://picsum.photos/seed/sport/1200/800"
+  }
+]

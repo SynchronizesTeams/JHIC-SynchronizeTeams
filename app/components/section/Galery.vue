@@ -29,12 +29,6 @@
         Tidak ada gambar untuk ditampilkan.
       </p>
     </div>
-    <NuxtLink
-      v-if="useRoute().path === '/'"
-      to="/galery"
-      class="flex items-center justify-center w-fit px-4 py-2 rounded-xl font-bold text-lg bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105">
-      Lihat Lainnya
-    </NuxtLink>
   </div>
 </template>
 
