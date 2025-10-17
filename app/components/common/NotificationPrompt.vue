@@ -131,7 +131,7 @@ const enableNotifications = async () => {
       // Show success notification
       await showNotification({
         title: 'Notifikasi Aktif! 🎉',
-        body: 'Anda akan menerima update terbaru dari SMK Penerbangan Bandung',
+        body: 'Anda akan menerima update terbaru dari SMK Plus Pelita Nusantara',
         tag: 'welcome'
       })
 

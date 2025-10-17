@@ -75,6 +75,47 @@
 import type { News } from '../types/news';
 import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
 
+// SEO Meta Tags
+useSeoMeta({
+  title: 'Beranda',
+  description: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan unggulan di Bandung dengan program keahlian teknologi, komunikasi, dan keterampilan profesional. Mencetak lulusan kompeten dan siap kerja.',
+  ogTitle: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
+  ogDescription: 'Sekolah kejuruan unggulan dengan fasilitas modern dan program keahlian terkini. Bergabunglah dengan kami untuk masa depan cerah!',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
+  twitterDescription: 'Sekolah kejuruan unggulan dengan fasilitas modern dan program keahlian terkini.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'name': 'SMK Plus Pelita Nusantara - Beranda',
+        'description': 'SMK Plus Pelita Nusantara adalah sekolah menengah kejuruan unggulan di Bandung',
+        'url': 'https://smkpluspelitanusantara.sch.id',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [{
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Beranda',
+            'item': 'https://smkpluspelitanusantara.sch.id'
+          }]
+        }
+      })
+    }
+  ]
+})
+
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
 

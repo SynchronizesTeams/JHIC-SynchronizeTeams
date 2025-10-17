@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<{
     <p>Menjadi Sekolah Menengah Kejuruan Unggulan yang menghasilkan sumber daya manusia <b>Terampil</b>, <b>Entrepreneur</b>, dan <b>Religius</b>.</p>
   `,
   linkText: "Selengkapnya",
-  linkUrl: "#",
+  linkUrl: "/profile",
 });
 </script>
 

@@ -1,6 +1,7 @@
 import type { NotificationPayload, NotificationPermissionState } from '~/types/notification'
 
 export const useNotification = () => {
+  const config = useRuntimeConfig()
   const registration = ref<ServiceWorkerRegistration | null>(null)
   const permissionState = ref<NotificationPermissionState>({
     permission: 'default',
@@ -84,8 +85,8 @@ export const useNotification = () => {
     if (registration.value) {
       await registration.value.showNotification(payload.title, {
         body: payload.body,
-        icon: payload.icon || '/icon-192x192.png',
-        badge: payload.badge || '/icon-192x192.png',
+        icon: payload.icon || '/penus-icon.webp',
+        badge: payload.badge || '/penus-icon.webp',
         tag: payload.tag || 'notification',
         requireInteraction: payload.requireInteraction || false,
         data: {
@@ -106,19 +107,20 @@ export const useNotification = () => {
     }
 
     try {
-      // Generate VAPID keys on server and use public key here
-      // For now, we'll use a placeholder
+      const vapidPublicKey = config.public.vapidPublicKey
+
+      if (!vapidPublicKey) {
+        throw new Error('VAPID public key not configured')
+      }
+
       const subscription = await registration.value.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-          // Replace this with your actual VAPID public key
-          'BIDu13Q-eZpPPRKvjqlsI7vSeCYkN1BVoohYCrWDX1ayBZfY_spM9aYygXk0yYjTRY0zUBRmpaRCxNdnDmqZLSc'
-        )
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
       })
 
       permissionState.value.isSubscribed = true
 
-      // Send subscription to your server
+      // Send subscription to your server (if using server-side push in future)
       // await $fetch('/api/notifications/subscribe', {
       //   method: 'POST',
       //   body: subscription

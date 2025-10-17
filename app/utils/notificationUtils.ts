@@ -72,7 +72,7 @@ export const sendTestNotification = () => {
   if (permissionState.value.permission === 'granted') {
     showNotification({
       title: '🧪 Test Notification',
-      body: 'This is a test notification from SMK Penerbangan Bandung',
+      body: 'This is a test notification from SMK Plus Pelita Nusantara',
       tag: 'test',
       url: '/'
     })

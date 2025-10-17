@@ -100,7 +100,7 @@ const { permissionState, requestPermission, showNotification } = useNotification
 const sendBasicNotification = async () => {
   await showNotification({
     title: '👋 Halo!',
-    body: 'Ini adalah notifikasi test dari SMK Penerbangan Bandung',
+    body: 'Ini adalah notifikasi test dari SMK Plus Pelita Nusantara',
     tag: 'test',
     url: '/'
   })

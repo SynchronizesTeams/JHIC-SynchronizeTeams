@@ -271,11 +271,53 @@ onMounted(() => {
   })
 })
 
-// SEO Meta
+// Enhanced SEO Meta Tags
+useSeoMeta({
+  title: 'Portal - Akses Layanan Sekolah',
+  description: 'Portal resmi SMK Plus Pelita Nusantara - Akses cepat ke berbagai layanan dan platform sekolah seperti e-learning, perpustakaan digital, sistem informasi akademik, dan layanan lainnya.',
+  ogTitle: 'Portal Layanan - SMK Plus Pelita Nusantara',
+  ogDescription: 'Akses mudah dan cepat ke berbagai layanan digital SMK Plus Pelita Nusantara.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/portals',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Portal Layanan - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Akses mudah dan cepat ke berbagai layanan digital SMK Plus Pelita Nusantara.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
 useHead({
-  title: 'Portals - SMK Penerbangan Bandung',
-  meta: [
-    { name: 'description', content: 'Portal resmi SMK Penerbangan Bandung - Akses cepat ke berbagai layanan dan platform sekolah' }
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/portals' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'name': 'Portal Layanan Sekolah',
+        'description': 'Akses cepat ke berbagai layanan dan platform sekolah',
+        'url': 'https://smkpluspelitanusantara.sch.id/portals',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Portal',
+              'item': 'https://smkpluspelitanusantara.sch.id/portals'
+            }
+          ]
+        }
+      })
+    }
   ]
 })
 </script>

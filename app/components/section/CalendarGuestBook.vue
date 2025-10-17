@@ -198,7 +198,7 @@
                   v-model="guestBookForm.request_date"
                   type="date"
                   required
-                  class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all">
+                  class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all text-base text-primary-gray cursor-pointer hover:border-primary-gray/40 date-input">
               </div>
             </div>
 
@@ -514,5 +514,64 @@ onMounted(() => {
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background: #a0aec0;
+}
+
+/* Custom date input styling */
+.date-input {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 48px;
+  color-scheme: light;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  opacity: 1;
+}
+
+.date-input::-webkit-datetime-edit {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.date-input::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.date-input::-webkit-datetime-edit-text {
+  padding: 0 0.25rem;
+}
+
+.date-input::-webkit-datetime-edit-month-field,
+.date-input::-webkit-datetime-edit-day-field,
+.date-input::-webkit-datetime-edit-year-field {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.date-input::-webkit-datetime-edit-month-field:hover,
+.date-input::-webkit-datetime-edit-day-field:hover,
+.date-input::-webkit-datetime-edit-year-field:hover {
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.date-input::-webkit-datetime-edit-month-field:focus,
+.date-input::-webkit-datetime-edit-day-field:focus,
+.date-input::-webkit-datetime-edit-year-field:focus {
+  background-color: rgba(239, 68, 68, 0.1);
+  outline: none;
 }
 </style>

@@ -97,11 +97,53 @@ const formatDate = (dateString: string) => {
   })
 }
 
-// SEO
+// Enhanced SEO Meta Tags
+useSeoMeta({
+  title: 'Prestasi & Penghargaan',
+  description: 'Koleksi prestasi dan penghargaan yang telah diraih oleh siswa dan guru SMK Plus Pelita Nusantara. Berbagai penghargaan akademik dan non-akademik tingkat lokal, nasional, dan internasional.',
+  ogTitle: 'Prestasi & Penghargaan - SMK Plus Pelita Nusantara',
+  ogDescription: 'Lihat berbagai prestasi membanggakan yang diraih oleh keluarga besar SMK Plus Pelita Nusantara.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/achievements',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Prestasi & Penghargaan - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Lihat berbagai prestasi membanggakan yang diraih oleh keluarga besar SMK Plus Pelita Nusantara.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
 useHead({
-  title: 'Prestasi - SMK Plus Pelita Nusantara',
-  meta: [
-    { name: 'description', content: 'Koleksi prestasi dan penghargaan yang telah diraih SMK Plus Pelita Nusantara' }
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/achievements' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        'name': 'Prestasi & Penghargaan',
+        'description': 'Koleksi prestasi dan penghargaan SMK Plus Pelita Nusantara',
+        'url': 'https://smkpluspelitanusantara.sch.id/achievements',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Prestasi',
+              'item': 'https://smkpluspelitanusantara.sch.id/achievements'
+            }
+          ]
+        }
+      })
+    }
   ]
 })
 </script>

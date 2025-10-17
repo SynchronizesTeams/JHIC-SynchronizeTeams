@@ -59,6 +59,56 @@
 <script setup lang="ts">
 import { mockPosts, mockChannels } from '~/utils/mockData'
 
+// SEO Meta Tags
+useSeoMeta({
+  title: 'Forum Diskusi - Member Area',
+  description: 'Forum diskusi untuk alumni dan siswa SMK Plus Pelita Nusantara. Tempat berbagi informasi, pengalaman, dan diskusi seputar pendidikan dan karir.',
+  ogTitle: 'Forum Diskusi - SMK Plus Pelita Nusantara',
+  ogDescription: 'Bergabung dalam diskusi dengan alumni dan siswa SMK Plus Pelita Nusantara.',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id/forums',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Forum Diskusi - SMK Plus Pelita Nusantara',
+  twitterDescription: 'Bergabung dalam diskusi dengan alumni dan siswa SMK Plus Pelita Nusantara.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id/forums' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'DiscussionForumPosting',
+        'name': 'Forum Diskusi SMK Plus Pelita Nusantara',
+        'description': 'Forum diskusi untuk alumni dan siswa',
+        'url': 'https://smkpluspelitanusantara.sch.id/forums',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Beranda',
+              'item': 'https://smkpluspelitanusantara.sch.id'
+            },
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Forum',
+              'item': 'https://smkpluspelitanusantara.sch.id/forums'
+            }
+          ]
+        }
+      })
+    }
+  ]
+})
+
 const channels = computed(() => mockChannels)
 
 // Get posts sorted by creation date, limited to recent ones

@@ -74,15 +74,10 @@
 <script setup lang="ts">
 import type { News } from "~/types/news";
 
-const { mainNews, secondaryNews } = withDefaults(
-  defineProps<{
-    mainNews: News;
-    secondaryNews?: News[];
-  }>(),
-  {
-    secondaryNews: () => [],
-  }
-);
+const { mainNews, secondaryNews = [] } = defineProps<{
+  mainNews: News;
+  secondaryNews?: News[];
+}>();
 </script>
 
 <style scoped>

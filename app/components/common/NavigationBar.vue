@@ -111,9 +111,9 @@ const menuItems = [
   { name: "Beranda", path: "/", section: "home" },
   { name: "Tentang Kami", path: "/about", section: "about" },
   { name: "Berita", path: "/news", section: "news" },
-  { name: "Galeri", path: "/galery", section: "galery" },
   { name: "Forum", path: "/forums", section: null },
   { name: "Portals", path: "/portals", section: null },
+  { name: "PPDB", path: "https://ppdb.smkpluspnb.sch.id", section: null },
 ]
 
 const toggleMenu = () => {
