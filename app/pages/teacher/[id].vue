@@ -100,7 +100,6 @@
 <script setup lang="ts">
 import { mockTeachers } from '~/utils/mockData'
 import type { Teacher } from '~/types/teacher'
-import NavigationBar from '~/components/common/NavigationBar.vue'
 
 const route = useRoute()
 const teacherId = computed(() => parseInt(route.params.id as string))

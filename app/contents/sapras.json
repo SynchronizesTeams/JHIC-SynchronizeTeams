@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Workshop TKJ",
+    "description": "Ini adalah workshop Teknik Komputer dan Jaringan (TKJ). Ruangan ini terang, bersih, dan dilengkapi dengan meja kerja, komputer, peralatan jaringan dan elektronika (termasuk demonstrasi panel surya), serta lemari penyimpanan. Fungsinya sebagai tempat praktik dan pembelajaran di bidang teknologi informasi.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/wstkj.jpg"
+  },
+  {
+    "title": "Workshop PKM",
+    "description": "Ruangan Layanan Pelanggan/Informasi yang Bersih dan Minimalis, area layanan pelanggan atau resepsionis yang rapi. Terdapat dua meja konter utama. Di sisi kiri terdapat meja kerja 'Customer Service' dengan komputer. Ruangan ini menggunakan AC, serta dilengkapi beberapa kursi tunggu berwarna hitam di sisi kanan. Ruangan yang terorganisir, dirancang untuk memberikan pelayanan atau informasi.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/wspkm.jpg"
+  },
+  {
+    "title": "Workshop Multimedia",
+    "description": "Studio produksi digital yang dilengkapi Green Screen, kamera (di tripod), pencahayaan studio, serta beberapa laptop dan komputer yang digunakan untuk aktivitas syuting dan editing video. Fasilitas pendukung seperti AC dan monitor TV juga.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/wsmm.jpg"
+  },
+  {
+    "title": "Toilet",
+    "description": "Ruangan dengan dinding dan lantai yang bersih, Terdapat beberapa wastafel dengan cermin di tengah, dan cermin panjang berdiri.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/toilet.jpg"
+  },
+  {
+    "title": "Ruang LSP",
+    "description": "Kantor formal yang rapi, dilengkapi lemari arsip, dan peralatan seperti proyektor dan printer, berfungsi sebagai ruang kerja staf.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/rlsp.jpg"
+  },
+  {
+    "title": "Ruang Kelas",
+    "description": "Ruang kelas modern dengan susunan meja dan kursi belajar individu yang rapi. Memiliki layar proyektor besar, dirancang untuk kegiatan belajar mengajar atau pelatihan.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kelas.jpg"
+  },
+  {
+    "title": "Ruangan Perpustakaan",
+    "description": "Ruang baca yang memadukan koleksi buku fisik pada rak-rak tinggi, area diskusi santai (meja kecil dengan kursi), serta fasilitas modern berupa meja layanan dan komputer untuk penelusuran katalog digital.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/perpus.jpg"
+  },
+  {
+    "title": "Lab RPL",
+    "description": "Laboratorium komputer yang modern dan identik. Ruangan lab ini diatur secara rapi dengan deretan meja praktek yang masing-masing dilengkapi unit komputer, dirancang khusus untuk kegiatan pelatihan dan praktik keterampilan di bidang teknologi dan informatika.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/labrpl.jpg"
+  },
+  {
+    "title": "Lab Multimedia",
+    "description": "Laboratorium komputer yang modern dan identik. Ruangan kelas ini diatur secara rapi dengan deretan meja praktek yang masing-masing dilengkapi unit komputer, dirancang khusus untuk kegiatan pelatihan dan praktik keterampilan di bidang teknologi dan Desain.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/labmm.jpg"
+  },
+  {
+    "title": "Lab PKM",
+    "description": "Ruangan praktik bisnis (LPB), lengkap dengan jajaran meja dan kursi.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/lablpb.jpg"
+  },
+  {
+    "title": "Lab Mikrotik",
+    "description": "Ruangan yang bersih dan modern, dilengkapi meja praktik, beberapa unit komputer.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/mikrotik.jpg"
+  },
+  {
+    "title": "Kantin",
+    "description": "Kantin yang dilengkapi meja kursi. dengan beberapa bagian tempat layanan, serta metode pembayaran yang menggunakan kartu kantin digital.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kantin.jpg"
+  },
+  {
+    "title": "KBS mart",
+    "description": "Ruang koperasi sekaligus minimarket kecil, bersih, dan terang dengan rak makanan ringan, minuman, dan AC.",
+    "linkText": "Lihat Detail",
+    "linkUrl": "#",
+    "image": "/images/sapras/kbs.jpg"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "hero": {
+    "title": "Profile PENUS",
+    "subtitle": "SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Unggulan yang Menghasilkan SDM Terampil, Entrepreneur, dan Religius",
+    "image": "/images/penus/Gedung_Utama.webp"
+  },
+  "sejarah": [
+    "SMK Plus Pelita Nusantara didirikan dengan visi untuk menciptakan generasi muda yang tidak hanya terampil dalam bidang teknologi dan kejuruan, tetapi juga memiliki jiwa entrepreneur dan nilai-nilai religius yang kuat.",
+    "Sejak awal berdirinya, sekolah kami berkomitmen untuk menyediakan pendidikan berkualitas yang relevan dengan kebutuhan industri modern. Dengan menggabungkan kurikulum nasional dan muatan lokal yang inovatif, kami mempersiapkan siswa untuk menghadapi tantangan dunia kerja dan kewirausahaan.",
+    "Berlokasi di lingkungan yang kondusif untuk belajar, SMK Plus Pelita Nusantara terus berkembang dan berinovasi dalam menyediakan fasilitas dan program pendidikan terbaik bagi para siswa."
+  ],
+  "visi": "Menjadi Sekolah Menengah Kejuruan Unggulan yang menghasilkan sumber daya manusia yang Terampil, Entrepreneur, dan Religius untuk memenuhi kebutuhan industri dan masyarakat.",
+  "misi": [
+    "Menyelenggarakan pendidikan kejuruan berbasis kompetensi dan keterampilan",
+    "Mengembangkan jiwa entrepreneur dan inovasi pada peserta didik",
+    "Menanamkan nilai-nilai religius dan karakter mulia",
+    "Menjalin kemitraan dengan industri dan dunia usaha"
+  ],
+  "programs": [
+    {
+      "id": 1,
+      "name": "Teknik Komputer dan Jaringan",
+      "description": "Mempelajari instalasi, konfigurasi, dan maintenance sistem komputer dan jaringan",
+      "icon": "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+    },
+    {
+      "id": 2,
+      "name": "Rekayasa Perangkat Lunak",
+      "description": "Mengembangkan kemampuan dalam pemrograman dan pengembangan aplikasi",
+      "icon": "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+    },
+    {
+      "id": 3,
+      "name": "Desain Komunikasi Visual",
+      "description": "Menguasai desain grafis, video editing, dan produksi konten digital",
+      "icon": "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+    },
+    {
+      "id": 4,
+      "name": "Layanan Perbankan",
+      "description": "Mempelajari operasional perbankan, akuntansi, dan layanan nasabah",
+      "icon": "M3 6h18M5 6V5a2 2 0 012-2h10a2 2 0 012 2v1M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8M10 12h4"
+    },
+    {
+      "id": 5,
+      "name": "Teknik Otomasi Industri",
+      "description": "Fokus pada perancangan, pembuatan, dan pemeliharaan sistem otomasi industri",
+      "icon": "M12 6V4m0 16v-2m8-8h2M4 12H2m15.364 6.364l1.414 1.414M4.222 4.222l1.414 1.414m12.728 0l-1.414 1.414M5.636 18.364l-1.414 1.414M12 18a6 6 0 100-12 6 6 0 000 12z"
+    }
+  ],
+  "facilities": [
+    { "id": 1, "name": "Laboratorium Komputer", "icon": "💻" },
+    { "id": 2, "name": "Workshop Praktik", "icon": "🔧" },
+    { "id": 3, "name": "Perpustakaan", "icon": "📚" },
+    { "id": 4, "name": "Kantin", "icon": "🍽️" },
+    { "id": 5, "name": "Toilet", "icon": "🚻" },
+    { "id": 6, "name": "Mushola", "icon": "🕌" },
+    { "id": 7, "name": "Lapangan", "icon": "⚽" },
+    { "id": 8, "name": "Aula", "icon": "🏛️" }
+  ],
+  "advantages": [
+    {
+      "id": 1,
+      "title": "Kurikulum Berbasis Industri",
+      "description": "Pembelajaran yang disesuaikan dengan kebutuhan dunia kerja dan industri terkini"
+    },
+    {
+      "id": 2,
+      "title": "Tenaga Pengajar Profesional",
+      "description": "Guru dan instruktur berpengalaman dengan latar belakang industri"
+    },
+    {
+      "id": 3,
+      "title": "Kemitraan dengan Industri",
+      "description": "Bekerja sama dengan perusahaan-perusahaan ternama untuk program magang"
+    },
+    {
+      "id": 4,
+      "title": "Fasilitas Modern",
+      "description": "Dilengkapi dengan peralatan dan teknologi terkini untuk mendukung pembelajaran"
+    },
+    {
+      "id": 5,
+      "title": "Pembinaan Karakter",
+      "description": "Fokus pada pembentukan karakter religius dan jiwa entrepreneur"
+    },
+    {
+      "id": 6,
+      "title": "Sertifikasi Kompetensi",
+      "description": "Siswa mendapatkan sertifikasi kompetensi yang diakui industri"
+    }
+  ]
+}

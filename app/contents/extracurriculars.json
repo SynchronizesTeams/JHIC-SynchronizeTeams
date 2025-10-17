@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "pramuka",
+    "title": "Pramuka",
+    "description": "<p>Gerakan Pramuka Indonesia adalah organisasi pendidikan nonformal yang menyelenggarakan pendidikan kepanduan.</p>",
+    "image": "https://picsum.photos/seed/pramuka/1200/800",
+    "logo": "https://picsum.photos/seed/pramuka-logo/200"
+  },
+  {
+    "slug": "paskibra",
+    "title": "Paskibra",
+    "description": "<p>Pasukan Pengibar Bendera Pusaka melatih kedisiplinan, ketahanan fisik, dan menumbuhkan rasa cinta tanah air.</p>",
+    "image": "https://picsum.photos/seed/paskibra/1200/800",
+    "logo": "https://picsum.photos/seed/paskibra-logo/200"
+  },
+  {
+    "slug": "futsal",
+    "title": "Futsal",
+    "description": "<p>Ekstrakurikuler Futsal menjadi wadah bagi siswa untuk menyalurkan bakat dalam olahraga dan membangun kerja sama tim.</p>",
+    "image": "https://picsum.photos/seed/futsal/1200/800",
+    "logo": "https://picsum.photos/seed/futsal-logo/200"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "question": "Apa saja jurusan yang tersedia di SMK Plus Pelita Nusantara?",
+    "answer": "SMK Plus Pelita Nusantara menyediakan beberapa jurusan unggulan seperti Teknik Komputer dan Jaringan, Rekayasa Perangkat Lunak, Multimedia, Layanan Perbankan, dan Teknik Otomasi Industri. Setiap jurusan dirancang dengan kurikulum yang relevan dengan kebutuhan industri."
+  },
+  {
+    "id": 2,
+    "question": "Bagaimana proses pendaftaran siswa baru?",
+    "answer": "Pendaftaran siswa baru dapat dilakukan secara online melalui portal PPDB kami. Calon siswa perlu menyiapkan dokumen persyaratan seperti ijazah SMP/sederajat, KK, akta kelahiran, dan foto. Setelah mendaftar, akan ada tes seleksi berupa tes akademik dan wawancara."
+  },
+  {
+    "id": 3,
+    "question": "Bagaimana sistem praktik kerja lapangan (PKL)?",
+    "answer": "Siswa akan menjalani PKL selama 3-6 bulan di perusahaan mitra kami. Program ini bertujuan memberikan pengalaman kerja nyata di industri. Kami bermitra dengan berbagai perusahaan ternama di bidang teknologi dan penerbangan untuk memastikan siswa mendapat pengalaman terbaik."
+  },
+  {
+    "id": 4,
+    "question": "Fasilitas apa saja yang tersedia untuk siswa?",
+    "answer": "SMK Plus Pelita Nusantara dilengkapi dengan fasilitas modern seperti Laboratorium Komputer, Workshop Teknik, Perpustakaan, kantin, KBS Mart, dan masih banyak lagi. Semua fasilitas dirancang untuk mendukung proses pembelajaran yang optimal."
+  },
+  {
+    "id": 5,
+    "question": "Apakah lulusan bisa langsung bekerja?",
+    "answer": "Ya, lulusan kami memiliki peluang langsung bekerja karena kurikulum yang berbasis kompetensi industri. Banyak alumni kami yang terserap di perusahaan-perusahaan besar. Kami juga memiliki job fair dan program career development untuk membantu siswa memasuki dunia kerja."
+  },
+  {
+    "id": 6,
+    "question": "Apakah bisa melanjutkan ke perguruan tinggi?",
+    "answer": "Tentu saja! Lulusan SMK juga memiliki kesempatan yang sama untuk melanjutkan ke perguruan tinggi melalui berbagai jalur seperti SNBP, SNBT, atau jalur mandiri. Banyak alumni kami yang melanjutkan pendidikan ke universitas ternama di Indonesia."
+  },
+  {
+    "id": 7,
+    "question": "Berapa biaya pendidikan di SMK Plus Pelita Nusantara?",
+    "answer": "Biaya pendidikan bervariasi tergantung jurusan yang dipilih. Kami menyediakan informasi rinci mengenai biaya pendidikan saat proses pendaftaran. Selain itu, tersedia juga program cicilan dan berbagai skema pembayaran yang dapat memudahkan orang tua siswa."
+  },
+  {
+    "id": 8,
+    "question": "Apa Akreditasi SMK Plus Pelita Nusantara dan Status Sekolah?",
+    "answer": "Sekolah ini adalah SMK Swasta dengan Akreditasi A (Unggul)."
+  },
+  {
+    "id": 10,
+    "question": "Apakah ada program yang fokus pada karakter dan agama?",
+    "answer": "Ya. Kami memiliki program unggulan DUQUBA (Dhuha, Al-Qur'an dan Bahasa) serta Program Tahfidz Al-Qur'an untuk penguatan karakter religius."
+  },
+  {
+    "id": 11,
+    "question": "Bagaimana sekolah mempersiapkan siswa untuk Dunia Kerja?",
+    "answer": "Siswa disiapkan melalui praktik intensif, program akselerasi IT (Devaccto IT), sertifikasi kompetensi, dan dipermudah penempatan PKL berkat kerja sama dengan berbagai industri (DUDI)."
+  },
+  {
+    "id": 12,
+    "question": "Ekstrakurikuler apa yang populer di sekolah ini?",
+    "answer": "Ekskul favorit mencakup Futsal, Basket, Paskibra, Taekwondo, PMR, dan English/Japanese Club."
+  }
+]

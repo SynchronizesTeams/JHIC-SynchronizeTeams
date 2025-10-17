@@ -1,0 +1,35 @@
+{
+  "tagline": {
+    "lines": [
+      "Succeeded By Character!",
+      "We Are Different!",
+      "The Future is Ours!"
+    ],
+    "footer": "SMK Plus Pelita Nusantara"
+  },
+  "cards": [
+    {
+      "title": "Terampil",
+      "image": "https://picsum.photos/seed/visi/600/400",
+      "description": "Mewujudkan SMK yang unggul dalam mutu dan prestasi menghasilkan peserta didik yang berkarakter terampil, entrepreneur dan religius."
+    },
+    {
+      "title": "Religius",
+      "image": "https://picsum.photos/seed/misi/600/400",
+      "description": "Menyelenggarakan pendidikan berkualitas dengan kurikulum relevan yang mengembangkan potensi siswa secara maksimal dan membangun karakter yang kuat."
+    },
+    {
+      "title": "Entrepreneur",
+      "image": "https://picsum.photos/seed/motto/600/400",
+      "description": "Succeeded by Character, We Are Different! Kami berkomitmen membentuk lulusan yang tidak hanya cerdas, tetapi juga memiliki integritas dan jiwa kepemimpinan."
+    }
+  ],
+  "profile": {
+    "title": "Profil Sekolah",
+    "paragraphs": [
+      "<strong>SMK Plus Pelita Nusantara</strong> adalah lembaga pendidikan vokasi yang berkomitmen untuk menghasilkan lulusan yang berkualitas, berkarakter, dan siap bersaing di dunia industri. Dengan mengusung tagline <em>\"Succeeded By Character\"</em>, kami fokus pada pembentukan karakter siswa yang kuat, terampil, dan memiliki jiwa entrepreneur.",
+      "Didukung oleh tenaga pendidik yang profesional dan berpengalaman, fasilitas modern, serta kerjasama dengan berbagai industri terkemuka, SMK Plus Pelita Nusantara menjadi pilihan tepat bagi para siswa yang ingin meraih kesuksesan di era digital.",
+      "Kami percaya bahwa pendidikan bukan hanya tentang transfer ilmu, tetapi juga tentang membangun karakter, mengembangkan soft skills, dan mempersiapkan generasi muda untuk menjadi pemimpin masa depan yang berintegritas dan berdaya saing global."
+    ]
+  }
+}

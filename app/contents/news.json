@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "sora-2-breakthrough",
+    "title": "Sora 2: A New Era of AI Video Generation",
+    "excerpt": "OpenAI announces Sora 2, an advanced AI model that brings realistic video generation closer to reality.",
+    "cover": "https://images.unsplash.com/photo-1717433921918-7a86b49b79ac?q=80&w=1920",
+    "date": "2025-10-10",
+    "author": "OpenAI Research Team",
+    "content": "<h3>Introducing Sora 2</h3><p>Sora 2 pushes the boundaries of generative AI...</p>"
+  },
+  {
+    "slug": "ai-music-evolution",
+    "title": "AI in Music: How Neural Networks Compose Songs",
+    "excerpt": "AI models are learning not just to replicate but to innovate in the world of music creation.",
+    "cover": "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?q=80&w=1920",
+    "date": "2025-09-28",
+    "author": "AI Labs",
+    "content": "<h3>The New Wave of AI Music</h3><p>Recent advancements in neural audio models...</p>"
+  },
+  {
+    "slug": "ai-music-evolution",
+    "title": "AI in Music: How Neural Networks Compose Songs",
+    "excerpt": "AI models are learning not just to replicate but to innovate in the world of music creation.",
+    "cover": "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?q=80&w=1920",
+    "date": "2025-09-28",
+    "author": "AI Labs",
+    "content": "<h3>The New Wave of AI Music</h3><p>Recent advancements in neural audio models...</p>"
+  },
+  {
+    "slug": "ai-music-evolution",
+    "title": "AI in Music: How Neural Networks Compose Songs",
+    "excerpt": "AI models are learning not just to replicate but to innovate in the world of music creation.",
+    "cover": "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?q=80&w=1920",
+    "date": "2025-09-28",
+    "author": "AI Labs",
+    "content": "<h3>The New Wave of AI Music</h3><p>Recent advancements in neural audio models...</p>"
+  }
+]

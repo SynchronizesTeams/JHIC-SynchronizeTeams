@@ -1,0 +1,17 @@
+{
+  "pramuka": [
+    { "label": "Instagram", "url": "https://instagram.com/", "desc": "Lihat kegiatan dan informasi terbaru" },
+    { "label": "Formulir Pendaftaran", "url": "#", "desc": "Bergabung menjadi anggota Pramuka" },
+    { "label": "Galeri Kegiatan", "url": "#", "desc": "Dokumentasi acara dan kegiatan tahunan" }
+  ],
+  "paskibra": [
+    { "label": "Instagram", "url": "https://instagram.com/", "desc": "Kegiatan dan prestasi Paskibra" },
+    { "label": "Video Latihan", "url": "#", "desc": "Cuplikan latihan dan lomba" },
+    { "label": "Daftar Sekarang", "url": "#", "desc": "Gabung bersama tim kami" }
+  ],
+  "futsal": [
+    { "label": "Instagram", "url": "https://instagram.com/", "desc": "Update hasil pertandingan dan event" },
+    { "label": "Jadwal Latihan", "url": "#", "desc": "Lihat jadwal latihan mingguan" },
+    { "label": "Pendaftaran", "url": "#", "desc": "Daftar jadi pemain futsal sekolah" }
+  ]
+}

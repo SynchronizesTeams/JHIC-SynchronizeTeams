@@ -24,32 +24,9 @@
 </template>
 
 <script setup>
-const partners = ref([
-  {
-    name: "Mitra A",
-    logoUrl: "",
-  },
-  {
-    name: "Mitra B",
-    logoUrl: "",
-  },
-  {
-    name: "Mitra C",
-    logoUrl: "",
-  },
-  {
-    name: "Mitra D",
-    logoUrl: "",
-  },
-  {
-    name: "Mitra E",
-    logoUrl: "",
-  },
-  {
-    name: "Mitra F",
-    logoUrl: "",
-  },
-]);
+import partnersData from '~/contents/partners.json';
+
+const partners = ref(partnersData);
 </script>
 
 <style scoped>

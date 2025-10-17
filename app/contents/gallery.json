@@ -1,0 +1,22 @@
+[
+  { "id": 1, "src": "https://picsum.photos/seed/1/800/600", "alt": "Gambar Literasi 1", "title": "Literasi Pagi #1" },
+  { "id": 2, "src": "https://picsum.photos/seed/2/800/600", "alt": "Gambar Literasi 2", "title": "Literasi Pagi #2" },
+  { "id": 3, "src": "https://picsum.photos/seed/3/800/600", "alt": "Gambar Literasi 3", "title": "Literasi Pagi #3" },
+  { "id": 4, "src": "https://picsum.photos/seed/4/800/600", "alt": "Gambar Literasi 4", "title": "Literasi Pagi #4" },
+  { "id": 5, "src": "https://picsum.photos/seed/5/800/600", "alt": "Gambar Literasi 5", "title": "Literasi Pagi #5" },
+  { "id": 6, "src": "https://picsum.photos/seed/6/800/600", "alt": "Gambar Literasi 6", "title": "Literasi Pagi #6" },
+  { "id": 7, "src": "https://picsum.photos/seed/7/800/600", "alt": "Gambar Literasi 7", "title": "Literasi Pagi #7" },
+  { "id": 8, "src": "https://picsum.photos/seed/8/800/600", "alt": "Gambar Literasi 8", "title": "Literasi Pagi #8" },
+  { "id": 9, "src": "https://picsum.photos/seed/9/800/600", "alt": "Gambar Literasi 9", "title": "Literasi Pagi #9" },
+  { "id": 10, "src": "https://picsum.photos/seed/10/800/600", "alt": "Gambar Literasi 10", "title": "Literasi Pagi #10" },
+  { "id": 11, "src": "https://picsum.photos/seed/11/800/600", "alt": "Gambar Literasi 11", "title": "Literasi Pagi #11" },
+  { "id": 12, "src": "https://picsum.photos/seed/12/800/600", "alt": "Gambar Literasi 12", "title": "Literasi Pagi #12" },
+  { "id": 13, "src": "https://picsum.photos/seed/13/800/600", "alt": "Gambar Literasi 13", "title": "Literasi Pagi #13" },
+  { "id": 14, "src": "https://picsum.photos/seed/14/800/600", "alt": "Gambar Literasi 14", "title": "Literasi Pagi #14" },
+  { "id": 15, "src": "https://picsum.photos/seed/15/800/600", "alt": "Gambar Literasi 15", "title": "Literasi Pagi #15" },
+  { "id": 16, "src": "https://picsum.photos/seed/16/800/600", "alt": "Gambar Literasi 16", "title": "Literasi Pagi #16" },
+  { "id": 17, "src": "https://picsum.photos/seed/17/800/600", "alt": "Gambar Literasi 17", "title": "Literasi Pagi #17" },
+  { "id": 18, "src": "https://picsum.photos/seed/18/800/600", "alt": "Gambar Literasi 18", "title": "Literasi Pagi #18" },
+  { "id": 19, "src": "https://picsum.photos/seed/19/800/600", "alt": "Gambar Literasi 19", "title": "Literasi Pagi #19" },
+  { "id": 20, "src": "https://picsum.photos/seed/20/800/600", "alt": "Gambar Literasi 20", "title": "Literasi Pagi #20" }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "quote": "Kurikulum di sini sangat relevan dengan dunia industri. Saya merasa siap kerja setelah lulus.",
+    "name": "Budi Santoso",
+    "position": "Alumni, Software Engineer di TechCorp",
+    "avatar": "https://i.pravatar.cc/150?img=1"
+  },
+  {
+    "id": 2,
+    "quote": "Guru-gurunya sangat mendukung dan fasilitas praktiknya lengkap. Pengalaman belajar yang luar biasa.",
+    "name": "Citra Lestari",
+    "position": "Alumni, UI/UX Designer di CreativeHub",
+    "avatar": "https://i.pravatar.cc/150?img=2"
+  },
+  {
+    "id": 3,
+    "quote": "Program magang yang disediakan sekolah membuka banyak pintu kesempatan karir bagi saya.",
+    "name": "Doni Prasetyo",
+    "position": "Alumni, Network Administrator di GlobalNet",
+    "avatar": "https://i.pravatar.cc/150?img=3"
+  }
+]
