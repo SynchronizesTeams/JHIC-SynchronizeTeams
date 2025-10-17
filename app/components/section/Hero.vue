@@ -1,21 +1,26 @@
 <template>
-  <div class="relative w-full min-h-fit overflow-hidden rounded-2xl">
+  <div class="relative w-full overflow-hidden rounded-2xl">
     <section ref="heroSection" class="relative">
       <div
         ref="heroContent"
-        class="min-h-fit flex flex-col items-center justify-center">
+        class="relative w-full aspect-video">
         <div
           ref="background"
-          class="w-full transform scale-110 transition-transform duration-700 ease-out"
+          class="absolute inset-0 w-full h-full transform scale-110 transition-transform duration-700 ease-out"
           :style="{ transform: `scale(${1 + parallaxValue * 0.1})` }">
+          <!-- Video Background -->
           <video
-            src="/videos/header-content-small.mp4"
-            alt="Hero Background"
-            class="w-full h-full object-cover object-center"
+            ref="videoRef"
             autoplay
             loop
             muted
-          />
+            playsinline
+            preload="auto"
+            class="w-full h-full object-cover object-center"
+          >
+            <source src="/videos/header-content-small.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>
@@ -30,6 +35,7 @@ const contentOpacity = ref(1);
 const contentOffset = ref(0);
 const logoScale = ref(1);
 const isPortrait = ref(false);
+const videoRef = ref<HTMLVideoElement | null>(null);
 
 const handleScroll = () => {
   const scrollY = window.scrollY;
@@ -52,11 +58,22 @@ const animateOnLoad = () => {
   }, 100);
 };
 
+const playVideo = () => {
+  if (videoRef.value) {
+    videoRef.value.play().catch((error) => {
+      console.log('Autoplay prevented, will play on user interaction:', error);
+    });
+  }
+};
+
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
   window.addEventListener("resize", handleResize);
   handleResize();
   animateOnLoad();
+
+  // Force play video after mount
+  setTimeout(playVideo, 100);
 });
 
 onBeforeUnmount(() => {
@@ -69,5 +86,11 @@ onBeforeUnmount(() => {
 html,
 body {
   scroll-behavior: smooth;
+}
+
+.hero-video-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>

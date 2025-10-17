@@ -16,12 +16,20 @@
           :to="`/news/${achievement.News.slug}`"
           class="flex-shrink-0 w-80 md:w-auto bg-gray-500 rounded-xl shadow-lg overflow-hidden group transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
           <div class="relative">
-            <NuxtImg
+            <!-- Optimized Image Component -->
+            <OptimizedImage
               :src="achievement.image"
               :alt="achievement.title"
-              class="w-full h-48 object-cover" />
+              :width="800"
+              :height="480"
+              aspect-ratio="5/3"
+              format="webp"
+              :quality="85"
+              image-class="w-full h-48 object-cover"
+              container-class="w-full h-48"
+            />
 
-            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+            <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
               <h3 class="text-xl font-semibold text-white">
                 {{ achievement.title }}
               </h3>
@@ -31,7 +39,7 @@
             </div>
 
             <div
-              class="absolute inset-0 bg-gradient-to-b from-secondary-red/30 to-secondary-red/50 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+              class="absolute inset-0 bg-gradient-to-b from-secondary-red/30 to-secondary-red/50 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
               <p class="text-white text-center text-sm">
                 {{ achievement.News.excerpt }}
               </p>
