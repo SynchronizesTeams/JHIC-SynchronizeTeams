@@ -30,9 +30,25 @@
 
 <script setup>
 const route = useRoute();
-const { getNews } = useNews();
+const { newsList, load, loading } = useNews();
 
-const article = getNews(route.params.news);
+// Resolve article reactively from API-backed list, fallback placeholder while loading
+const article = computed(() => {
+  return newsList.value.find((n) => n.slug === route.params.news) || {
+    title: "Memuat...",
+    date: new Date().toISOString(),
+    author: "Admin",
+    cover: "/penus-icon.webp",
+    content: "",
+  };
+});
+
+// Ensure list is loaded when navigating directly to detail page
+onMounted(() => {
+  if (!newsList.value.length) {
+    load();
+  }
+});
 
 const formatDate = (date) =>
   new Date(date).toLocaleDateString("en-US", {
