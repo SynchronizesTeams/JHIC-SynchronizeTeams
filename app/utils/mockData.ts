@@ -4,6 +4,7 @@ import type { PersonalProfile } from '~/types/personalProfile'
 import type { Teacher } from '~/types/teacher'
 import type { Achievement } from '~/types/achievement'
 import type { User as UserProfile } from '~/types/user'
+import type { CalendarEvent } from '~/types/calendar'
 
 export const mockUsers: User[] = [
   {
@@ -1056,3 +1057,103 @@ export const mockCurrentUser: UserProfile = {
   jabatan: 'Software Engineer',
   tahun_ajaran_mulai: '2021'
 }
+
+// Calendar Events mock data
+export const mockCalendarEvents: CalendarEvent[] = [
+  {
+    id: 1,
+    title: 'Upacara Hari Sumpah Pemuda',
+    description: 'Peringatan Hari Sumpah Pemuda dengan upacara bendera dan berbagai kegiatan untuk menumbuhkan semangat nasionalisme di kalangan siswa.',
+    event_date: '2025-10-28',
+    image: 'https://picsum.photos/seed/event1/800/600',
+    created_at: '2025-10-01T00:00:00Z'
+  },
+  {
+    id: 2,
+    title: 'Workshop Web Development',
+    description: 'Workshop intensif pengembangan web modern menggunakan Vue.js dan Nuxt 3. Dibimbing oleh praktisi industri dengan pengalaman lebih dari 10 tahun.',
+    event_date: '2025-10-20',
+    image: 'https://picsum.photos/seed/event2/800/600',
+    created_at: '2025-09-25T00:00:00Z'
+  },
+  {
+    id: 3,
+    title: 'Open House PPDB 2026',
+    description: 'Acara terbuka untuk calon siswa baru dan orang tua. Kami akan memperkenalkan program-program unggulan, fasilitas sekolah, dan sistem pembelajaran.',
+    event_date: '2025-10-25',
+    image: 'https://picsum.photos/seed/event3/800/600',
+    created_at: '2025-10-05T00:00:00Z'
+  },
+  {
+    id: 4,
+    title: 'Seminar Karir & Industri 4.0',
+    description: 'Seminar tentang peluang karir di era Industri 4.0 dengan pembicara dari perusahaan teknologi terkemuka. Gratis untuk semua siswa dan alumni.',
+    event_date: '2025-10-15',
+    image: 'https://picsum.photos/seed/event4/800/600',
+    created_at: '2025-09-20T00:00:00Z'
+  },
+  {
+    id: 5,
+    title: 'Lomba Coding Competition',
+    description: 'Kompetisi pemrograman antar siswa SMK se-Jawa Barat. Hadiah total puluhan juta rupiah dan sertifikat untuk semua peserta.',
+    event_date: '2025-10-22',
+    image: 'https://picsum.photos/seed/event5/800/600',
+    created_at: '2025-09-15T00:00:00Z'
+  },
+  {
+    id: 6,
+    title: 'Kunjungan Industri ke Tech Company',
+    description: 'Kunjungan edukatif ke perusahaan teknologi untuk memberikan gambaran nyata tentang dunia kerja profesional di bidang IT.',
+    event_date: '2025-10-18',
+    image: 'https://picsum.photos/seed/event6/800/600',
+    created_at: '2025-09-30T00:00:00Z'
+  },
+  {
+    id: 7,
+    title: 'Pelatihan Sertifikasi Internasional',
+    description: 'Pelatihan persiapan untuk mendapatkan sertifikasi internasional di bidang jaringan komputer dan cloud computing.',
+    event_date: '2025-10-30',
+    image: 'https://picsum.photos/seed/event7/800/600',
+    created_at: '2025-10-02T00:00:00Z'
+  },
+  {
+    id: 8,
+    title: 'Donor Darah Bersama PMI',
+    description: 'Kegiatan donor darah bekerja sama dengan PMI untuk membantu sesama. Terbuka untuk siswa, guru, dan staff yang sehat.',
+    event_date: '2025-10-12',
+    image: 'https://picsum.photos/seed/event8/800/600',
+    created_at: '2025-09-28T00:00:00Z'
+  },
+  {
+    id: 9,
+    title: 'Festival Seni & Budaya Sekolah',
+    description: 'Pentas seni dan budaya tahunan menampilkan berbagai pertunjukan dari siswa. Mulai dari musik, tari, teater, hingga stand pameran karya seni.',
+    event_date: '2025-10-26',
+    image: 'https://picsum.photos/seed/event9/800/600',
+    created_at: '2025-10-01T00:00:00Z'
+  },
+  {
+    id: 10,
+    title: 'Peringatan Hari Guru Nasional',
+    description: 'Acara spesial untuk menghormati dan mengapresiasi dedikasi para guru dengan berbagai kegiatan menarik dan penghargaan.',
+    event_date: '2025-11-25',
+    image: 'https://picsum.photos/seed/event10/800/600',
+    created_at: '2025-10-10T00:00:00Z'
+  },
+  {
+    id: 11,
+    title: 'Expo Teknologi & Inovasi Siswa',
+    description: 'Pameran hasil karya dan inovasi teknologi siswa dari berbagai jurusan. Terbuka untuk umum dan industri partner.',
+    event_date: '2025-11-15',
+    image: 'https://picsum.photos/seed/event11/800/600',
+    created_at: '2025-10-08T00:00:00Z'
+  },
+  {
+    id: 12,
+    title: 'Turnamen Futsal Antar Kelas',
+    description: 'Kompetisi futsal antar kelas untuk mempererat tali persaudaraan dan sportivitas. Hadiah menarik untuk juara.',
+    event_date: '2025-10-15',
+    image: 'https://picsum.photos/seed/event12/800/600',
+    created_at: '2025-09-22T00:00:00Z'
+  }
+]

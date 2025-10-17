@@ -18,6 +18,10 @@
     <section id="partner" class="px-6">
       <SectionPartner />
     </section>
+    <HeaderTitle title="KALENDER & BUKU TAMU" align="center" />
+    <section id="calendar" class="px-6">
+      <SectionCalendarGuestBook :events="calendarEvents" />
+    </section>
     <HeaderTitle title="EKSTRAKULIKULER" align="left" />
     <section>
       <CommonEkskul />
@@ -69,12 +73,13 @@
 
 <script lang="ts" setup>
 import type { News } from '../types/news';
-import { mockAchievements } from '~/utils/mockData'
+import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
 
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
 
 const achievementsData = ref(mockAchievements)
+const calendarEvents = ref(mockCalendarEvents)
 
 const galleryImages = ref<
   { id: number; src: string; alt: string; title: string }[]
