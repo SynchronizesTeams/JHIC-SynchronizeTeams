@@ -51,8 +51,9 @@
             v-for="teacher in teachers"
             :key="teacher.id"
             class="flex-shrink-0 w-52 snap-center pt-4">
-            <div
-              class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2">
+            <button
+              @click="goToTeacher(teacher.id)"
+              class="w-full bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2 cursor-pointer">
               <div
                 class="relative bg-gradient-to-br from-gray-100 to-gray-200 aspect-square overflow-hidden">
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -75,7 +76,7 @@
                 </h3>
                 <p class="text-gray-600 text-xs mb-2">{{ teacher.subject }}</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -86,6 +87,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+const router = useRouter();
 const scrollContainer = ref(null);
 const currentPage = ref(0);
 
@@ -99,6 +101,10 @@ const teachers = ref([
   { id: 7, name: "Hendra Wijaya, S.Sos", subject: "Sosiologi" },
   { id: 8, name: "Maya Putri, S.Pd", subject: "Seni Budaya" },
 ]);
+
+const goToTeacher = (teacherId) => {
+  router.push(`/teacher/${teacherId}`);
+};
 
 const scrollLeft = () => {
   if (scrollContainer.value) {
