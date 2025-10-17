@@ -1,5 +1,5 @@
 <template class="">
-  <div class="min-h-screen bg-primary-white">
+  <div class="min-h-screen bg-gradient-to-b from-primary-white via-white/50 to-primary-white">
 
     <div class="max-w-2xl mx-auto px-4 py-8">
       <!-- Profile Section -->

@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div
+    class="w-full max-w-7xl flex flex-col items-center justify-center gap-6 mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div
       v-if="displayedImages.length > 0"
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
@@ -28,6 +29,12 @@
         Tidak ada gambar untuk ditampilkan.
       </p>
     </div>
+    <NuxtLink
+      v-if="useRoute().path === '/'"
+      to="/galery"
+      class="flex items-center justify-center w-fit px-4 py-2 rounded-xl font-bold text-lg bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105">
+      Lihat Lainnya
+    </NuxtLink>
   </div>
 </template>
 
@@ -53,12 +60,9 @@ const displayedImages = computed(() => {
 </script>
 
 <style>
-/* Plugin Tailwind aspect-ratio diperlukan untuk `aspect-w-4 aspect-h-3`.
-  Jika belum terinstall, jalankan: npm install -D @tailwindcss/aspect-ratio
-  Lalu tambahkan di `tailwind.config.js` pada bagian plugins:
-  
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
+/* Plugin Tailwind aspect-ratio diperlukan buat `aspect-w-4 aspect-h-3`.
+  Install: npm install -D @tailwindcss/aspect-ratio
+  Trs import di main.css (LOW PRIORITY):
+  @plugin "@tailwindcss/aspect-ratio"
 */
 </style>
