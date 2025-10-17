@@ -23,7 +23,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || ''
+      vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || '',
+      apiBase: 'https://jhic-infra.synchronizeteams.my.id/'
     }
   },
 

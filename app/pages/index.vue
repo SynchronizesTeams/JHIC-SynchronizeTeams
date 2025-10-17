@@ -71,7 +71,7 @@
 import achievementsDataJson from "~/contents/achievements.json";
 import faqsDataJson from "~/contents/faqs.json";
 import testimonialsDataJson from "~/contents/testimonials.json";
-import galleryDataJson from "~/contents/gallery.json";
+const { galleryImages, loading: galleryLoading, error: galleryError } = useGallery();
 import type { News } from '../types/news';
 import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
 
@@ -122,9 +122,7 @@ const mainNews = computed<News>(() => newsList.value[0]!);
 const achievementsData = ref(mockAchievements)
 const calendarEvents = ref(mockCalendarEvents)
 
-const galleryImages = ref<
-  { id: number; src: string; alt: string; title: string }[]
->(galleryDataJson as any);
+/* Gallery data now loads from API via useGallery composable */
 
 const testimonialsData = ref(testimonialsDataJson as any);
 
