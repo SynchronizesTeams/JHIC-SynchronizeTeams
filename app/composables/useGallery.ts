@@ -51,7 +51,7 @@ export const useGallery = () => {
     loading.value = true;
     error.value = null;
     try {
-      const resp: any = await api.image.getAll();
+      const resp: any = await api.image.getByCategory('galeri');
       const items: any[] = Array.isArray(resp) ? resp : resp?.data ?? [];
       galleryImages.value = items.map(mapImage);
     } catch (e: any) {

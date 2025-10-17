@@ -14,7 +14,12 @@
     </section>
     <HeaderTitle title="BERITA TERBARU" align="center" />
     <section id="news" class="px-6">
-      <SectionAnnouncement :main-news="mainNews" :secondary-news="newsList" />
+      <div v-if="newsList.length > 0">
+        <SectionAnnouncement :main-news="mainNews" :secondary-news="secondaryNews" />
+      </div>
+      <div v-else class="text-center text-gray-500 py-8">
+        Memuat berita...
+      </div>
     </section>
     <section id="partner" class="px-6">
       <SectionPartner />
@@ -112,12 +117,14 @@ useHead({
           }]
         }
       })
-    }
+    } as any
   ]
 })
 
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
+const secondaryNews = computed<News[]>(() => newsList.value);
+
 
 const achievementsData = ref(mockAchievements)
 const calendarEvents = ref(mockCalendarEvents)

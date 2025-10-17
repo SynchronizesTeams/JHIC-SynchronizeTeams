@@ -85,14 +85,14 @@ export const useApi = () => {
   return {
     news: {
       getAll: async () => {
-        return await $fetch(`${BASE_URL}/api/v1/news/getAll`, {
+        return await $fetch(`${BASE_URL}/api/v1/public/news/getAll`, {
           method: 'GET',
           headers: getAuthHeaders()
         });
       },
 
       getById: async (id: number) => {
-        return await $fetch(`${BASE_URL}/api/v1/news/get/${id}`, {
+        return await $fetch(`${BASE_URL}/api/v1/public/news/get/${id}`, {
           method: 'GET',
           headers: getAuthHeaders()
         });
