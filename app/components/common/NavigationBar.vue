@@ -108,20 +108,9 @@ const router = useRouter()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 
-<<<<<<< HEAD
 type NavItem = { name: string; path: string; section: string | null }
 const logoSrc: string = navigationData.logoSrc
 const menuItems: NavItem[] = navigationData.menuItems as NavItem[]
-=======
-const menuItems = [
-  { name: "Beranda", path: "/", section: "home" },
-  { name: "Tentang Kami", path: "/about", section: "about" },
-  { name: "Berita", path: "/news", section: "news" },
-  { name: "Forum", path: "/forums", section: null },
-  { name: "Portals", path: "/portals", section: null },
-  { name: "PPDB", path: "https://ppdb.smkpluspnb.sch.id", section: null },
-]
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value

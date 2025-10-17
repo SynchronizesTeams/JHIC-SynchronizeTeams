@@ -29,8 +29,6 @@
         Tidak ada gambar untuk ditampilkan.
       </p>
     </div>
-<<<<<<< HEAD
-=======
     <NuxtLink
       v-if="useRoute().path === '/'"
       to="/galery"
@@ -40,7 +38,6 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
       </svg>
     </NuxtLink>
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
   </div>
 </template>
 

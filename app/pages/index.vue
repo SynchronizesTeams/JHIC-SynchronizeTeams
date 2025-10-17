@@ -35,12 +35,8 @@
       <div class="flex justify-center mt-8 mb-12">
         <NuxtLink
           to="/achievements"
-<<<<<<< HEAD
-          class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-2xl font-semibold hover:from-secondary-red/90 hover:to-secondary-red transition-all shadow-lg hover:shadow-xl hover:scale-105">
-=======
           class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg"
         >
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
           <span>Lihat Semua Prestasi</span>
           <svg
             class="w-5 h-5"
@@ -92,13 +88,10 @@
 </template>
 
 <script lang="ts" setup>
-<<<<<<< HEAD
-import type { News } from "../types/news";
 import achievementsDataJson from "~/contents/achievements.json";
 import faqsDataJson from "~/contents/faqs.json";
 import testimonialsDataJson from "~/contents/testimonials.json";
 import galleryDataJson from "~/contents/gallery.json";
-=======
 import type { News } from '../types/news';
 import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
 
@@ -142,17 +135,12 @@ useHead({
     }
   ]
 })
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
 
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
 
-<<<<<<< HEAD
-const achievementsData = ref(achievementsDataJson as any);
-=======
 const achievementsData = ref(mockAchievements)
 const calendarEvents = ref(mockCalendarEvents)
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
 
 const galleryImages = ref<
   { id: number; src: string; alt: string; title: string }[]

@@ -11,7 +11,6 @@
       </div>
     </div>
 
-    <!-- Text -->
     <div class="flex flex-col justify-center">
       <h2 class="text-xl md:text-2xl font-extrabold text-gray-800 flex items-center gap-2">
         <span class="text-red-700">|</span>
@@ -43,26 +42,8 @@
 </template>
 
 <script lang="ts" setup>
-<<<<<<< HEAD
-import type { SectionProfileContent } from "~/types/info"
+import type { SectionProfileContent } from '~/types/info';
 import profileJson from "~/contents/profile.json"
-=======
-const props = withDefaults(defineProps<{
-  title?: string;
-  description?: string;
-  linkText?: string;
-  linkUrl?: string;
-}>(), {
-  title: "Profile PENUS",
-  description: `
-    <p class="mb-2"><b>Sekolah Menengah Kejuruan</b> Plus Pelita Nusantara</p>
-    <p>Menjadi Sekolah Menengah Kejuruan Unggulan yang menghasilkan sumber daya manusia <b>Terampil</b>, <b>Entrepreneur</b>, dan <b>Religius</b>.</p>
-  `,
-  linkText: "Selengkapnya",
-  linkUrl: "/profile",
-});
-</script>
->>>>>>> 7524984969aed5703401a7ca1877c0593401ef37
 
 const content: SectionProfileContent = profileJson.profile
 </script>
