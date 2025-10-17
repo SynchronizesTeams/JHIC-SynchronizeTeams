@@ -18,6 +18,10 @@
     <section id="partner" class="px-6">
       <SectionPartner />
     </section>
+    <HeaderTitle title="KALENDER & BUKU TAMU" align="center" />
+    <section id="calendar" class="px-6">
+      <SectionCalendarGuestBook :events="calendarEvents" />
+    </section>
     <HeaderTitle title="EKSTRAKULIKULER" align="left" />
     <section>
       <CommonEkskul />
@@ -30,7 +34,7 @@
       <div class="flex justify-center mt-8 mb-12">
         <NuxtLink
           to="/achievements"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-2xl font-semibold hover:from-secondary-red/90 hover:to-secondary-red transition-all shadow-lg hover:shadow-xl hover:scale-105"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg"
         >
           <span>Lihat Semua Prestasi</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +51,7 @@
     <section id="galery" class="px-6">
       <SectionGalery :images="galleryImages" :display-count="7" />
 
-      <!-- View All Button -->
+      <!-- View All Button
       <div class="flex justify-center mt-8 mb-12">
         <NuxtLink
           to="/galery"
@@ -58,7 +62,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </NuxtLink>
-      </div>
+      </div> -->
     </section>
     <HeaderTitle title="FAQ" align="center" />
     <section id="faq" class="px-6">
@@ -69,12 +73,54 @@
 
 <script lang="ts" setup>
 import type { News } from '../types/news';
-import { mockAchievements } from '~/utils/mockData'
+import { mockAchievements, mockCalendarEvents } from '~/utils/mockData'
+
+// SEO Meta Tags
+useSeoMeta({
+  title: 'Beranda',
+  description: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan unggulan di Bandung dengan program keahlian teknologi, komunikasi, dan keterampilan profesional. Mencetak lulusan kompeten dan siap kerja.',
+  ogTitle: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
+  ogDescription: 'Sekolah kejuruan unggulan dengan fasilitas modern dan program keahlian terkini. Bergabunglah dengan kami untuk masa depan cerah!',
+  ogImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+  ogUrl: 'https://smkpluspelitanusantara.sch.id',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
+  twitterDescription: 'Sekolah kejuruan unggulan dengan fasilitas modern dan program keahlian terkini.',
+  twitterImage: 'https://smkpluspelitanusantara.sch.id/penus-icon.webp',
+})
+
+useHead({
+  link: [
+    { rel: 'canonical', href: 'https://smkpluspelitanusantara.sch.id' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'name': 'SMK Plus Pelita Nusantara - Beranda',
+        'description': 'SMK Plus Pelita Nusantara adalah sekolah menengah kejuruan unggulan di Bandung',
+        'url': 'https://smkpluspelitanusantara.sch.id',
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [{
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Beranda',
+            'item': 'https://smkpluspelitanusantara.sch.id'
+          }]
+        }
+      })
+    }
+  ]
+})
 
 const { newsList } = useNews();
 const mainNews = computed<News>(() => newsList.value[0]!);
 
 const achievementsData = ref(mockAchievements)
+const calendarEvents = ref(mockCalendarEvents)
 
 const galleryImages = ref<
   { id: number; src: string; alt: string; title: string }[]
