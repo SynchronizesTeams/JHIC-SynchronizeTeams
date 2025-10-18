@@ -140,6 +140,13 @@ const handleLogoClick = () => {
 const handleNavClick = (item: { name: string; path: string; section: string | null }) => {
   closeMenu()
 
+  const isExternalLink = item.path.startsWith('http://') || item.path.startsWith('https://')
+
+  if (isExternalLink) {
+    window.open(item.path, '_blank')
+    return
+  }
+
   // Jika ada section dan sedang di homepage
   if (item.section && route.path === '/') {
     const element = document.getElementById(item.section)

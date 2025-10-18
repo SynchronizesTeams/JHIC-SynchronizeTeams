@@ -211,7 +211,7 @@ const profile = computed(() => ({
   displayName: 'SMK Plus Pelita Nusantara',
   bio: 'Portal resmi SMK Plus Pelita Nusantara - Hub untuk berbagai informasi dan link penting sekolah',
   avatar: '/penus-icon.webp',
-  coverImage: null
+  coverImage: '/images/penus/Gedung_Utama.webp'
 }))
 
 // Default portal data jika API belum tersedia
@@ -262,7 +262,7 @@ const defaultPortals = [
 const portals = computed(() => {
   // Use default portals if API fails or returns empty
   const portalData = schoolPortals.value.length > 0 ? schoolPortals.value : defaultPortals
-  
+
   return portalData
     .filter(portal => portal.is_active !== false)
     .sort((a, b) => (a.order || 999) - (b.order || 999))

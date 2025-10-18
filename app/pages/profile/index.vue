@@ -84,17 +84,10 @@
             <div class="flex justify-center mb-4">
               <div
                 class="w-16 h-16 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center">
-                <svg
-                  class="w-8 h-8 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    :d="prog.icon" />
-                </svg>
+                <NuxtImg
+                  :src="prog.icon"
+                  alt="{{ prog.name }}"
+                  class="w-10 h-12 text-white " />
               </div>
             </div>
             <h3 class="text-xl font-bold text-gray-800 text-center mb-3">

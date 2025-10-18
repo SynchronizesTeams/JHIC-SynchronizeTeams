@@ -31,26 +31,21 @@
   },
   {
     "id": 7,
-    "question": "Berapa biaya pendidikan di SMK Plus Pelita Nusantara?",
-    "answer": "Biaya pendidikan bervariasi tergantung jurusan yang dipilih. Kami menyediakan informasi rinci mengenai biaya pendidikan saat proses pendaftaran. Selain itu, tersedia juga program cicilan dan berbagai skema pembayaran yang dapat memudahkan orang tua siswa."
-  },
-  {
-    "id": 8,
     "question": "Apa Akreditasi SMK Plus Pelita Nusantara dan Status Sekolah?",
     "answer": "Sekolah ini adalah SMK Swasta dengan Akreditasi A (Unggul)."
   },
   {
-    "id": 10,
+    "id": 8,
     "question": "Apakah ada program yang fokus pada karakter dan agama?",
     "answer": "Ya. Kami memiliki program unggulan DUQUBA (Dhuha, Al-Qur'an dan Bahasa) serta Program Tahfidz Al-Qur'an untuk penguatan karakter religius."
   },
   {
-    "id": 11,
+    "id": 9,
     "question": "Bagaimana sekolah mempersiapkan siswa untuk Dunia Kerja?",
     "answer": "Siswa disiapkan melalui praktik intensif, program akselerasi IT (Devaccto IT), sertifikasi kompetensi, dan dipermudah penempatan PKL berkat kerja sama dengan berbagai industri (DUDI)."
   },
   {
-    "id": 12,
+    "id": 10,
     "question": "Ekstrakurikuler apa yang populer di sekolah ini?",
     "answer": "Ekskul favorit mencakup Futsal, Basket, Paskibra, Taekwondo, PMR, dan English/Japanese Club."
   }

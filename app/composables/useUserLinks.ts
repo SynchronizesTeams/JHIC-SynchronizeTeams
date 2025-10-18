@@ -29,7 +29,14 @@ export const useUserLinks = () => {
     
     try {
       const response: any = await api.userLinks.getSelf()
-      userLinks.value = response.data || []
+      const links = response.data || []
+      
+      // Add locally stored icons to links
+      userLinks.value = links.map((link: UserLink) => ({
+        ...link,
+        icon: localStorage.getItem(`userlink_icon_${link.title}`) || link.icon || ''
+      }))
+      
       return userLinks.value
     } catch (err: any) {
       error.value = err.data?.message || 'Failed to fetch user links'

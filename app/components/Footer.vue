@@ -13,6 +13,19 @@
           yang menghasilkan sumber daya manusia Terampil, Entrepreneur, dan
           Religius.
         </p>
+
+        <div class="w-full rounded-lg overflow-hidden border border-gray-200 shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.4275926670093!2d106.86202197537628!3d-6.467392663236498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c1d3574a6c97%3A0x43a0aa1056feca8b!2sSMK%20PLUS%20PELITA%20NUSANTARA!5e0!3m2!1sen!2sid!4v1760807644599!5m2!1sen!2sid"
+            width="100%"
+            height="200"
+            style="border: 5px solid #1F2937;"
+            allowfullscreen="true"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="w-full"
+          ></iframe>
+        </div>
       </div>
 
       <div class="space-y-2 lg:w-1/4">
@@ -42,7 +55,7 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#news"
+              to="/news"
               >Pengumuman dan Berita</NuxtLink
             >
           </li>
@@ -56,7 +69,7 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#galery"
+              to="/galery"
               >Galeri</NuxtLink
             >
           </li>
@@ -79,13 +92,13 @@
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
               to="/portals"
-              >Portal Layanan</NuxtLink
+              >Portal Terpadu</NuxtLink
             >
           </li>
           <li v-if="user">
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              :to="`/dashboard/${user.name || 'profile'}`"
+              :to="`/personal-profile/${user.name || 'profile'}`"
               >Personal Profile</NuxtLink
             >
           </li>
@@ -119,7 +132,7 @@
     <!-- Copyright Section -->
     <div class="mt-6 pt-4 border-t border-gray-200">
       <div class="text-center text-sm text-gray-600">
-        <p>&copy; {{ currentYear }} SMK Plus Pelita Nusantara. All rights reserved.</p>
+        <p>&copy; {{ currentYear }} SMK Plus Pelita Nusantara. All rights reserved. <br> Website created by <NuxtLink class="text-secondary-red" target="_blank" to="https://synchronizeteams.com">SynchronizeTeams</NuxtLink></p>
       </div>
     </div>
   </footer>
