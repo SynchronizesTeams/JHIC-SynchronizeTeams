@@ -42,7 +42,7 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#news"
+              to="/news"
               >Pengumuman dan Berita</NuxtLink
             >
           </li>
@@ -56,7 +56,7 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="#galery"
+              to="/galery"
               >Galeri</NuxtLink
             >
           </li>
@@ -79,13 +79,13 @@
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
               to="/portals"
-              >Portal Layanan</NuxtLink
+              >Portal Terpadu</NuxtLink
             >
           </li>
           <li v-if="user">
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              :to="`/dashboard/${user.name || 'profile'}`"
+              :to="`/personal-profile/${user.name || 'profile'}`"
               >Personal Profile</NuxtLink
             >
           </li>
