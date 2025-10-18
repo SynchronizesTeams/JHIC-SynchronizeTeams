@@ -9,13 +9,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      proxy: {
+      proxy: process.env.NUXT_PUBLIC_USE_PROXY === 'true' ? {
         '/api': {
-          target: 'https://jhic-infra.synchronizeteams.my.id',
+          target: process.env.NUXT_PUBLIC_API_BASE_URL || 'https://jhic-infra.synchronizeteams.my.id',
           changeOrigin: true,
           secure: true
         }
-      },
+      } : {},
       hmr: {
         protocol: 'ws',
         host: '33d30327dd7c.ngrok-free.app',
@@ -30,8 +30,46 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || '',
-      apiBase: process.env.NODE_ENV === 'development' ? '' : 'https://jhic-infra.synchronizeteams.my.id'
+      // API Configuration
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'https://infra-adeli.synchronizeteams.my.id/api',
+      apiVersion: process.env.NUXT_PUBLIC_API_VERSION || 'v1',
+
+      // API Endpoints
+      apiAuthEndpoint: process.env.NUXT_PUBLIC_API_AUTH_ENDPOINT || '/auth',
+      apiNewsEndpoint: process.env.NUXT_PUBLIC_API_NEWS_ENDPOINT || '/news',
+      apiUserLinksEndpoint: process.env.NUXT_PUBLIC_API_USER_LINKS_ENDPOINT || '/user-links',
+      apiForumEndpoint: process.env.NUXT_PUBLIC_API_FORUM_ENDPOINT || '/forum',
+      apiEventEndpoint: process.env.NUXT_PUBLIC_API_EVENT_ENDPOINT || '/event',
+      apiImageEndpoint: process.env.NUXT_PUBLIC_API_IMAGE_ENDPOINT || '/image',
+      apiPortalEndpoint: process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || '/portal',
+      apiGuestBookEndpoint: process.env.NUXT_PUBLIC_API_GUEST_BOOK_ENDPOINT || '/guest-book',
+
+      // Development
+      useProxy: process.env.NUXT_PUBLIC_USE_PROXY === 'true',
+      proxyTarget: process.env.NUXT_PUBLIC_PROXY_TARGET || 'http://127.0.0.1:3000',
+
+      // App Configuration
+      appName: process.env.NUXT_PUBLIC_APP_NAME || 'SMK Plus Pelita Nusantara',
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://smkpluspelitanusantara.sch.id',
+      appDescription: process.env.NUXT_PUBLIC_APP_DESCRIPTION || 'SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik',
+
+      // Social Media
+      facebookUrl: process.env.NUXT_PUBLIC_FACEBOOK_URL || '',
+      instagramUrl: process.env.NUXT_PUBLIC_INSTAGRAM_URL || '',
+      twitterUrl: process.env.NUXT_PUBLIC_TWITTER_URL || '',
+      youtubeUrl: process.env.NUXT_PUBLIC_YOUTUBE_URL || '',
+
+      // Features
+      enableNews: process.env.NUXT_PUBLIC_ENABLE_NEWS !== 'false',
+      enableForums: process.env.NUXT_PUBLIC_ENABLE_FORUMS !== 'false',
+      enableEvents: process.env.NUXT_PUBLIC_ENABLE_EVENTS !== 'false',
+      enableGallery: process.env.NUXT_PUBLIC_ENABLE_GALLERY !== 'false',
+      enablePortal: process.env.NUXT_PUBLIC_ENABLE_PORTAL !== 'false',
+
+      // Other
+      vapidPublicKey: process.env.NUXT_PUBLIC_VAPID_PUBLIC_KEY || 'BLjn1-8nnAUtRdo6BjPwlQt3NGGuY3C7A3cfQCgN25unW2pqrK57on9nXn7clE4qkR3krDuHr-JSiLo60EzqITc',
+      debugMode: process.env.NUXT_PUBLIC_DEBUG_MODE === 'true',
+      logApiCalls: process.env.NUXT_PUBLIC_LOG_API_CALLS === 'true'
     }
   },
 
