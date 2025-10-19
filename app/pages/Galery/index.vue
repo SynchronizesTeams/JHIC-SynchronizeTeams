@@ -3,8 +3,9 @@
     <!-- Hero Section -->
     <section
       class="relative flex items-center justify-center h-[40vh] overflow-hidden bg-black text-white mt-20">
-      <NuxtImg
-        src="/images/PEKAN IT_22.jpg"
+      <img
+        loading="lazy"
+        src="/images/pekanit.jpg"
         alt="Hero background"
         class="absolute inset-0 w-full h-full object-cover opacity-50" />
       <div
@@ -58,6 +59,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+import OptimizedImage from '~/components/common/OptimizedImage.vue';
+
 const { galleryImages, loading, error } = useGallery();
 
 // Enhanced SEO Meta Tags

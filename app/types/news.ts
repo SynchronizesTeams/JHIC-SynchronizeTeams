@@ -4,8 +4,8 @@ export interface News {
   excerpt: string;
   cover: string;
   date: string;
-  author: string;
   content: string;
+  author?: string;
 }
 
 export type NewsList = News[];

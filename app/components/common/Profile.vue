@@ -4,20 +4,24 @@
     <div
       class="h-64 md:h-80 rounded-lg overflow-hidden relative bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 shadow-inner flex items-center justify-center">
       <div class="w-full h-full flex items-center justify-center">
-        <NuxtImg
-          class="hover:scale-110 transition-all duration-500"
+        <img
+          loading="lazy"
           :src="content.image"
-          :alt="content.title" />
+          :alt="content.title"
+          class="hover:scale-110 transition-all duration-500" />
       </div>
     </div>
 
     <div class="flex flex-col justify-center">
-      <h2 class="text-xl md:text-2xl font-extrabold text-gray-800 flex items-center gap-2">
+      <h2
+        class="text-xl md:text-2xl font-extrabold text-gray-800 flex items-center gap-2">
         <span class="text-red-700">|</span>
         {{ content.title }}
       </h2>
 
-      <div class="mt-4 text-gray-700 prose prose-sm max-w-none" v-html="content.description"></div>
+      <div
+        class="mt-4 text-gray-700 prose prose-sm max-w-none"
+        v-html="content.description"></div>
 
       <NuxtLink
         v-if="content.linkUrl"
@@ -42,8 +46,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { SectionProfileContent } from '~/types/info';
-import profileJson from "~/contents/profilesection.json"
+import type { SectionProfileContent } from "~/types/info";
+import profileJson from "~/contents/profilesection.json";
 
-const content: SectionProfileContent = profileJson.profile
+const content: SectionProfileContent = profileJson.profile;
 </script>

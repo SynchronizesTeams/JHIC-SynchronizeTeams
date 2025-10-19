@@ -76,7 +76,6 @@
 import achievementsDataJson from "~/contents/achievements.json";
 import faqsDataJson from "~/contents/faqs.json";
 import testimonialsDataJson from "~/contents/testimonials.json";
-const { galleryImages, loading: galleryLoading, error: galleryError } = useGallery();
 import type { News } from '../types/news';
 import { mockAchievements } from '~/utils/mockData'
 
@@ -122,15 +121,17 @@ useHead({
 })
 
 const { newsList } = useNews();
+const { galleryImages, loading: galleryLoading, error: galleryError } = useGallery();
+
 const mainNews = computed<News>(() => newsList.value[0]!);
 const secondaryNews = computed<News[]>(() => newsList.value);
 
-
 const achievementsData = ref(mockAchievements)
-
 const testimonialsData = ref(testimonialsDataJson as any);
-
 const faqData = ref(faqsDataJson as any);
+
+onMounted(() => {console.log("asasas", galleryImages);
+})
 </script>
 
 <style scoped></style>

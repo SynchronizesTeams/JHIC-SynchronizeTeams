@@ -19,7 +19,7 @@
 
     <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
       <button @click="handleLogoClick" class="flex items-center gap-2 cursor-pointer">
-        <nuxt-img :src="logoSrc" alt="Logo" class="w-80" />
+        <img :src="logoSrc" alt="Logo" class="w-80" />
       </button>
 
       <div

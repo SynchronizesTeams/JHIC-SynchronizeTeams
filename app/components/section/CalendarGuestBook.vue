@@ -3,7 +3,8 @@
     <!-- Calendar & Event List Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
       <!-- Calendar -->
-      <div class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg p-6">
+      <div
+        class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg p-6">
         <div class="mb-4 flex items-center justify-between">
           <h2 class="text-xl font-bold text-primary-gray">
             Kalender Pendidikan {{ currentYear }}
@@ -12,8 +13,16 @@
             <button
               @click="previousMonth"
               class="p-2 hover:bg-primary-gray/10 rounded-full transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <span class="text-sm font-semibold min-w-[140px] text-center">
@@ -22,8 +31,16 @@
             <button
               @click="nextMonth"
               class="p-2 hover:bg-primary-gray/10 rounded-full transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
@@ -47,10 +64,14 @@
             :disabled="!date.isCurrentMonth"
             :class="[
               'aspect-square p-1 text-sm rounded-lg transition-all relative',
-              date.isCurrentMonth ? 'hover:bg-primary-gray/10' : 'text-primary-gray/30',
+              date.isCurrentMonth
+                ? 'hover:bg-primary-gray/10'
+                : 'text-primary-gray/30',
               date.isToday ? 'bg-secondary-red/10 font-bold' : '',
-              selectedDate === date.dateString ? 'bg-secondary-red text-primary-white font-bold' : '',
-              date.hasEvent ? 'font-semibold' : ''
+              selectedDate === date.dateString
+                ? 'bg-secondary-red text-primary-white font-bold'
+                : '',
+              date.hasEvent ? 'font-semibold' : '',
             ]">
             <span>{{ date.day }}</span>
             <span
@@ -62,33 +83,79 @@
       </div>
 
       <!-- Event List -->
-      <div class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg p-6">
-        <h2 class="text-xl font-bold text-primary-gray mb-4">Buku Tamu</h2>
+      <div
+        class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg p-6">
+        <h2 class="text-xl font-bold text-primary-gray mb-4">
+          Kegiatan pada
+          {{ selectedDate ? formatEventDate(selectedDate) : "Hari Ini" }}
+        </h2>
 
-        <div v-if="eventsForSelectedDate.length > 0" class="space-y-3 max-h-[400px] overflow-y-auto">
+        <!-- Loading State -->
+        <div v-if="eventsLoading" class="flex justify-center py-12">
+          <svg
+            class="animate-spin w-10 h-10 text-secondary-red"
+            fill="none"
+            viewBox="0 0 24 24">
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+
+        <div
+          v-else-if="eventsForSelectedDate.length > 0"
+          class="space-y-3 max-h-[400px] overflow-y-auto">
           <div
             v-for="event in eventsForSelectedDate"
             :key="event.id"
             class="flex items-center justify-between p-4 bg-primary-gray/5 rounded-xl hover:bg-primary-gray/10 transition-colors group cursor-pointer"
             @click="openEventDetail(event)">
             <div class="flex-1">
-              <h3 class="font-semibold text-primary-gray mb-1">{{ event.title }}</h3>
-              <p class="text-xs text-primary-gray/60">{{ formatEventDate(event.event_date) }}</p>
+              <h3 class="font-semibold text-primary-gray mb-1">
+                {{ event.title }}
+              </h3>
+              <p class="text-xs text-primary-gray/60">
+                {{ event.start_date }} sampai {{ event.end_date }}
+              </p>
             </div>
             <button
               class="p-2 hover:bg-secondary-red/10 rounded-full transition-colors group-hover:bg-secondary-red/20">
-              <svg class="w-5 h-5 text-secondary-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              <svg
+                class="w-5 h-5 text-secondary-red"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
         </div>
 
         <div v-else class="text-center py-12">
-          <svg class="w-16 h-16 mx-auto text-primary-gray/30 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          <svg
+            class="w-16 h-16 mx-auto text-primary-gray/30 mb-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <p class="text-primary-gray/60">Tidak ada acara di tanggal ini</p>
+          <p class="text-primary-gray/60">Tidak ada kegiatan di tanggal ini</p>
         </div>
       </div>
     </div>
@@ -98,14 +165,18 @@
       <button
         @click="toggleGuestBookForm"
         class="inline-flex items-center gap-2 px-6 py-3 bg-primary-white border-2 border-primary-gray/20 text-primary-gray rounded-full font-semibold hover:bg-primary-gray/5 hover:border-secondary-red/30 hover:text-secondary-red transition-all">
-        <span>{{ isFormExpanded ? 'Tutup' : 'Buka' }} Form Buku Tamu</span>
+        <span>{{ isFormExpanded ? "Tutup" : "Buka" }} Form Buku Tamu</span>
         <svg
           class="w-5 h-5 transition-transform duration-300"
           :class="{ 'rotate-180': isFormExpanded }"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7" />
         </svg>
       </button>
     </div>
@@ -119,14 +190,18 @@
       leave-from-class="max-h-[1000px] opacity-100"
       leave-to-class="max-h-0 opacity-0">
       <div v-if="isFormExpanded" class="overflow-hidden">
-        <div class="bg-primary-white border border-primary-gray/20 rounded-3xl shadow-lg p-6 md:p-8">
-          <h3 class="text-2xl font-bold text-primary-gray mb-6">Form Buku Tamu</h3>
+        <div
+          class="bg-primary-white border border-primary-gray/20 rounded-3xl shadow-lg p-6 md:p-8">
+          <h3 class="text-2xl font-bold text-primary-gray mb-6">
+            Form Buku Tamu
+          </h3>
 
-          <form @submit.prevent="submitGuestBook" class="space-y-4">
+          <div @submit.prevent="submitGuestBook" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Title -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
                   Judul <span class="text-secondary-red">*</span>
                 </label>
                 <input
@@ -134,12 +209,13 @@
                   type="text"
                   required
                   class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all"
-                  placeholder="Masukkan judul">
+                  placeholder="Masukkan judul" />
               </div>
 
               <!-- Instance Name -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
                   Nama Instansi <span class="text-secondary-red">*</span>
                 </label>
                 <input
@@ -147,12 +223,13 @@
                   type="text"
                   required
                   class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all"
-                  placeholder="Nama instansi Anda">
+                  placeholder="Nama instansi Anda" />
               </div>
 
               <!-- Contact Person -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
                   Nama PIC <span class="text-secondary-red">*</span>
                 </label>
                 <input
@@ -160,12 +237,13 @@
                   type="text"
                   required
                   class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all"
-                  placeholder="Nama person in charge">
+                  placeholder="Nama person in charge" />
               </div>
 
               <!-- Email -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
                   Email <span class="text-secondary-red">*</span>
                 </label>
                 <input
@@ -173,12 +251,13 @@
                   type="email"
                   required
                   class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all"
-                  placeholder="email@example.com">
+                  placeholder="email@example.com" />
               </div>
 
               <!-- Phone -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
                   No WhatsApp <span class="text-secondary-red">*</span>
                 </label>
                 <input
@@ -186,19 +265,21 @@
                   type="tel"
                   required
                   class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all"
-                  placeholder="08xxxxxxxxxx">
+                  placeholder="08xxxxxxxxxx" />
               </div>
 
               <!-- Request Date -->
               <div>
-                <label class="block text-sm font-semibold text-primary-gray mb-2">
-                  Tanggal Acara Diajukan <span class="text-secondary-red">*</span>
+                <label
+                  class="block text-sm font-semibold text-primary-gray mb-2">
+                  Tanggal Acara Diajukan
+                  <span class="text-secondary-red">*</span>
                 </label>
                 <input
                   v-model="guestBookForm.request_date"
                   type="date"
                   required
-                  class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all text-base text-primary-gray cursor-pointer hover:border-primary-gray/40 date-input">
+                  class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all text-base text-primary-gray cursor-pointer hover:border-primary-gray/40 date-input" />
               </div>
             </div>
 
@@ -212,21 +293,36 @@
                 required
                 rows="4"
                 class="w-full px-4 py-3 border border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red/50 focus:border-secondary-red transition-all resize-none"
-                placeholder="Tulis pesan atau keperluan Anda...">
-              </textarea>
+                placeholder="Tulis pesan atau keperluan Anda..."></textarea>
             </div>
 
             <!-- Submit Button -->
             <div class="flex items-center gap-4">
               <button
-                type="submit"
+                type="button"
+                @click="submitGuestBook"
                 :disabled="isSubmitting"
                 class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-                <svg v-if="isSubmitting" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  v-if="isSubmitting"
+                  class="animate-spin w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24">
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span>{{ isSubmitting ? 'Mengirim...' : 'Kirim Buku Tamu' }}</span>
+                <span>{{
+                  isSubmitting ? "Mengirim..." : "Kirim Buku Tamu"
+                }}</span>
               </button>
 
               <button
@@ -234,7 +330,10 @@
                 type="button"
                 class="text-green-600 text-sm font-semibold flex items-center gap-1">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd" />
                 </svg>
                 Terkirim!
               </button>
@@ -244,12 +343,15 @@
                 type="button"
                 class="text-red-600 text-sm font-semibold flex items-center gap-1">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd" />
                 </svg>
                 Gagal terkirim
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </transition>
@@ -273,16 +375,26 @@
             <button
               @click="closeEventDetail"
               class="absolute top-4 right-4 z-10 p-2 bg-primary-white/90 rounded-full hover:bg-primary-white transition-colors">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <div class="aspect-video bg-primary-gray/20 rounded-t-3xl overflow-hidden">
+            <div
+              v-if="selectedEvent.image"
+              class="aspect-video bg-primary-gray/20 rounded-t-3xl overflow-hidden">
               <img
-                :src="selectedEvent.image"
+                :src="`${apiUrl}/${selectedEvent.image}`"
                 :alt="selectedEvent.title"
-                class="w-full h-full object-cover">
+                class="w-full h-full object-cover" />
             </div>
 
             <div class="p-6 md:p-8">
@@ -290,7 +402,7 @@
                 {{ selectedEvent.title }}
               </h3>
               <p class="text-sm text-primary-gray/60 mb-6">
-                {{ formatEventDate(selectedEvent.event_date) }}
+                {{ selectedEvent.start_date }} sampai {{ selectedEvent.end_date }}
               </p>
               <p class="text-primary-gray/80 leading-relaxed">
                 {{ selectedEvent.description }}
@@ -304,229 +416,253 @@
 </template>
 
 <script setup lang="ts">
-import type { CalendarEvent } from '~/types/calendar'
+import type { CalendarEvent } from "~/types/calendar";
 
 const props = defineProps<{
-  events?: CalendarEvent[]
-}>()
+  events?: CalendarEvent[];
+}>();
+
+const apiUrl = useRuntimeConfig().public.apiBaseUrl
 
 // Use composables
-const { events: apiEvents, loading: eventsLoading, fetchEvents, getEventsByDate } = useEvents()
-const { createGuestBook, loading: guestBookLoading } = useGuestBook()
+const {
+  events: apiEvents,
+  loading: eventsLoading,
+  fetchEvents,
+  fetchEventsByDate,
+  getEventsByDate,
+} = useEvents();
+const { createGuestBook, loading: guestBookLoading } = useGuestBook();
 
 // Use events from props or API
-const allEvents = computed(() => props.events || apiEvents.value)
+const allEvents = computed(() => props.events || apiEvents.value);
 
 const monthNames = [
-  'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-  'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-]
+  "Januari",
+  "Februari",
+  "Maret",
+  "April",
+  "Mei",
+  "Juni",
+  "Juli",
+  "Agustus",
+  "September",
+  "Oktober",
+  "November",
+  "Desember",
+];
 
-const dayNames = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab']
+const dayNames = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 
-const currentDate = new Date()
-const currentMonth = ref(currentDate.getMonth())
-const currentYear = ref(currentDate.getFullYear())
-const selectedDate = ref<string | null>(null)
-const selectedEvent = ref<CalendarEvent | null>(null)
-const isFormExpanded = ref(false)
-const isSubmitting = ref(false)
-const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
+const currentDate = new Date();
+const currentMonth = ref(currentDate.getMonth());
+const currentYear = ref(currentDate.getFullYear());
+const selectedDate = ref<string | null>(null);
+const selectedEvent = ref<CalendarEvent | null>(null);
+const isFormExpanded = ref(false);
+const isSubmitting = ref(false);
+const submitStatus = ref<"idle" | "success" | "error">("idle");
 
 const guestBookForm = ref({
-  title: '',
-  instance_name: '',
-  contact_person: '',
-  email: '',
-  phone: '',
-  request_date: '',
-  description: ''
-})
+  title: "",
+  instance_name: "",
+  contact_person: "",
+  email: "",
+  phone: "",
+  request_date: "",
+  description: "",
+});
 
 interface CalendarDay {
-  day: number
-  dateString: string
-  isCurrentMonth: boolean
-  isToday: boolean
-  hasEvent: boolean
+  day: number;
+  dateString: string;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+  hasEvent: boolean;
 }
 
 const calendarDays = computed<CalendarDay[]>(() => {
-  const year = currentYear.value
-  const month = currentMonth.value
-  const firstDay = new Date(year, month, 1)
-  const lastDay = new Date(year, month + 1, 0)
-  const daysInMonth = lastDay.getDate()
-  const startingDayOfWeek = firstDay.getDay()
+  const year = currentYear.value;
+  const month = currentMonth.value;
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const daysInMonth = lastDay.getDate();
+  const startingDayOfWeek = firstDay.getDay();
 
-  const days: CalendarDay[] = []
+  const days: CalendarDay[] = [];
 
   // Previous month days
-  const prevMonthLastDay = new Date(year, month, 0).getDate()
+  const prevMonthLastDay = new Date(year, month, 0).getDate();
   for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-    const day = prevMonthLastDay - i
-    const dateString = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    const day = prevMonthLastDay - i;
+    const dateString = `${year}-${String(month).padStart(2, "0")}-${String(
+      day
+    ).padStart(2, "0")}`;
     days.push({
       day,
       dateString,
       isCurrentMonth: false,
       isToday: false,
-      hasEvent: false
-    })
+      hasEvent: false,
+    });
   }
 
   // Current month days
   for (let day = 1; day <= daysInMonth; day++) {
-    const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(
+      day
+    ).padStart(2, "0")}`;
     const isToday =
       day === currentDate.getDate() &&
       month === currentDate.getMonth() &&
-      year === currentDate.getFullYear()
+      year === currentDate.getFullYear();
 
-    const hasEvent = allEvents.value.some(event => {
-      const eventDate = event.event_date || event.start_date
-      const endDate = event.end_date || eventDate
-      return dateString >= eventDate && dateString <= endDate
-    })
+    const validEvents = computed(() =>
+      allEvents.value.filter(
+        (e) => e.start_date && e.start_date !== "0000-00-00"
+      )
+    );
+
+    const hasEvent = validEvents.value.some((event) => {
+      const start = new Date(event.start_date || event.event_date);
+      const end = new Date(
+        event.end_date || event.start_date || event.event_date
+      );
+      const current = new Date(dateString);
+      return current >= start && current <= end;
+    });
 
     days.push({
       day,
       dateString,
       isCurrentMonth: true,
       isToday,
-      hasEvent
-    })
+      hasEvent,
+    });
   }
 
   // Next month days to fill the grid
-  const remainingDays = 42 - days.length // 6 rows * 7 days
+  const remainingDays = 42 - days.length;
   for (let day = 1; day <= remainingDays; day++) {
-    const dateString = `${year}-${String(month + 2).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    const dateString = `${year}-${String(month + 2).padStart(2, "0")}-${String(
+      day
+    ).padStart(2, "0")}`;
     days.push({
       day,
       dateString,
       isCurrentMonth: false,
       isToday: false,
-      hasEvent: false
-    })
+      hasEvent: false,
+    });
   }
 
-  return days
-})
+  return days;
+});
 
 const eventsForSelectedDate = computed(() => {
-  if (!selectedDate.value) return []
-
-  // Use getEventsByDate from composable which handles date ranges
-  const eventsOnDate = getEventsByDate(selectedDate.value)
-
-  // Fallback to simple filter for backward compatibility
-  if (eventsOnDate.length === 0) {
-    return allEvents.value.filter(event => event.event_date === selectedDate.value)
-  }
-
-  return eventsOnDate
-})
+  if (!selectedDate.value) return [];
+  return getEventsByDate(selectedDate.value);
+});
 
 const previousMonth = () => {
   if (currentMonth.value === 0) {
-    currentMonth.value = 11
-    currentYear.value--
+    currentMonth.value = 11;
+    currentYear.value--;
   } else {
-    currentMonth.value--
+    currentMonth.value--;
   }
-}
+};
 
 const nextMonth = () => {
   if (currentMonth.value === 11) {
-    currentMonth.value = 0
-    currentYear.value++
+    currentMonth.value = 0;
+    currentYear.value++;
   } else {
-    currentMonth.value++
+    currentMonth.value++;
   }
-}
+};
 
-const selectDate = (date: CalendarDay) => {
-  if (!date.isCurrentMonth) return
-  selectedDate.value = date.dateString
-}
+const selectDate = async (date: CalendarDay) => {
+  if (!date.isCurrentMonth) return;
+  selectedDate.value = date.dateString;
+
+  return await fetchEventsByDate(date.dateString);
+};
 
 const formatEventDate = (dateString: string) => {
-  const date = new Date(dateString)
-  const day = date.getDate()
-  const month = monthNames[date.getMonth()]
-  const year = date.getFullYear()
-  return `${day} ${month} ${year}`
-}
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+};
 
 const openEventDetail = (event: CalendarEvent) => {
-  selectedEvent.value = event
-}
+  selectedEvent.value = event;
+};
 
 const closeEventDetail = () => {
-  selectedEvent.value = null
-}
+  selectedEvent.value = null;
+};
 
 const toggleGuestBookForm = () => {
-  isFormExpanded.value = !isFormExpanded.value
-}
+  isFormExpanded.value = !isFormExpanded.value;
+};
 
 const submitGuestBook = async () => {
-  isSubmitting.value = true
-  submitStatus.value = 'idle'
+  isSubmitting.value = true;
+  submitStatus.value = "idle";
 
   try {
-    // Call API to create guest book entry
-    const result = await createGuestBook(guestBookForm.value)
+    const result = await createGuestBook(guestBookForm.value);
 
     if (result.success) {
-      console.log('Guest Book Submitted Successfully:', result.data)
-      submitStatus.value = 'success'
+      console.log("Guest Book Submitted Successfully:", result.data);
+      submitStatus.value = "success";
 
-      // Reset form after 2 seconds
       setTimeout(() => {
         guestBookForm.value = {
-          title: '',
-          instance_name: '',
-          contact_person: '',
-          email: '',
-          phone: '',
-          request_date: '',
-          description: ''
-        }
-        submitStatus.value = 'idle'
-        isFormExpanded.value = false
-      }, 2000)
+          title: "",
+          instance_name: "",
+          contact_person: "",
+          email: "",
+          phone: "",
+          request_date: "",
+          description: "",
+        };
+        submitStatus.value = "idle";
+        isFormExpanded.value = false;
+      }, 2000);
     } else {
-      throw new Error(result.error || 'Gagal mengirim buku tamu')
+      throw new Error(result.error || "Gagal mengirim buku tamu");
     }
-
   } catch (error: any) {
-    console.error('Error submitting guest book:', error)
-    submitStatus.value = 'error'
+    console.error("Error submitting guest book:", error);
+    submitStatus.value = "error";
 
     setTimeout(() => {
-      submitStatus.value = 'idle'
-    }, 3000)
+      submitStatus.value = "idle";
+    }, 3000);
   } finally {
-    isSubmitting.value = false
+    isSubmitting.value = false;
   }
-}
+};
 
-// Auto-select today's date on mount and fetch events if not provided via props
+// Auto-select today's date on mount and fetch events
 onMounted(async () => {
-  const today = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`
-  selectedDate.value = today
+  const today = `${currentYear.value}-${String(currentMonth.value + 1).padStart(
+    2,
+    "0"
+  )}-${String(currentDate.getDate()).padStart(2, "0")}`;
+  selectedDate.value = today;
 
-  // Fetch events from API if not provided via props
   if (!props.events || props.events.length === 0) {
-    await fetchEvents()
+    await fetchEvents();
   }
-})
+});
 </script>
 
 <style scoped>
-/* Custom scrollbar for event list */
 .overflow-y-auto::-webkit-scrollbar {
   width: 6px;
 }
@@ -544,7 +680,6 @@ onMounted(async () => {
   background: #a0aec0;
 }
 
-/* Custom date input styling */
 .date-input {
   position: relative;
   font-size: 1rem;

@@ -6,10 +6,9 @@
     </NuxtLayout>
 
     <!-- Notification Prompt -->
-    <NotificationPrompt />
+    <CommonNotificationPrompt />
   </div>
 </template>
 
 <script setup lang="ts">
-import NotificationPrompt from '~/components/common/NotificationPrompt.vue'
 </script>

@@ -85,8 +85,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
 import teachersData from '~/contents/teachers.json';
+
+const { teacher } = useApi()
 
 const router = useRouter();
 const scrollContainer = ref<HTMLElement | null>(null);
@@ -134,6 +135,8 @@ onMounted(() => {
   let isDown = false;
   let startX: number;
   let scrollLeft: number;
+
+  teacher.getAll()
 
   el.addEventListener("mousedown", (e: MouseEvent) => {
     isDown = true;

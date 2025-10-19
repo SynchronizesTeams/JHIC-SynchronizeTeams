@@ -5,7 +5,7 @@
       class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between gap-8 lg:items-start text-gray-700">
       <div class="space-y-3 lg:w-1/3">
         <div class="flex items-center gap-2">
-          <NuxtImg src="/images/penus/Logo.png" class="w-52 sm:w-64 lg:w-80" />
+          <img loading="lazy" src="/images/penus/Logo.png" class="w-52 sm:w-64 lg:w-80" />
         </div>
 
         <p class="text-sm leading-relaxed">
@@ -119,7 +119,8 @@
         <h3 class="text-lg sm:text-xl font-bold text-gray-700">Support and aims to</h3>
         <div class="flex justify-center w-full">
           <div class="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-4xl">
-            <NuxtImg
+            <img
+              loading="lazy"
               src="/images/all-logo.png"
               alt="Support Partners"
               class="w-full h-auto object-contain"

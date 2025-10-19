@@ -4,8 +4,9 @@
     <!-- Hero Section -->
     <section
       class="relative flex items-center justify-center h-[40vh] overflow-hidden bg-black text-white ">
-      <NuxtImg
-        src="/images/PEKAN IT_22.jpg"
+      <img
+        loading="lazy"
+        src="/images/pekanit.jpg"
         alt="Hero background"
         class="absolute inset-0 w-full h-full object-cover opacity-50" />
       <div
@@ -82,7 +83,6 @@
 </template>
 
 <script lang="ts" setup>
-import NavigationBar from '~/components/common/NavigationBar.vue'
 import { mockAchievements } from '~/utils/mockData'
 import type { Achievement } from '~/types/achievement'
 
@@ -142,8 +142,8 @@ useHead({
             }
           ]
         }
-      })
-    }
+      }) 
+    } as any
   ]
 })
 </script>

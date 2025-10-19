@@ -97,8 +97,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
 import extracurricularsData from '~/contents/extracurriculars.json';
 import extracurricularLinks from '~/contents/extracurricular-links.json';
 
