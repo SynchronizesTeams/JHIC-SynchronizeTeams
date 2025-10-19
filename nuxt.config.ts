@@ -16,7 +16,7 @@ export default defineNuxtConfig({
               "/api": {
                 target:
                   process.env.NUXT_PUBLIC_API_BASE_URL ||
-                  "https://jhic-infra.synchronizeteams.my.id",
+                  "https://infra-adeli.synchronizeteams.my.id/api",
                 changeOrigin: true,
                 secure: true,
               },
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       // API Configuration
       apiBaseUrl:
         process.env.NUXT_PUBLIC_API_BASE_URL ||
-        "https://infra-adeli.synchronizeteams.my.id/api",
+        "https://infra.synchronizeteams.my.id/api",
       apiVersion: process.env.NUXT_PUBLIC_API_VERSION || "v1",
 
       // API Endpoints
@@ -61,6 +61,8 @@ export default defineNuxtConfig({
         process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || "/portal",
       apiGuestBookEndpoint:
         process.env.NUXT_PUBLIC_API_GUEST_BOOK_ENDPOINT || "/guest-book",
+      apiTestimonialEndpoint:
+        process.env.NUXT_PUBLIC_API_TESTIMONIAL_ENDPOINT || "/testimonial",
 
       // Development
       useProxy: process.env.NUXT_PUBLIC_USE_PROXY === "true",

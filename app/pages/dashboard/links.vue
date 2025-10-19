@@ -1,42 +1,205 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-primary-white to-white">
 
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto px-4 py-8">
       <!-- Header -->
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-primary-gray mb-2">Kelola Links</h1>
-        <p class="text-primary-gray/60">Atur dan kelola semua link di profile Anda</p>
+        <h1 class="text-3xl font-bold text-primary-gray mb-2">Dashboard</h1>
+        <p class="text-primary-gray/60">Kelola profile dan link Anda</p>
       </div>
 
-      <!-- Profile Preview Card -->
-      <div class="bg-gradient-to-r from-secondary-red/5 to-transparent border border-primary-gray/20 rounded-2xl p-6 mb-6">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-secondary-red/20 to-primary-gray/10 flex items-center justify-center">
-              <svg class="w-6 h-6 text-secondary-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-primary-gray">{{ currentUser.name }}</h3>
-              <p class="text-sm text-primary-gray/60">@{{ currentUser.username }}</p>
-            </div>
-          </div>
-          <NuxtLink
-            :to="`/personal-profile/${currentUser.username}`"
-            target="_blank"
-            class="flex items-center gap-2 px-4 py-2 bg-primary-white border-2 border-primary-gray/20 text-primary-gray rounded-full text-sm font-semibold hover:bg-primary-gray/5 hover:border-secondary-red/30 hover:text-secondary-red transition-all"
+      <!-- Tabs -->
+      <div class="mb-8">
+        <div class="flex gap-2 border-b border-primary-gray/20">
+          <button
+            @click="activeTab = 'profile'"
+            :class="[
+              'px-6 py-3 font-semibold transition-all relative',
+              activeTab === 'profile'
+                ? 'text-secondary-red'
+                : 'text-primary-gray/60 hover:text-primary-gray'
+            ]"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-            </svg>
-            Lihat Profile
-          </NuxtLink>
+            Informasi Profile
+            <div
+              v-if="activeTab === 'profile'"
+              class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-red"
+            ></div>
+          </button>
+          <button
+            @click="activeTab = 'links'"
+            :class="[
+              'px-6 py-3 font-semibold transition-all relative',
+              activeTab === 'links'
+                ? 'text-secondary-red'
+                : 'text-primary-gray/60 hover:text-primary-gray'
+            ]"
+          >
+            Kelola Links
+            <div
+              v-if="activeTab === 'links'"
+              class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-red"
+            ></div>
+          </button>
         </div>
       </div>
 
-      <!-- Add Link Button -->
+      <!-- Profile Tab Content -->
+      <div v-show="activeTab === 'profile'" class="space-y-6">
+        <!-- Profile Preview Card -->
+        <div class="bg-gradient-to-r from-secondary-red/5 to-transparent border border-primary-gray/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="relative">
+                <div v-if="photoPreview || userData.photo_url" class="w-16 h-16 rounded-full overflow-hidden">
+                  <img :src="photoPreview || userData.photo_url" :alt="userData.name" class="w-full h-full object-cover" />
+                </div>
+                <div v-else class="w-16 h-16 rounded-full bg-gradient-to-br from-secondary-red/20 to-primary-gray/10 flex items-center justify-center">
+                  <svg class="w-8 h-8 text-secondary-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-semibold text-primary-gray">{{ userData.name }}</h3>
+                <p class="text-sm text-primary-gray/60">{{ userData.email }}</p>
+                <span class="inline-block mt-1 px-2 py-0.5 bg-secondary-red/10 text-secondary-red text-xs font-medium rounded-full">
+                  {{ userData.role }}
+                </span>
+              </div>
+            </div>
+            <NuxtLink
+              :to="`/personal-profile/${currentUser.username}`"
+              target="_blank"
+              class="flex items-center gap-2 px-4 py-2 bg-primary-white border-2 border-primary-gray/20 text-primary-gray rounded-full text-sm font-semibold hover:bg-primary-gray/5 hover:border-secondary-red/30 hover:text-secondary-red transition-all"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Lihat Profile
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <form @submit.prevent="updateProfile" class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg">
+          <div class="px-6 py-4 border-b border-primary-gray/10 bg-gradient-to-r from-secondary-red/5 to-transparent">
+            <h2 class="text-lg font-bold text-primary-gray">Edit Informasi Profile</h2>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div class="grid grid-cols-1 gap-4">
+              <!-- Photo Profile Upload -->
+              <div>
+                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                  Foto Profile
+                </label>
+                <div class="flex items-center gap-4">
+                  <!-- Preview -->
+                  <div class="flex-shrink-0">
+                    <div v-if="photoPreview || userData.photo_url" class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary-gray/20">
+                      <img :src="photoPreview || userData.photo_url" alt="Preview" class="w-full h-full object-cover" />
+                    </div>
+                    <div v-else class="w-24 h-24 rounded-full bg-gradient-to-br from-secondary-red/20 to-primary-gray/10 flex items-center justify-center border-2 border-primary-gray/20">
+                      <svg class="w-12 h-12 text-secondary-red/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Upload Button -->
+                  <div class="flex-1">
+                    <input
+                      ref="photoInput"
+                      type="file"
+                      accept="image/*"
+                      @change="handlePhotoUpload"
+                      class="hidden"
+                    />
+                    <button
+                      type="button"
+                      @click="$refs.photoInput.click()"
+                      class="inline-flex items-center gap-2 px-4 py-2 bg-primary-white border-2 border-primary-gray/20 text-primary-gray rounded-xl text-sm font-semibold hover:bg-primary-gray/5 hover:border-secondary-red/30 transition-all"
+                    >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      Pilih Foto
+                    </button>
+                    <p class="text-xs text-primary-gray/60 mt-2">JPG, PNG, atau (Max. 5MB)</p>
+
+                    <!-- Remove Photo Button -->
+                    <button
+                      v-if="photoPreview || userData.photo_url"
+                      type="button"
+                      @click="removePhoto"
+                      class="inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-600 mt-2 font-semibold"
+                    >
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                      </svg>
+                      Hapus Foto
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Name -->
+              <div>
+                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                  Nama Lengkap <span class="text-red-500">*</span>
+                </label>
+                <input
+                  v-model="userData.name"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 bg-primary-white text-primary-gray border-2 border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red focus:border-transparent"
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="block text-sm font-semibold text-primary-gray mb-2">
+                  Email <span class="text-red-500">*</span>
+                </label>
+                <input
+                  v-model="userData.email"
+                  type="email"
+                  required
+                  class="w-full px-4 py-3 bg-primary-white text-primary-gray border-2 border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end pt-4">
+              <button
+                type="submit"
+                :disabled="isUpdatingProfile"
+                :class="[
+                  'px-8 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-2xl font-semibold transition-all shadow-lg',
+                  isUpdatingProfile
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:from-secondary-red/90 hover:to-secondary-red'
+                ]"
+              >
+                <span v-if="isUpdatingProfile" class="flex items-center gap-2">
+                  <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Menyimpan...
+                </span>
+                <span v-else>Simpan Perubahan</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Links Tab Content -->
+      <div v-show="activeTab === 'links'" class="space-y-6">
       <div class="mb-6">
         <button
           @click="openAddModal"
@@ -70,8 +233,9 @@
 
             <!-- Icon -->
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-secondary-red/10 to-primary-gray/10 flex items-center justify-center text-2xl">
-                {{ link.icon || '🔗' }}
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-secondary-red/10 to-primary-gray/10 flex items-center justify-center overflow-hidden">
+                <img v-if="link.icon && link.icon.startsWith('http')" :src="link.icon" :alt="link.title" class="w-full h-full object-cover" />
+                <span v-else class="text-2xl">{{ socialIcons.find(i => i.id === link.icon)?.icon || '🔗' }}</span>
               </div>
             </div>
 
@@ -79,15 +243,6 @@
             <div class="flex-1 min-w-0">
               <h3 class="font-semibold text-primary-gray text-sm">{{ link.title }}</h3>
               <p class="text-primary-gray/60 text-xs mt-0.5 truncate">{{ link.url }}</p>
-              <div class="flex items-center gap-3 mt-1">
-                <span class="text-xs text-primary-gray/40">{{ link.clicks || 0 }} klik</span>
-                <span
-                  class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
-                  :class="link.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'"
-                >
-                  {{ link.isActive ? 'Aktif' : 'Nonaktif' }}
-                </span>
-              </div>
             </div>
 
             <!-- Actions -->
@@ -113,21 +268,6 @@
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
-
-              <!-- Toggle Active -->
-              <button
-                @click="toggleActive(link.id)"
-                class="p-2 text-primary-gray/40 hover:text-secondary-red hover:bg-secondary-red/10 rounded-lg transition-colors"
-                :title="link.isActive ? 'Nonaktifkan' : 'Aktifkan'"
-              >
-                <svg v-if="link.isActive" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                </svg>
-                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
                 </svg>
               </button>
 
@@ -173,6 +313,7 @@
           </button>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Add/Edit Modal -->
@@ -251,40 +392,26 @@
                 <!-- Icon Field -->
                 <div>
                   <label class="block text-sm font-semibold text-primary-gray mb-2">
-                    Icon Emoji <span class="text-red-500">*</span>
+                    Pilih Icon <span class="text-red-500">*</span>
                   </label>
-                  <div class="flex gap-2">
-                    <input
-                      v-model="formData.icon"
-                      type="text"
-                      placeholder="🔗"
-                      maxlength="2"
-                      class="w-20 px-4 py-3 bg-primary-white text-primary-gray text-2xl text-center border-2 border-primary-gray/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-red focus:border-transparent"
-                      required
-                    />
-                    <div class="flex-1 flex items-center gap-2 text-xs text-primary-gray/60">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <span>Gunakan emoji sebagai icon</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Popular Icons -->
-                <div>
-                  <p class="text-xs font-semibold text-primary-gray/60 mb-2">Icon Populer:</p>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="grid grid-cols-4 gap-2 max-h-64 overflow-y-auto p-2 border-2 border-primary-gray/20 rounded-xl">
                     <button
-                      v-for="emoji in popularEmojis"
-                      :key="emoji"
+                      v-for="icon in socialIcons"
+                      :key="icon.id"
                       type="button"
-                      @click="formData.icon = emoji"
-                      class="w-10 h-10 flex items-center justify-center text-2xl bg-primary-gray/5 hover:bg-secondary-red/10 rounded-lg transition-colors"
+                      @click="formData.icon = icon.id"
+                      :class="[
+                        'flex flex-col items-center justify-center p-3 rounded-lg transition-all border-2',
+                        formData.icon === icon.id
+                          ? 'bg-secondary-red/10 border-secondary-red text-secondary-red'
+                          : 'bg-primary-gray/5 border-transparent hover:bg-secondary-red/10 hover:border-secondary-red/30'
+                      ]"
                     >
-                      {{ emoji }}
+                      <span class="text-2xl mb-1">{{ icon.icon }}</span>
+                      <span class="text-[10px] text-center leading-tight">{{ icon.label }}</span>
                     </button>
                   </div>
+                  <p class="text-xs text-primary-gray/60 mt-2">Icon yang dipilih: <span class="text-xl">{{ socialIcons.find(i => i.id === formData.icon)?.icon || '🔗' }}</span></p>
                 </div>
               </div>
 
@@ -371,19 +498,77 @@
 </template>
 
 <script setup lang="ts">
-import { mockPersonalProfiles } from '~/utils/mockData'
 import type { PersonalLink } from '~/types/personalProfile'
-import NavigationBar from '~/components/common/NavigationBar.vue'
+import type { User } from '~/types/user'
+import { SOCIAL_ICONS } from '~/utils/socialIcons'
 
-// Mock current logged in user (nanti dari auth)
-const currentUser = {
-  username: 'johndoe',
-  name: 'John Doe'
+// Tab state
+const activeTab = ref<'profile' | 'links'>('profile')
+
+// User data for profile editing - Initialize with logged-in user data
+const { user, token, editProfile } = useAuth()
+const api = useApi()
+const config = useRuntimeConfig()
+const BASE_URL = config.public.apiBaseUrl.replace('/api', '')
+
+// Helper function to get full photo URL
+const getPhotoUrl = (photoUrl: string | undefined): string | undefined => {
+  if (!photoUrl || photoUrl === '') return undefined
+  if (photoUrl.startsWith('http://') || photoUrl.startsWith('https://')) {
+    return photoUrl
+  }
+  // Remove leading slash if exists to avoid double slash
+  const cleanPath = photoUrl.startsWith('/') ? photoUrl.substring(1) : photoUrl
+  return `${BASE_URL}/${cleanPath}`
 }
 
-// Get user's links
-const userProfile = mockPersonalProfiles.find(p => p.username === currentUser.username)
-const links = ref<PersonalLink[]>(userProfile?.links || [])
+const userData = ref<User>({
+  id: user.value?.id || 0,
+  no_induk: user.value?.no_induk || '',
+  name: user.value?.name || '',
+  email: user.value?.email || '',
+  role: user.value?.role || 'siswa',
+  phone: user.value?.phone || '',
+  alamat: user.value?.alamat || '',
+  jabatan: user.value?.jabatan || '',
+  tahun_ajaran_mulai: user.value?.tahun_ajaran_mulai || '',
+  photo_url: user.value?.photo_url || undefined
+})
+
+// Watch for user data changes and update userData
+watch(user, (newUser) => {
+  if (newUser) {
+    userData.value = {
+      id: newUser.id,
+      no_induk: newUser.no_induk,
+      name: newUser.name,
+      email: newUser.email,
+      role: newUser.role,
+      phone: newUser.phone,
+      alamat: newUser.alamat,
+      jabatan: newUser.jabatan,
+      tahun_ajaran_mulai: newUser.tahun_ajaran_mulai,
+      photo_url: getPhotoUrl(newUser.photo_url)
+    }
+  }
+}, { immediate: true })
+
+// Photo upload state
+const photoPreview = ref<string | null>(null)
+const photoFile = ref<File | null>(null)
+const photoInput = ref<HTMLInputElement | null>(null)
+
+// Computed current user
+const currentUser = computed(() => ({
+  username: user.value?.name?.split(' ')[0]?.toLowerCase() || 'user',
+  name: user.value?.name || 'User',
+  userId: user.value?.id
+}))
+
+// Links state
+const links = ref<any[]>([])
+const isLoadingLinks = ref(false)
+const linksError = ref<string | null>(null)
 
 // Modal state
 const isModalOpen = ref(false)
@@ -401,8 +586,107 @@ const formData = ref({
   icon: ''
 })
 
-// Popular emojis
-const popularEmojis = ['🔗', '💼', '💻', '📸', '🎥', '🌐', '📝', '🎨', '🏀', '🐦', '📧', '📱']
+// Social icons from utility
+const socialIcons = SOCIAL_ICONS
+
+// Handle photo upload
+const handlePhotoUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const file = target.files?.[0]
+
+  if (!file) return
+
+  // Validate file type
+  if (!file.type.startsWith('image/')) {
+    alert('File harus berupa gambar (JPG, PNG, atau GIF)')
+    return
+  }
+
+  // Validate file size (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Ukuran file maksimal 5MB')
+    return
+  }
+
+  // Save file and create preview
+  photoFile.value = file
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    photoPreview.value = e.target?.result as string
+  }
+  reader.readAsDataURL(file)
+}
+
+// Remove photo
+const removePhoto = () => {
+  photoPreview.value = null
+  photoFile.value = null
+  userData.value.photo_url = undefined
+  if (photoInput.value) {
+    photoInput.value.value = ''
+  }
+}
+
+// Fetch user links
+const fetchUserLinks = async () => {
+  isLoadingLinks.value = true
+  linksError.value = null
+  try {
+    const response: any = await api.userLinks.getSelf()
+    links.value = (response || []).map((link: any) => ({
+      ...link,
+      icon: getPhotoUrl(link.icon) || '🔗'
+    }))
+  } catch (error: any) {
+    linksError.value = error.message || 'Gagal memuat links'
+    console.error('Error fetching links:', error)
+  } finally {
+    isLoadingLinks.value = false
+  }
+}
+
+// Loading state for profile update
+const isUpdatingProfile = ref(false)
+
+// Update profile function
+const updateProfile = async () => {
+  if (isUpdatingProfile.value) return
+
+  isUpdatingProfile.value = true
+  try {
+    // Prepare profile data
+    const profileData: any = {
+      name: userData.value.name,
+      email: userData.value.email
+    }
+
+    // Add photo if a new one was uploaded
+    if (photoFile.value) {
+      profileData.photo_url = photoFile.value
+    }
+
+    // Call the API
+    const result = await editProfile(profileData)
+
+    if (result.success) {
+      alert('Profile berhasil diperbarui!')
+
+      // Clear photo preview after successful update
+      photoPreview.value = null
+      photoFile.value = null
+      if (photoInput.value) {
+        photoInput.value.value = ''
+      }
+    } else {
+      alert(result.error || 'Gagal memperbarui profile')
+    }
+  } catch (error: any) {
+    console.error('Error updating profile:', error)
+    alert(error.message || 'Gagal memperbarui profile')
+  } finally {
+    isUpdatingProfile.value = false
+  }
+}
 
 // Open add modal
 const openAddModal = () => {
@@ -411,20 +695,20 @@ const openAddModal = () => {
   formData.value = {
     title: '',
     url: '',
-    icon: '🔗'
+    icon: 'link'
   }
   isModalOpen.value = true
   document.body.style.overflow = 'hidden'
 }
 
 // Open edit modal
-const openEditModal = (link: PersonalLink) => {
+const openEditModal = (link: any) => {
   isEditMode.value = true
   editingLinkId.value = link.id
   formData.value = {
     title: link.title,
     url: link.url,
-    icon: link.icon || '🔗'
+    icon: link.icon || 'link'
   }
   isModalOpen.value = true
   document.body.style.overflow = 'hidden'
@@ -437,35 +721,33 @@ const closeModal = () => {
 }
 
 // Save link (add or edit)
-const saveLink = () => {
-  if (isEditMode.value && editingLinkId.value) {
-    // Edit existing link
-    const index = links.value.findIndex(l => l.id === editingLinkId.value)
-    if (index !== -1) {
-      links.value[index] = {
-        ...links.value[index],
+const saveLink = async () => {
+  try {
+    if (isEditMode.value && editingLinkId.value) {
+      // Edit existing link
+      await api.userLinks.update(editingLinkId.value, {
         title: formData.value.title,
         url: formData.value.url,
         icon: formData.value.icon
-      }
+      })
+      alert('Link berhasil diperbarui!')
+    } else {
+      // Add new link
+      await api.userLinks.create({
+        title: formData.value.title,
+        url: formData.value.url,
+        icon: formData.value.icon
+      })
+      alert('Link berhasil ditambahkan!')
     }
-    // In real app: await $fetch(`/api/links/${editingLinkId.value}`, { method: 'PATCH', body: formData.value })
-  } else {
-    // Add new link
-    const newLink: PersonalLink = {
-      id: Date.now().toString(),
-      title: formData.value.title,
-      url: formData.value.url,
-      icon: formData.value.icon,
-      order: links.value.length + 1,
-      isActive: true,
-      clicks: 0
-    }
-    links.value.push(newLink)
-    // In real app: await $fetch('/api/links', { method: 'POST', body: formData.value })
-  }
 
-  closeModal()
+    // Refresh links
+    await fetchUserLinks()
+    closeModal()
+  } catch (error: any) {
+    console.error('Error saving link:', error)
+    alert(error.message || 'Gagal menyimpan link')
+  }
 }
 
 // Confirm delete
@@ -483,22 +765,24 @@ const closeDeleteModal = () => {
 }
 
 // Delete link
-const deleteLink = () => {
-  if (linkToDelete.value) {
-    links.value = links.value.filter(l => l.id !== linkToDelete.value!.id)
-    // In real app: await $fetch(`/api/links/${linkToDelete.value.id}`, { method: 'DELETE' })
+const deleteLink = async () => {
+  if (!linkToDelete.value) return
+
+  try {
+    await api.userLinks.delete(linkToDelete.value.id)
+    alert('Link berhasil dihapus!')
+    await fetchUserLinks()
+    closeDeleteModal()
+  } catch (error: any) {
+    console.error('Error deleting link:', error)
+    alert(error.message || 'Gagal menghapus link')
   }
-  closeDeleteModal()
 }
 
-// Toggle active/inactive
-const toggleActive = (id: string) => {
-  const link = links.value.find(l => l.id === id)
-  if (link) {
-    link.isActive = !link.isActive
-    // In real app: await $fetch(`/api/links/${id}/toggle`, { method: 'PATCH' })
-  }
-}
+// Fetch links on mount
+onMounted(async () => {
+  await fetchUserLinks()
+})
 
 // Move link up
 const moveUp = (index: number) => {
@@ -537,9 +821,9 @@ onBeforeUnmount(() => {
 
 // SEO
 useHead({
-  title: 'Kelola Links - Dashboard',
+  title: 'Dashboard - Kelola Profile & Links',
   meta: [
-    { name: 'description', content: 'Kelola semua link di profile Anda' }
+    { name: 'description', content: 'Kelola informasi profile dan link Anda' }
   ]
 })
 </script>

@@ -63,8 +63,15 @@
             <!-- Icon/Image -->
             <div class="flex-shrink-0">
               <div
-                class="w-12 h-12 rounded-full bg-primary-gray/10 flex items-center justify-center text-2xl">
-                {{ portal.icon }}
+                class="w-12 h-12 rounded-full bg-primary-gray/10 flex items-center justify-center overflow-hidden">
+                <img
+                  v-if="portal.logo"
+                  :src="portal.logo"
+                  :alt="portal.name"
+                  class="w-full h-full object-cover"
+                  @error="(e) => handleImageError(e, portal)"
+                />
+                <span v-else class="text-2xl">{{ portal.icon }}</span>
               </div>
             </div>
 
@@ -175,8 +182,15 @@
               <!-- Portal Icon -->
               <div class="flex justify-center mb-4">
                 <div
-                  class="w-20 h-20 rounded-full bg-primary-gray/10 flex items-center justify-center text-4xl shadow-md">
-                  {{ selectedPortal.icon }}
+                  class="w-20 h-20 rounded-full bg-primary-gray/10 flex items-center justify-center overflow-hidden shadow-md">
+                  <img
+                    v-if="selectedPortal.logo"
+                    :src="selectedPortal.logo"
+                    :alt="selectedPortal.name"
+                    class="w-full h-full object-cover"
+                    @error="(e) => handleImageError(e, selectedPortal)"
+                  />
+                  <span v-else class="text-4xl">{{ selectedPortal.icon }}</span>
                 </div>
               </div>
 
@@ -316,12 +330,29 @@ const portals = computed(() => {
     .sort((a, b) => (a.order || 999) - (b.order || 999))
     .map((portal) => ({
       ...portal,
-      name: portal.title,
-      description: `Akses ${portal.title}`,
+      // Use name from API, fallback to title for default portals
+      name: portal.name || portal.title,
+      // Use description from API, fallback to generated description
+      description: portal.description || `Akses ${portal.name || portal.title}`,
       icon: portal.icon || "🔗",
       isActive: true,
     }));
 });
+
+// Handle image load error - show emoji fallback
+const handleImageError = (event: Event, portal: any) => {
+  const target = event.target as HTMLImageElement;
+  // Hide the image and show the emoji icon instead
+  target.style.display = 'none';
+  // Find the parent and add emoji
+  const parent = target.parentElement;
+  if (parent && !parent.querySelector('span')) {
+    const span = document.createElement('span');
+    span.className = 'text-2xl';
+    span.textContent = portal.icon || '🔗';
+    parent.appendChild(span);
+  }
+};
 
 // Fetch school portals on mount
 onMounted(async () => {

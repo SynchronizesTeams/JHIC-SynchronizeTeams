@@ -1,7 +1,16 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-primary-white to-white">
+    <!-- Loading State -->
+    <div v-if="isLoading" class="max-w-2xl mx-auto px-4 py-8 text-center">
+      <div class="animate-pulse">
+        <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4"></div>
+        <div class="h-6 bg-gray-200 rounded w-48 mx-auto mb-2"></div>
+        <div class="h-4 bg-gray-200 rounded w-32 mx-auto"></div>
+      </div>
+      <p class="text-primary-gray/60 mt-4">Memuat profile...</p>
+    </div>
 
-    <div class="max-w-2xl mx-auto px-4 py-8">
+    <div v-else class="max-w-2xl mx-auto px-4 py-8">
       <!-- Profile Section -->
       <div class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg mb-6 hover:shadow-xl transition-shadow">
         <!-- Cover Image -->
@@ -131,35 +140,87 @@
 
       <!-- Footer -->
       <div class="text-center mt-8 text-primary-gray/60 text-xs">
-        <p>Dibuat dengan SMK Penerbangan Bandung Personal Profile</p>
+        <p>SMK Plus Pelita Nusantara Personal Profile</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { mockPersonalProfiles } from '~/utils/mockData'
+import { SOCIAL_ICONS } from '~/utils/socialIcons'
 
 const route = useRoute()
-const username = computed(() => route.params.username as string)
+const api = useApi()
+const config = useRuntimeConfig()
+const BASE_URL = config.public.apiBaseUrl.replace('/api', '')
 
-// Mock: Find profile by username
+const usernameParam = computed(() => route.params.username as string)
+
+// State
+const profileData = ref<any>(null)
+const links = ref<any[]>([])
+const isLoading = ref(true)
+const error = ref<string | null>(null)
+
+// Computed profile from response
 const profile = computed(() => {
-  return mockPersonalProfiles.find(p => p.username === username.value)
+  if (!profileData.value) return null
+  
+  const user = profileData.value.user || {}
+  return {
+    name: user.name || 'User',
+    username: user.name?.split(' ')[0]?.toLowerCase() || 'user',
+    email: user.email || '',
+    phone: user.phone || '',
+    jabatan: user.jabatan || '',
+    avatar: user.photo_url && user.photo_url !== '' 
+      ? (user.photo_url.startsWith('http') ? user.photo_url : `${BASE_URL}/${user.photo_url}`)
+      : '/penus-icon.webp',
+    bio: user.jabatan || 'Member'
+  }
 })
 
-// Get active links sorted by order
+// Active links from API
 const activeLinks = computed(() => {
-  if (!profile.value) return []
-  return profile.value.links
-    .filter(link => link.isActive)
-    .sort((a, b) => a.order - b.order)
+  return links.value.map(link => ({
+    ...link,
+    icon: link.icon && !link.icon.startsWith('http')
+      ? SOCIAL_ICONS.find(i => i.id === link.icon)?.icon || '🔗'
+      : link.icon
+  }))
 })
+
+// Fetch profile and links by user ID
+const fetchProfile = async (userId: number) => {
+  isLoading.value = true
+  error.value = null
+  
+  try {
+    const response: any = await api.userLinks.getByUserId(userId)
+    
+    if (response && response.length > 0) {
+      profileData.value = response[0]
+      links.value = response.map((item: any) => ({
+        id: item.id,
+        title: item.title,
+        url: item.url,
+        icon: item.icon
+      }))
+    } else {
+      error.value = 'Profile not found'
+    }
+  } catch (err: any) {
+    console.error('Error fetching profile:', err)
+    error.value = err.message || 'Failed to load profile'
+  } finally {
+    isLoading.value = false
+  }
+}
 
 // Copy to clipboard
 const copied = ref(false)
 const copyProfileLink = async () => {
-  const profileUrl = `${window.location.origin}/personal-profile/${username.value}`
+  const profileUrl = `${window.location.origin}/personal-profile/${usernameParam.value}`
 
   try {
     await navigator.clipboard.writeText(profileUrl)
@@ -177,7 +238,7 @@ const copyProfileLink = async () => {
 const shareProfile = async () => {
   if (!profile.value) return
 
-  const profileUrl = `${window.location.origin}/personal-profile/${username.value}`
+  const profileUrl = `${window.location.origin}/personal-profile/${usernameParam.value}`
   const shareData = {
     title: `${profile.value.name} - Personal Profile`,
     text: profile.value.bio || `Check out ${profile.value.name}'s profile`,
@@ -203,25 +264,46 @@ const shareProfile = async () => {
   }
 }
 
-// Track link clicks (in real app, this would call an API)
-const trackLinkClick = (linkId: string) => {
+// Track link clicks
+const trackLinkClick = (linkId: number) => {
   console.log(`Link clicked: ${linkId}`)
-  // In real app: await $fetch(`/api/links/${linkId}/click`, { method: 'POST' })
+  // Could add analytics API call here
 }
 
-// 404 if profile not found
-if (!profile.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Profile not found'
-  })
-}
-
-// SEO Meta
-useHead({
-  title: `${profile.value?.name} - Personal Profile`,
-  meta: [
-    { name: 'description', content: profile.value?.bio || `${profile.value?.name}'s personal profile` }
-  ]
+// On mount, try to get user ID from username or use as ID directly
+onMounted(async () => {
+  // For now, assume username param is user ID or fetch from logged-in user
+  const { user } = useAuth()
+  
+  // If viewing own profile (logged in user's username matches)
+  if (user.value && user.value.name?.split(' ')[0]?.toLowerCase() === usernameParam.value.toLowerCase()) {
+    await fetchProfile(user.value.id)
+  } else {
+    // Try parsing username as ID (fallback)
+    const userId = parseInt(usernameParam.value)
+    if (!isNaN(userId)) {
+      await fetchProfile(userId)
+    } else {
+      error.value = 'Invalid profile'
+    }
+  }
+  
+  // Show 404 if profile not found
+  if (error.value) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: error.value
+    })
+  }
 })
+
+// SEO Meta - Watch profile and update dynamically
+watch(profile, (newProfile) => {
+  if (newProfile) {
+    useSeoMeta({
+      title: `${newProfile.name} - Personal Profile`,
+      description: newProfile.bio || `${newProfile.name}'s personal profile`
+    })
+  }
+}, { immediate: true })
 </script>

@@ -1,11 +1,16 @@
 export interface SchoolPortal {
-  id?: number
-  title: string
+  id: number
+  name: string
+  title?: string
+  description: string
   url: string
+  logo: string
+  category: string
+  is_sso_enabled: boolean
+  is_active: boolean
   order?: number
-  is_active?: boolean
   icon?: string | File
-  created_at?: string
+  created_at: string
   updated_at?: string
 }
 
@@ -24,32 +29,67 @@ export const usePortals = () => {
     error.value = null
     
     try {
+      const response: any = await api.portal.getAll()
+      
+      // Transform response and construct full logo URLs
       const config = useRuntimeConfig()
-      const BASE_URL = config.public.apiBase
+      const BASE_URL = config.public.apiBaseUrl.replace('/api', '') // Remove /api suffix
       
-      // Use public endpoint that doesn't require auth
-      const response: any = await $fetch(`${BASE_URL}/api/v1/public/portal/showAll`, {
-        method: 'GET'
-      })
+      const transformedPortals = (response || []).map((portal: any) => ({
+        ...portal,
+        title: portal.name, // Map name to title for backward compatibility
+        logo: portal.logo.startsWith('http') 
+          ? portal.logo 
+          : `${BASE_URL}/${portal.logo}`,
+        icon: getPortalIcon(portal.category, portal.name)
+      }))
       
-      portals.value = response.data || []
+      portals.value = transformedPortals
       return portals.value
     } catch (err: any) {
-      // If public endpoint doesn't exist, try with auth
-      try {
-        const response: any = await api.portal.getAll()
-        portals.value = response.data || []
-        return portals.value
-      } catch (authErr: any) {
-        error.value = authErr.data?.message || 'Failed to fetch portals'
-        console.error('Error fetching portals:', authErr)
-        // Return empty array instead of throwing
-        portals.value = []
-        return []
-      }
+      error.value = err.data?.message || 'Failed to fetch portals'
+      console.error('Error fetching portals:', err)
+      // Return empty array instead of throwing
+      portals.value = []
+      return []
     } finally {
       isLoading.value = false
     }
+  }
+
+  // Helper function to get icon emoji based on category and name
+  const getPortalIcon = (category: string, name: string): string => {
+    const nameLower = name.toLowerCase()
+    const categoryLower = category.toLowerCase()
+
+    // Social media icons
+    if (nameLower.includes('instagram')) return '📷'
+    if (nameLower.includes('facebook')) return '👥'
+    if (nameLower.includes('twitter') || nameLower.includes('x')) return '🐦'
+    if (nameLower.includes('youtube')) return '▶️'
+    if (nameLower.includes('tiktok')) return '🎵'
+    if (nameLower.includes('whatsapp')) return '💬'
+    if (nameLower.includes('linkedin')) return '💼'
+    
+    // Learning platforms
+    if (nameLower.includes('learning') || nameLower.includes('lms')) return '📚'
+    if (nameLower.includes('classroom')) return '🏫'
+    if (nameLower.includes('moodle')) return '🎓'
+    
+    // Other services
+    if (nameLower.includes('library') || nameLower.includes('perpustakaan')) return '📖'
+    if (nameLower.includes('email') || nameLower.includes('mail')) return '✉️'
+    if (nameLower.includes('drive') || nameLower.includes('storage')) return '💾'
+    if (nameLower.includes('calendar')) return '📅'
+    if (nameLower.includes('news') || nameLower.includes('berita')) return '📰'
+    
+    // Category-based fallback
+    if (categoryLower.includes('social')) return '🌐'
+    if (categoryLower.includes('education')) return '📚'
+    if (categoryLower.includes('admin')) return '⚙️'
+    
+    // Default
+    return '🔗'
   }
 
   // Create new portal (admin only)

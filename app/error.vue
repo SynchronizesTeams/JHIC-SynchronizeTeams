@@ -8,8 +8,8 @@
 
     <div class="relative z-10 text-center max-w-2xl mx-auto">
       <div class="mb-8">
-        <NuxtImg
-          src="/images/penus/Logo.png"
+        <img
+          src="/images/penus/main-logo.png"
           alt="SMK PLUS PELITA NUSANTARA"
           class="w-48 h-24 mx-auto object-contain"
         />
