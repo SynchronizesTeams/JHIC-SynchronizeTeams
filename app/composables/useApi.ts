@@ -628,6 +628,17 @@ export const useApi = () => {
           headers: getAuthHeaders(),
         });
       },
+
+      getById: async (id: number) => {
+        const url = buildEndpoint(
+          `/public/${config.public.apiTeacherEndpoint}/show/${id}`
+        );
+        logRequest("GET", url);
+        return await $fetch(url, {
+          method: "GET",
+          headers: getAuthHeaders(),
+        });
+      },
     },
 
     // Eskul API
