@@ -59,15 +59,6 @@
         </div>
       </NuxtLink>
     </div>
-    <NuxtLink
-      v-if="useRoute().path === '/'"
-      to="/news"
-      class="inline-flex items-center gap-2 mx-auto mt-8 px-6 py-3 bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white rounded-full font-semibold hover:from-secondary-red/90 hover:to-secondary-red hover:shadow-xl transition-all duration-300 shadow-lg">
-      <span>Lihat Lainnya</span>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-      </svg>
-    </NuxtLink>
   </div>
 </template>
 

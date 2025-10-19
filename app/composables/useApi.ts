@@ -668,7 +668,7 @@ export const useApi = () => {
     achievement: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `${config.public.apiAchievementEndpoint}/show/${id}`
+          `/public${config.public.apiAchievementEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -679,7 +679,7 @@ export const useApi = () => {
 
       getAll: async () => {
         const url = buildEndpoint(
-          `${config.public.apiAchievementEndpoint}/showAll`
+          `/public/${config.public.apiAchievementEndpoint}/showAll`
         );
         logRequest("GET", url);
         return await $fetch(url, {

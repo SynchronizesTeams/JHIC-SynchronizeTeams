@@ -11,7 +11,7 @@
           :class="[
             'px-4 py-2 font-semibold transition-all duration-300 rounded-full focus:outline-none select-none',
             activeTab === tab.id
-              ? 'bg-gradient-to-r from-red-700 to-red-900 text-white shadow-lg transform scale-105'
+              ? 'bg-gradient-to-r from-secondary-red to-secondary-red/90 text-primary-white shadow-lg transform scale-105'
               : 'text-gray-600 hover:text-gray-800 hover:shadow-sm',
           ]">
           {{ tab.label }}

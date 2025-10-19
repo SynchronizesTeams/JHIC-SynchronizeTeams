@@ -50,6 +50,7 @@ export default defineNuxtConfig({
       apiNewsEndpoint: process.env.NUXT_PUBLIC_API_NEWS_ENDPOINT || "/news",
       apiUserLinksEndpoint:
         process.env.NUXT_PUBLIC_API_USER_LINKS_ENDPOINT || "/user-links",
+      apiAchievementEndpoint: process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "/achievement",
       apiTeacherEndpoint: process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "/teacher",
       apiForumEndpoint: process.env.NUXT_PUBLIC_API_FORUM_ENDPOINT || "/forum",
       apiEventEndpoint: process.env.NUXT_PUBLIC_API_EVENT_ENDPOINT || "/event",

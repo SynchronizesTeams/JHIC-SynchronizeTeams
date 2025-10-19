@@ -1,6 +1,5 @@
 <template>
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-    <!-- Image -->
     <div
       class="h-64 md:h-80 rounded-lg overflow-hidden relative bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 shadow-inner flex items-center justify-center">
       <div class="w-full h-full flex items-center justify-center">
