@@ -46,7 +46,7 @@
             </svg>
           </button>
 
-          <div class="p-0">
+          <div class="p-0 w-auto h-full">
             <NuxtImg
               ref="infographicImage"
               :src="imageSrc"
