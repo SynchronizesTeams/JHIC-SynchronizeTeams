@@ -16,7 +16,7 @@ import type {
   UserProfile,
 } from "~/types/api";
 
-export const useApi = () => {
+export const useApi: any = () => {
   const config = useRuntimeConfig();
   const BASE_URL = config.public.apiBaseUrl || "http://localhost:3001/api";
   const API_VERSION = config.public.apiVersion || "v1";
@@ -645,7 +645,7 @@ export const useApi = () => {
     eskul: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `${config.public.apiEskulEndpoint}/show/${id}`
+          `/public/${config.public.apiEskulEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -655,7 +655,9 @@ export const useApi = () => {
       },
 
       getAll: async () => {
-        const url = buildEndpoint(`${config.public.apiEskulEndpoint}/showAll`);
+        const url = buildEndpoint(
+          `/public/${config.public.apiEskulEndpoint}/showAll`
+        );
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
