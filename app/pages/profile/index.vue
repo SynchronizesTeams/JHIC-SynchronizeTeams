@@ -2,7 +2,8 @@
   <div class="min-h-screen bg-gradient-to-br from-primary-white to-white">
     <section
       class="relative flex items-center justify-center h-[50vh] overflow-hidden bg-black text-white">
-      <NuxtImg
+      <img
+        loading="lazy"
         :src="profile.hero.image"
         alt="Profile PENUS"
         class="absolute inset-0 w-full h-full object-cover opacity-60" />
@@ -84,10 +85,11 @@
             <div class="flex justify-center mb-4">
               <div
                 class="w-16 h-16 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center">
-                <NuxtImg
+                <img
+                  loading="lazy"
                   :src="prog.icon"
                   alt="{{ prog.name }}"
-                  class="w-10 h-12 text-white " />
+                  class="w-10 h-12 text-white" />
               </div>
             </div>
             <h3 class="text-xl font-bold text-gray-800 text-center mb-3">
@@ -164,21 +166,22 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProfileData } from '~/types/profile';
-import profileDataJson from "~/contents/profilepage.json"
+import type { ProfileData } from "~/types/profile";
+import profileDataJson from "~/contents/profilepage.json";
 
-const profile: Ref<ProfileData> = ref(profileDataJson as ProfileData)
+const profile: Ref<ProfileData> = ref(profileDataJson as ProfileData);
 
 // SEO
 useHead({
-  title: 'Profile Sekolah - SMK Plus Pelita Nusantara',
+  title: "Profile Sekolah - SMK Plus Pelita Nusantara",
   meta: [
     {
-      name: 'description',
-      content: 'Profil lengkap SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan unggulan yang menghasilkan SDM terampil, entrepreneur, dan religius'
-    }
-  ]
-})
+      name: "description",
+      content:
+        "Profil lengkap SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan unggulan yang menghasilkan SDM terampil, entrepreneur, dan religius",
+    },
+  ],
+});
 </script>
 
 <style scoped></style>

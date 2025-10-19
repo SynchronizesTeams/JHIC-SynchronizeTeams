@@ -42,8 +42,6 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-
 const props = defineProps({
   images: {
     type: Array,

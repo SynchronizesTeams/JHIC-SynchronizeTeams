@@ -1,8 +1,15 @@
 <template>
   <div class="w-full py-8 px-4 select-none">
     <div class="max-w-7xl mx-auto">
-      <div class="relative">
-        <!-- Tombol kiri -->
+      <div v-if="isLoading" class="text-center text-gray-500">
+        Memuat data guru...
+      </div>
+
+      <div v-else-if="error" class="text-center text-red-500">
+        Gagal memuat data. Coba lagi nanti.
+      </div>
+
+      <div v-else class="relative">
         <button
           @click="scrollLeft"
           class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white hover:bg-red-50 text-gray-800 hover:text-secondary-red rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-secondary-red"
@@ -20,7 +27,6 @@
           </svg>
         </button>
 
-        <!-- Tombol kanan -->
         <button
           @click="scrollRight"
           class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white hover:bg-red-50 text-gray-800 hover:text-secondary-red rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-secondary-red"
@@ -56,7 +62,14 @@
               class="w-full bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2 cursor-pointer">
               <div
                 class="relative bg-gradient-to-br from-gray-100 to-gray-200 aspect-square overflow-hidden">
-                <div class="absolute inset-0 flex items-center justify-center">
+                <img
+                  v-if="teacher.photo"
+                  :src="`${apiUrl}/${teacher.photo}`"
+                  :alt="teacher.full_name"
+                  class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110" />
+                <div
+                  v-else
+                  class="absolute inset-0 flex items-center justify-center">
                   <svg
                     class="w-24 h-24 text-gray-400 group-hover:text-secondary-red transition-colors duration-300"
                     fill="currentColor"
@@ -72,7 +85,7 @@
               <div class="p-4 text-center">
                 <h3
                   class="text-md font-bold text-gray-800 mb-1 group-hover:text-secondary-red transition-colors duration-300">
-                  {{ teacher.name }}
+                  {{ teacher.full_name }}
                 </h3>
                 <p class="text-gray-600 text-xs mb-2">{{ teacher.subject }}</p>
               </div>
@@ -85,61 +98,86 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import teachersData from '~/contents/teachers.json';
+// Definisikan tipe data sesuai dengan respons API
+export interface TeacherUser {
+  id: number;
+  name: string;
+}
 
+export interface Teacher {
+  id: number;
+  nig: string;
+  full_name: string;
+  position: string;
+  subject: string;
+  photo?: string;
+  description: string;
+  user: TeacherUser;
+}
+
+const { teacher } = useApi(); // Menggunakan composable useApi
 const router = useRouter();
+const apiUrl = useRuntimeConfig().public.apiBaseUrl
+
 const scrollContainer = ref<HTMLElement | null>(null);
-const currentPage = ref(0);
+const teachers = ref<Teacher[]>([]); // State untuk menampung data guru dari API
+const isLoading = ref(true); // State untuk loading
+const error = ref<any>(null); // State untuk error
 
-interface TeacherItem { id: number; name: string; subject: string }
-const teachers = ref<TeacherItem[]>(teachersData as TeacherItem[]);
-
+// Fungsi untuk navigasi ke halaman detail guru
 const goToTeacher = (teacherId: number) => {
   router.push(`/teacher/${teacherId}`);
+};
+
+// Fungsi untuk fetch data guru
+const fetchTeachers = async () => {
+  try {
+    isLoading.value = true;
+    // Panggil method getAll dari useApi
+    const responseData = await teacher.getAll();
+    teachers.value = responseData;
+  } catch (e) {
+    console.error("Failed to fetch teachers:", e);
+    error.value = e;
+  } finally {
+    isLoading.value = false;
+  }
 };
 
 const scrollLeft = () => {
   const el = scrollContainer.value;
   if (el) {
-    const cardWidth = 256 + 24;
-    const targetLeft = el.scrollLeft - cardWidth * 3;
-    el.scrollTo({ left: targetLeft, behavior: "smooth" });
-    updateCurrentPage();
+    const cardWidth = el.firstElementChild?.clientWidth || 232; // 208px (w-52) + 24px (gap)
+    const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
+    el.scrollTo({ left: el.scrollLeft - scrollAmount, behavior: "smooth" });
   }
 };
 
 const scrollRight = () => {
   const el = scrollContainer.value;
   if (el) {
-    const cardWidth = 256 + 24;
-    const targetLeft = el.scrollLeft + cardWidth * 3;
-    el.scrollTo({ left: targetLeft, behavior: "smooth" });
-    updateCurrentPage();
-  }
-};
-
-const updateCurrentPage = () => {
-  if (scrollContainer.value) {
-    const cardWidth = 256 + 24;
-    const scrollPosition = scrollContainer.value.scrollLeft;
-    currentPage.value = Math.round(scrollPosition / (cardWidth * 4));
+    const cardWidth = el.firstElementChild?.clientWidth || 232;
+    const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
+    el.scrollTo({ left: el.scrollLeft + scrollAmount, behavior: "smooth" });
   }
 };
 
 onMounted(() => {
+  // Panggil fungsi fetch data saat komponen dimuat
+  fetchTeachers();
+  
   const el = scrollContainer.value;
   if (!el) return;
 
   let isDown = false;
   let startX: number;
-  let scrollLeft: number;
+  let scrollLeftVal: number;
 
   el.addEventListener("mousedown", (e: MouseEvent) => {
     isDown = true;
     el.classList.add("active");
     startX = e.pageX - el.offsetLeft;
-    scrollLeft = el.scrollLeft;
+    scrollLeftVal = el.scrollLeft;
   });
 
   el.addEventListener("mouseleave", () => (isDown = false));
@@ -150,7 +188,7 @@ onMounted(() => {
     e.preventDefault();
     const x = e.pageX - el.offsetLeft;
     const walk = (x - startX) * 1.5;
-    el.scrollLeft = scrollLeft - walk;
+    el.scrollLeft = scrollLeftVal - walk;
   });
 });
 </script>

@@ -32,7 +32,6 @@
 const route = useRoute();
 const { newsList, load, loading } = useNews();
 
-// Resolve article reactively from API-backed list, fallback placeholder while loading
 const article = computed(() => {
   return newsList.value.find((n) => n.slug === route.params.news) || {
     title: "Memuat...",
@@ -43,7 +42,6 @@ const article = computed(() => {
   };
 });
 
-// Ensure list is loaded when navigating directly to detail page
 onMounted(() => {
   if (!newsList.value.length) {
     load();

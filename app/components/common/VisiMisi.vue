@@ -28,7 +28,8 @@
         class="bg-white rounded-2xl overflow-visible shadow-lg hover:shadow-2xl transition-all duration-300 group relative">
         <div
           class="relative h-48 overflow-hidden rounded-t-2xl bg-gradient-to-br from-gray-100 to-gray-200">
-          <NuxtImg
+          <img
+            loading="lazy"
             :src="card.image"
             :alt="card.title"
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
@@ -72,10 +73,12 @@
 </template>
 
 <script setup lang="ts">
-import type { SchoolProfileContent } from "~/types/info"
-import profileDataJson from "~/contents/visimisi.json"
+import type { SchoolProfileContent } from "~/types/info";
+import profileDataJson from "~/contents/visimisi.json";
 
-const content = ref<SchoolProfileContent>(profileDataJson as SchoolProfileContent)
+const content = ref<SchoolProfileContent>(
+  profileDataJson as SchoolProfileContent
+);
 </script>
 
 <style scoped>

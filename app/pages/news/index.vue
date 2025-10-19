@@ -2,8 +2,9 @@
   <div class="min-h-screen text-gray-900">
     <section
       class="relative flex items-center justify-center h-[60vh] overflow-hidden bg-black text-white mt-36 mx-6 rounded-3xl">
-      <NuxtImg
-        src="/images/PEKAN IT_22.jpg"
+      <img
+        loading="lazy"
+        src="/images/pekanit.jpg"
         alt="Hero background"
         class="absolute inset-0 w-full h-full object-cover opacity-50" />
       <div

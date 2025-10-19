@@ -139,8 +139,6 @@
 
 <script setup lang="ts">
 import { mockPersonalProfiles } from '~/utils/mockData'
-import type { PersonalProfile } from '~/types/personalProfile'
-import NavigationBar from '~/components/common/NavigationBar.vue'
 
 const route = useRoute()
 const username = computed(() => route.params.username as string)

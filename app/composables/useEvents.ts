@@ -1,174 +1,140 @@
-import type { CalendarEvent } from '~/types/calendar'
+// ~/composables/useEvents.ts
+
+import type { CalendarEvent } from "~/types/calendar";
+
+const isValidDate = (d: string | null | undefined): boolean => {
+  return !!d && d !== "0000-00-00";
+};
 
 export const useEvents = () => {
-  const api = useApi()
-  const events = ref<CalendarEvent[]>([])
-  const selectedEvent = ref<CalendarEvent | null>(null)
-  const loading = ref(false)
-  const error = ref<string | null>(null)
+  const api = useApi();
+  const events = ref<CalendarEvent[]>([]);
+  const selectedEvent = ref<CalendarEvent | null>(null);
+  const loading = ref(false);
+  const error = ref<string | null>(null);
 
-  // Fetch all events
   const fetchEvents = async () => {
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
 
     try {
-      const response = await api.event.getAll()
-      events.value = response.data || []
-      return events.value
+      const response: any = await api.event.getAll();
+      events.value = response || [];
+      return events.value;
     } catch (err: any) {
-      error.value = err.message || 'Gagal memuat acara'
-      console.error('Error fetching events:', err)
-      return []
+      error.value = err.message || "Gagal memuat events";
+      console.error("Error fetching events:", err);
+      return [];
     } finally {
-      loading.value = false
+      loading.value = false;
     }
-  }
+  };
 
-  // Fetch event by ID
+  const fetchEventsByDate = async (date: string) => {
+    loading.value = true;
+    error.value = null;
+
+    try {
+      const response: any = await api.event.getByDate(date);
+      return response;
+    } catch (err: any) {
+      error.value = err.message || "Gagal memuat events untuk tanggal ini";
+      console.error("Error fetching events by date:", err);
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
+
   const fetchEventById = async (id: number) => {
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
 
     try {
-      const response = await api.event.getById(id)
-      selectedEvent.value = response.data || null
-      return selectedEvent.value
+      const response: any = await api.event.getById(id);
+      selectedEvent.value = response || null;
+      return selectedEvent.value;
     } catch (err: any) {
-      error.value = err.message || 'Gagal memuat detail acara'
-      console.error('Error fetching event:', err)
-      return null
+      error.value = err.message || "Gagal memuat detail event";
+      console.error("Error fetching event:", err);
+      return null;
     } finally {
-      loading.value = false
+      loading.value = false;
     }
-  }
+  };
 
-  // Fetch events by category
   const fetchEventsByCategory = async (category: string) => {
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
 
     try {
-      const response = await api.event.getByCategory(category)
-      events.value = response.data || []
-      return events.value
+      const response: any = await api.event.getByCategory(category);
+      events.value = response || [];
+      return events.value;
     } catch (err: any) {
-      error.value = err.message || 'Gagal memuat acara'
-      console.error('Error fetching events by category:', err)
-      return []
+      error.value = err.message || "Gagal memuat events berdasarkan kategori";
+      console.error("Error fetching events by category:", err);
+      return [];
     } finally {
-      loading.value = false
+      loading.value = false;
     }
-  }
+  };
 
-  // Create new event
-  const createEvent = async (eventData: {
-    title: string
-    description: string
-    category: string
-    start_date: string
-    end_date: string
-    location: string
-    organizer: string
-    image?: File
-  }) => {
-    loading.value = true
-    error.value = null
+  const getEventsByDate = (dateString: string) => {
+    return events.value.filter((event) => {
+      let eventDate = event.event_date || event.start_date;
+      let endDate = event.end_date || eventDate;
 
-    try {
-      const response = await api.event.create(eventData)
+      if (!isValidDate(eventDate)) return false;
+      if (!isValidDate(endDate)) endDate = eventDate;
 
-      // Refresh events list after creating
-      await fetchEvents()
+      return dateString >= eventDate && dateString <= endDate;
+    });
+  };
 
-      return { success: true, data: response.data }
-    } catch (err: any) {
-      error.value = err.message || 'Gagal membuat acara'
-      console.error('Error creating event:', err)
-      return { success: false, error: error.value }
-    } finally {
-      loading.value = false
-    }
-  }
+  const getEventsByDateRange = (startDate: string, endDate: string) => {
+    return events.value.filter((event) => {
+      let eventStartDate = event.event_date || event.start_date;
+      let eventEndDate = event.end_date || eventStartDate;
 
-  // Update event
-  const updateEvent = async (id: number, eventData: {
-    title: string
-    description: string
-    category: string
-    start_date: string
-    end_date: string
-    location: string
-    organizer: string
-    image?: File
-  }) => {
-    loading.value = true
-    error.value = null
+      if (!isValidDate(eventStartDate)) return false;
+      if (!isValidDate(eventEndDate)) eventEndDate = eventStartDate;
 
-    try {
-      const response = await api.event.update(id, eventData)
+      return (
+        (eventStartDate >= startDate && eventStartDate <= endDate) ||
+        (eventEndDate >= startDate && eventEndDate <= endDate) ||
+        (eventStartDate <= startDate && eventEndDate >= endDate)
+      );
+    });
+  };
 
-      // Refresh events list after updating
-      await fetchEvents()
-
-      return { success: true, data: response.data }
-    } catch (err: any) {
-      error.value = err.message || 'Gagal memperbarui acara'
-      console.error('Error updating event:', err)
-      return { success: false, error: error.value }
-    } finally {
-      loading.value = false
-    }
-  }
-
-  // Delete event
-  const deleteEvent = async (id: number) => {
-    loading.value = true
-    error.value = null
-
-    try {
-      await api.event.delete(id)
-
-      // Remove from local state
-      events.value = events.value.filter(event => event.id !== id)
-
-      return { success: true }
-    } catch (err: any) {
-      error.value = err.message || 'Gagal menghapus acara'
-      console.error('Error deleting event:', err)
-      return { success: false, error: error.value }
-    } finally {
-      loading.value = false
-    }
-  }
-
-  // Get events for specific date
-  const getEventsByDate = (date: string) => {
-    return events.value.filter(event => {
-      // Check if date falls between start_date and end_date
-      const eventStartDate = event.event_date || event.start_date
-      const eventEndDate = event.end_date || event.event_date || event.start_date
-
-      return date >= eventStartDate && date <= eventEndDate
-    })
-  }
-
-  // Get upcoming events
-  const getUpcomingEvents = (limit?: number) => {
-    const today = new Date().toISOString().split('T')[0]
-    const upcoming = events.value
-      .filter(event => {
-        const eventDate = event.event_date || event.start_date
-        return eventDate >= today
+  const getUpcomingEvents = () => {
+    const today = new Date().toISOString().split("T")[0];
+    return events.value
+      .filter((event) => {
+        const eventDate = event.event_date || event.start_date;
+        return isValidDate(eventDate) && eventDate >= today;
       })
       .sort((a, b) => {
-        const dateA = a.event_date || a.start_date
-        const dateB = b.event_date || b.start_date
-        return dateA.localeCompare(dateB)
-      })
+        const dateA = a.event_date || a.start_date;
+        const dateB = b.event_date || b.start_date;
+        return dateA.localeCompare(dateB);
+      });
+  };
 
-    return limit ? upcoming.slice(0, limit) : upcoming
-  }
+  const getPastEvents = () => {
+    const today = new Date().toISOString().split("T")[0];
+    return events.value
+      .filter((event) => {
+        const eventDate = event.event_date || event.start_date;
+        return isValidDate(eventDate) && eventDate < today;
+      })
+      .sort((a, b) => {
+        const dateA = a.event_date || a.start_date;
+        const dateB = b.event_date || b.start_date;
+        return dateB.localeCompare(dateA);
+      });
+  };
 
   return {
     events,
@@ -176,12 +142,12 @@ export const useEvents = () => {
     loading,
     error,
     fetchEvents,
+    fetchEventsByDate, // tetap ada, tapi jangan dipakai untuk ganti state
     fetchEventById,
     fetchEventsByCategory,
-    createEvent,
-    updateEvent,
-    deleteEvent,
     getEventsByDate,
-    getUpcomingEvents
-  }
-}
+    getEventsByDateRange,
+    getUpcomingEvents,
+    getPastEvents,
+  };
+};
