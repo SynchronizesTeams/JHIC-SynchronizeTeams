@@ -157,34 +157,34 @@ export const useApi: any = () => {
 
     // User Links API
     userLinks: {
-      create: async (linkData: UserLink) => {
+      create: async (linkData: { title: string; url: string; icon: string | File }) => {
         try {
-          // Create FormData with only title and url
-          // Icon is stored locally, not sent to backend
+          const { iconToFile } = await import('~/utils/socialIcons');
+          
           const formData = new FormData();
           formData.append("title", linkData.title);
           formData.append("url", linkData.url);
+          
+          // Convert icon to File object for backend
+          let iconFile: File;
+          if (linkData.icon instanceof File) {
+            iconFile = linkData.icon;
+          } else {
+            // Convert string icon identifier to File
+            iconFile = iconToFile(linkData.icon);
+          }
+          formData.append("icon", iconFile);
 
           const headers = getAuthHeaders();
-          const url = buildEndpoint(
-            `${config.public.apiUserLinksEndpoint}/add`
-          );
-          logRequest("POST", url, { title: linkData.title, url: linkData.url });
+          // Direct URL construction with double /api
+          const url = `${BASE_URL}/api/v1${config.public.apiUserLinksEndpoint}/add`;
+          logRequest("POST", url, { title: linkData.title, url: linkData.url, icon: 'file' });
 
           const response = await $fetch(url, {
             method: "POST",
             headers,
             body: formData,
           });
-
-          // Store icon locally if response successful
-          if (response && linkData.icon) {
-            // We'll store the icon identifier locally
-            localStorage.setItem(
-              `userlink_icon_${linkData.title}`,
-              linkData.icon
-            );
-          }
 
           return response;
         } catch (error: any) {
@@ -195,36 +195,34 @@ export const useApi: any = () => {
         }
       },
 
-      update: async (id: number, linkData: UserLink) => {
+      update: async (id: number, linkData: { title: string; url: string; icon: string | File }) => {
         try {
-          // Create FormData with only title and url
+          const { iconToFile } = await import('~/utils/socialIcons');
+          
           const formData = new FormData();
           formData.append("title", linkData.title);
           formData.append("url", linkData.url);
+          
+          // Convert icon to File object for backend
+          let iconFile: File;
+          if (linkData.icon instanceof File) {
+            iconFile = linkData.icon;
+          } else {
+            // Convert string icon identifier to File
+            iconFile = iconToFile(linkData.icon);
+          }
+          formData.append("icon", iconFile);
 
           const headers = getAuthHeaders();
-          const url = buildEndpoint(
-            `${config.public.apiUserLinksEndpoint}/edit/${id}`
-          );
-          logRequest("POST", url, {
-            id,
-            title: linkData.title,
-            url: linkData.url,
-          });
+          // Direct URL construction with double /api
+          const url = `${BASE_URL}/api/v1${config.public.apiUserLinksEndpoint}/edit/${id}`;
+          logRequest("POST", url, { id, title: linkData.title, url: linkData.url, icon: 'file' });
 
           const response = await $fetch(url, {
             method: "POST",
             headers,
             body: formData,
           });
-
-          // Store icon locally if response successful
-          if (response && linkData.icon) {
-            localStorage.setItem(
-              `userlink_icon_${linkData.title}`,
-              linkData.icon
-            );
-          }
 
           return response;
         } catch (error: any) {
@@ -234,9 +232,8 @@ export const useApi: any = () => {
       },
 
       delete: async (id: number) => {
-        const url = buildEndpoint(
-          `${config.public.apiUserLinksEndpoint}/delete/${id}`
-        );
+        // Direct URL construction with double /api
+        const url = `${BASE_URL}/api/v1${config.public.apiUserLinksEndpoint}/delete/${id}`;
         logRequest("DELETE", url);
         return await $fetch(url, {
           method: "DELETE",
@@ -245,13 +242,21 @@ export const useApi: any = () => {
       },
 
       getSelf: async () => {
-        const url = buildEndpoint(
-          `${config.public.apiUserLinksEndpoint}/show/self`
-        );
+        // Direct URL construction with double /api
+        const url = `${BASE_URL}/api/v1${config.public.apiUserLinksEndpoint}/show/self`;
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
           headers: getAuthHeaders(),
+        });
+      },
+
+      getByUserId: async (userId: number) => {
+        // Direct URL construction with double /api - public endpoint
+        const url = `${BASE_URL}/api/v1/public/user-link/show/${userId}`;
+        logRequest("GET", url);
+        return await $fetch(url, {
+          method: "GET",
         });
       },
     },
@@ -576,7 +581,7 @@ export const useApi: any = () => {
     portal: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `${config.public.apiPortalEndpoint}/show/${id}`
+          `/public${config.public.apiPortalEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -586,11 +591,10 @@ export const useApi: any = () => {
       },
 
       getAll: async () => {
-        const url = buildEndpoint(`${config.public.apiPortalEndpoint}/showAll`);
+        const url = buildEndpoint(`/public${config.public.apiPortalEndpoint}/showAll`);
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
-          headers: getAuthHeaders(),
         });
       },
     },
@@ -744,24 +748,20 @@ export const useApi: any = () => {
     // Testimonial API
     testimonial: {
       getById: async (id: number) => {
-        const url = buildEndpoint(
-          `${config.public.apiTestimonialEndpoint}/show/${id}`
-        );
+        // Direct URL construction with double /api (as per backend requirement)
+        const url = `${BASE_URL}/api/v1${config.public.apiTestimonialEndpoint}/show/${id}`;
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
-          headers: getAuthHeaders(),
         });
       },
 
       getAll: async () => {
-        const url = buildEndpoint(
-          `${config.public.apiTestimonialEndpoint}/showAll`
-        );
+        // Direct URL construction with double /api (as per backend requirement)
+        const url = `${BASE_URL}/api/v1/public${config.public.apiTestimonialEndpoint}/showAll`;
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
-          headers: getAuthHeaders(),
         });
       },
     },

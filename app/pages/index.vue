@@ -93,7 +93,6 @@
 <script lang="ts" setup>
 import achievementsDataJson from "~/contents/achievements.json";
 import faqsDataJson from "~/contents/faqs.json";
-import testimonialsDataJson from "~/contents/testimonials.json";
 import type { News } from "../types/news";
 import { mockAchievements } from "~/utils/mockData";
 
@@ -148,16 +147,21 @@ const {
   loading: galleryLoading,
   error: galleryError,
 } = useGallery();
+const {
+  testimonials: testimonialsData,
+  loading: testimonialsLoading,
+  error: testimonialsError,
+} = useTestimonials();
 
 const mainNews = computed<News>(() => newsList.value[0]!);
 const secondaryNews = computed<News[]>(() => newsList.value);
 
 const achievementsData = ref(mockAchievements);
-const testimonialsData = ref(testimonialsDataJson as any);
 const faqData = ref(faqsDataJson as any);
 
 onMounted(() => {
-  console.log("asasas", galleryImages);
+  console.log("Gallery images:", galleryImages);
+  console.log("Testimonials:", testimonialsData);
 });
 </script>
 

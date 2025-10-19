@@ -4,10 +4,12 @@
       <!-- Logo dan Header -->
       <div class="text-center">
         <NuxtLink to="/" class="inline-block">
-          <NuxtImg
-            src="/images/penus/Logo.png"
+          <img
+            src="/images/penus/main-logo.png"
             alt="SMK Plus Pelita Nusantara"
             class="h-20 mx-auto"
+            format="webp"
+            loading="lazy"
           />
         </NuxtLink>
         <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -133,7 +135,7 @@ const handleLogin = async () => {
 
         // Redirect ke dashboard dengan username
         const username = profileResponse.data?.name || profileResponse.name || 'profile'
-        await router.push(`/dashboard/${username}`)
+        await router.push(`/dashboard/links`)
       } catch (profileError) {
         console.error('Error fetching profile:', profileError)
         // Tetap redirect meskipun gagal fetch profile

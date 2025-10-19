@@ -47,11 +47,14 @@
           </button>
 
           <div class="p-0 w-auto h-full">
-            <NuxtImg
+            <img
               ref="infographicImage"
               :src="imageSrc"
               alt="Infografis SMK PLUS PELITA NUSANTARA"
               class="w-full h-auto rounded-t-2xl"
+              format="webp"
+              quality="80"
+              loading="lazy"
               @load="handleImageLoad"
               @error="handleImageError"
             />

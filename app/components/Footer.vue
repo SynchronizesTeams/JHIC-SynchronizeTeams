@@ -101,6 +101,12 @@
               :to="`/personal-profile/${user.name || 'profile'}`"
               >Personal Profile</NuxtLink
             >
+            <br>
+            <NuxtLink
+              class="hover:text-secondary-red transition-all duration-300"
+              :to="`/dashboard/links`"
+              >Dashboard Personal</NuxtLink
+            >
           </li>
           <li v-else>
             <NuxtLink
