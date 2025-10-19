@@ -90,7 +90,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
-  imageSrc: '/images/penus/Logo.png',
+  imageSrc: '/images/penus/main-logo.png',
   autoShow: true,
   showFooter: true,
   storageKey: 'infographic-popup-shown'

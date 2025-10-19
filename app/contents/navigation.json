@@ -1,5 +1,5 @@
 {
-  "logoSrc": "/images/penus/Logo.png",
+  "logoSrc": "/images/penus/main-logo.png",
   "menuItems": [
     { "name": "Beranda", "path": "/", "section": "home" },
     { "name": "Tentang Kami", "path": "/about", "section": "about" },
