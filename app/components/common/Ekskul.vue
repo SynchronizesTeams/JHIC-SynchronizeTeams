@@ -98,12 +98,10 @@ const fetchEskul = async () => {
 
     ekskulList.value = data.map((item) => {
       const slug = item.name.toLowerCase().replace(/[\s_]+/g, '-');
-      const imageUrl = item.image
-        ? `${apiUrl}/${item.image}`
-        : 'https://via.placeholder.com/800x600?text=Eskul';
+      const imageUrl = `${apiUrl}/${item.image}`
       
-      // Karena API tidak menyediakan logo, kita gunakan placeholder
-      const logoUrl = 'https://via.placeholder.com/150?text=Logo'; 
+      // Logo gher
+      const logoUrl = 'logo'; 
 
       return {
         id: item.id,

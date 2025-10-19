@@ -670,7 +670,7 @@ export const useApi: any = () => {
     achievement: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `/public${config.public.apiAchievementEndpoint}/show/${id}`
+          `/public/${config.public.apiAchievementEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -695,7 +695,7 @@ export const useApi: any = () => {
     industry: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `${config.public.apiIndustryEndpoint}/show/${id}`
+          `/public/${config.public.apiIndustryEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -706,7 +706,7 @@ export const useApi: any = () => {
 
       getAll: async () => {
         const url = buildEndpoint(
-          `${config.public.apiIndustryEndpoint}/showAll`
+          `/public/${config.public.apiIndustryEndpoint}/showAll`
         );
         logRequest("GET", url);
         return await $fetch(url, {

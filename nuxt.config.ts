@@ -56,6 +56,7 @@ export default defineNuxtConfig({
       apiEventEndpoint: process.env.NUXT_PUBLIC_API_EVENT_ENDPOINT || "/event",
       apiImageEndpoint: process.env.NUXT_PUBLIC_API_IMAGE_ENDPOINT || "/image",
       apiEskulEndpoint: process.env.NUXT_PUBLIC_API_ESKUL_ENDPOINT || "/eskul",
+      apiIndustryEndpoint: process.env.NUXT_PUBLIC_API_INDUSTRY_ENDPOINT || "/industry",
       apiPortalEndpoint:
         process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || "/portal",
       apiGuestBookEndpoint:
