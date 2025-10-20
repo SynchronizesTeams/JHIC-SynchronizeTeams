@@ -126,9 +126,11 @@ watch(isVisible, (newVal) => {
 
 const closePopup = () => {
   isVisible.value = false
-  // if (props.autoShow && props.storageKey) {
-  //   localStorage.setItem(props.storageKey, 'true')
-  // }
+  if (props.autoShow && props.storageKey) {
+    // Save current timestamp to localStorage
+    const currentTime = new Date().getTime()
+    localStorage.setItem(props.storageKey, currentTime.toString())
+  }
 }
 
 const handleBackdropClick = () => {
@@ -148,8 +150,19 @@ const handleImageError = () => {
 
 const shouldShowPopup = () => {
   if (props.autoShow && props.storageKey) {
-    const hasSeenPopup = localStorage.getItem(props.storageKey) === 'true'
-    return !hasSeenPopup
+    const lastShownTime = localStorage.getItem(props.storageKey)
+    
+    if (!lastShownTime) {
+      // Never shown before, should show
+      return true
+    }
+    
+    const currentTime = new Date().getTime()
+    const timeDiff = currentTime - parseInt(lastShownTime)
+    const hoursInMs = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+    
+    // Show popup if more than 24 hours have passed
+    return timeDiff >= hoursInMs
   }
   return props.modelValue || false
 }

@@ -154,7 +154,7 @@ const api = useApi()
 const config = useRuntimeConfig()
 const BASE_URL = config.public.apiBaseUrl.replace('/api', '')
 
-const usernameParam = computed(() => route.params.username as string)
+const userIdParam = computed(() => parseInt(route.params.id as string))
 
 // State
 const profileData = ref<any>(null)
@@ -220,7 +220,7 @@ const fetchProfile = async (userId: number) => {
 // Copy to clipboard
 const copied = ref(false)
 const copyProfileLink = async () => {
-  const profileUrl = `${window.location.origin}/personal-profile/${usernameParam.value}`
+  const profileUrl = `${window.location.origin}/personal-profile/${userIdParam.value}`
 
   try {
     await navigator.clipboard.writeText(profileUrl)
@@ -238,7 +238,7 @@ const copyProfileLink = async () => {
 const shareProfile = async () => {
   if (!profile.value) return
 
-  const profileUrl = `${window.location.origin}/personal-profile/${usernameParam.value}`
+  const profileUrl = `${window.location.origin}/personal-profile/${userIdParam.value}`
   const shareData = {
     title: `${profile.value.name} - Personal Profile`,
     text: profile.value.bio || `Check out ${profile.value.name}'s profile`,
@@ -267,28 +267,18 @@ const shareProfile = async () => {
 // Track link clicks
 const trackLinkClick = (linkId: number) => {
   console.log(`Link clicked: ${linkId}`)
-  // Could add analytics API call here
 }
 
-// On mount, try to get user ID from username or use as ID directly
+// On mount, fetch profile by user ID
 onMounted(async () => {
-  // For now, assume username param is user ID or fetch from logged-in user
-  const { user } = useAuth()
+  const userId = userIdParam.value
   
-  // If viewing own profile (logged in user's username matches)
-  if (user.value && user.value.name?.split(' ')[0]?.toLowerCase() === usernameParam.value.toLowerCase()) {
-    await fetchProfile(user.value.id)
+  if (isNaN(userId) || userId <= 0) {
+    error.value = 'Invalid user ID'
   } else {
-    // Try parsing username as ID (fallback)
-    const userId = parseInt(usernameParam.value)
-    if (!isNaN(userId)) {
-      await fetchProfile(userId)
-    } else {
-      error.value = 'Invalid profile'
-    }
+    await fetchProfile(userId)
   }
   
-  // Show 404 if profile not found
   if (error.value) {
     throw createError({
       statusCode: 404,
@@ -297,7 +287,7 @@ onMounted(async () => {
   }
 })
 
-// SEO Meta - Watch profile and update dynamically
+// SEO Meta
 watch(profile, (newProfile) => {
   if (newProfile) {
     useSeoMeta({
