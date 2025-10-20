@@ -3,9 +3,20 @@
 
     <div class="max-w-6xl mx-auto px-4 py-8">
       <!-- Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-primary-gray mb-2">Dashboard</h1>
-        <p class="text-primary-gray/60">Kelola profile dan link Anda</p>
+      <div class="mb-8 flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-primary-gray mb-2">Dashboard</h1>
+          <p class="text-primary-gray/60">Kelola profile dan link Anda</p>
+        </div>
+        <button
+          @click="handleLogout"
+          class="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition-all shadow-sm"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          Logout
+        </button>
       </div>
 
       <!-- Tabs -->
@@ -506,10 +517,11 @@ import { SOCIAL_ICONS } from '~/utils/socialIcons'
 const activeTab = ref<'profile' | 'links'>('profile')
 
 // User data for profile editing - Initialize with logged-in user data
-const { user, token, editProfile } = useAuth()
+const { user, token, editProfile, logout } = useAuth()
 const api = useApi()
 const config = useRuntimeConfig()
 const BASE_URL = config.public.apiBaseUrl.replace('/api', '')
+const router = useRouter()
 
 // Helper function to get full photo URL
 const getPhotoUrl = (photoUrl: string | undefined): string | undefined => {
@@ -811,6 +823,14 @@ const moveDown = (index: number) => {
       link.order = i + 1
     })
     // In real app: await $fetch('/api/links/reorder', { method: 'PATCH', body: { orders: links.value.map(l => ({ id: l.id, order: l.order })) } })
+  }
+}
+
+// Logout function
+const handleLogout = () => {
+  if (confirm('Apakah Anda yakin ingin keluar?')) {
+    logout()
+    router.push('/')
   }
 }
 
