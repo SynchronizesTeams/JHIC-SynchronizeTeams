@@ -69,7 +69,7 @@
               </div>
             </div>
             <NuxtLink
-              :to="`/personal-profile/${currentUser.username}`"
+              :to="`/personal-profile/${currentUser.userId}`"
               target="_blank"
               class="flex items-center gap-2 px-4 py-2 bg-primary-white border-2 border-primary-gray/20 text-primary-gray rounded-full text-sm font-semibold hover:bg-primary-gray/5 hover:border-secondary-red/30 hover:text-secondary-red transition-all"
             >
