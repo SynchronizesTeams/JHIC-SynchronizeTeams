@@ -98,7 +98,7 @@
           <li v-if="user">
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              :to="`/personal-profile/${user.name || 'profile'}`"
+              :to="`/personal-profile/${userIdFromLocalStorage || 'profile'}`"
               >Personal Profile</NuxtLink
             >
             <br>
@@ -146,7 +146,22 @@
 </template>
 
 <script setup lang="ts">
-const currentYear = computed(() => new Date().getFullYear())
+const currentYear = ref(new Date().getFullYear())
+const userIdFromLocalStorage = ref<string | null>(null)
+
+onMounted(() => {
+  if (process.client) {
+    const userData = localStorage.getItem('user_data')
+    if (userData) {
+      try {
+        const parsedData = JSON.parse(userData)
+        userIdFromLocalStorage.value = parsedData.id ? String(parsedData.id) : null
+      } catch (e) {
+        console.error('Error parsing user_data from localStorage:', e)
+      }
+    }
+  }
+})
 const { user } = useAuth()
 </script>
 
