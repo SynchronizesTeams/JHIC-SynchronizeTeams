@@ -47,9 +47,9 @@
             <div
               :key="currentEkskul.id"
               class="flex flex-col items-center lg:items-start">
-              <NuxtImg
-                :src="currentEkskul.logo"
-                :alt="`Logo ${currentEkskul.title}`"
+              <img
+                loading="lazy"
+                src="/penus-icon.webp"
                 class="w-24 h-24 rounded-full object-cover mb-6 bg-white p-2 shadow-md border" />
               <h3 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
                 {{ currentEkskul.title }}
