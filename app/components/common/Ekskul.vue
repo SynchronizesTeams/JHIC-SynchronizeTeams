@@ -48,8 +48,8 @@
               :key="currentEkskul.id"
               class="flex flex-col items-center lg:items-start">
               <img
-                loading="lazy"
                 src="/penus-icon.webp"
+                :alt="`Logo ${currentEkskul.title}`"
                 class="w-24 h-24 rounded-full object-cover mb-6 bg-white p-2 shadow-md border" />
               <h3 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
                 {{ currentEkskul.title }}
@@ -70,7 +70,7 @@
           </transition>
         </div>
       </div>
-      
+
       <div v-else class="text-center text-gray-500 py-20">
         Belum ada data ekstrakurikuler untuk ditampilkan.
       </div>
@@ -99,9 +99,9 @@ const fetchEskul = async () => {
     ekskulList.value = data.map((item) => {
       const slug = item.name.toLowerCase().replace(/[\s_]+/g, '-');
       const imageUrl = `${apiUrl}/${item.image}`
-      
+
       // Logo gher
-      const logoUrl = 'logo'; 
+      const logoUrl = 'logo';
 
       return {
         id: item.id,

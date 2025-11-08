@@ -8,6 +8,17 @@
           <div class="flex items-center justify-between">
             <div class="flex-1">
               <div class="flex items-center gap-2">
+                <!-- Back Button -->
+                <button
+                  @click="router.push('/forums')"
+                  class="flex items-center justify-center p-2 text-primary-gray hover:bg-primary-gray/10 rounded-lg transition-colors mr-1"
+                  title="Kembali ke Forum"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                </button>
+
                 <h1 class="text-xl sm:text-2xl font-bold text-primary-gray capitalize">{{ channelData?.name || channel }}</h1>
 
                 <!-- Channel Dropdown Button -->
@@ -131,8 +142,9 @@
 
       <!-- Create Post Modal -->
       <CreatePostModal
-        v-if="showCreatePost"
-        :channel="channel"
+        v-if="showCreatePost && channelData"
+        :channel="channelData.name"
+        :section-id="channelData.id"
         @close="showCreatePost = false"
         @post="handleCreatePost"
       />
@@ -177,6 +189,35 @@ const fetchForumSections = async () => {
   }
 }
 
+// Transform API response to match Post interface
+const transformPostData = (apiPost: any) => {
+  const config = useRuntimeConfig()
+  const baseImageUrl = config.public.apiBaseUrl || 'https://infra.synchronizeteams.my.id/api'
+
+  return {
+    id: apiPost.id?.toString() || '',
+    title: apiPost.title || '',
+    content: apiPost.content || '',
+    author: {
+      id: apiPost.user?.id?.toString() || '',
+      username: apiPost.user?.name?.toLowerCase().replace(/\s+/g, '') || 'user',
+      name: apiPost.user?.name || 'Anonymous',
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${apiPost.user?.name || 'user'}`,
+      role: 'public' as const
+    },
+    createdAt: apiPost.created_at || new Date().toISOString(),
+    updatedAt: apiPost.updated_at || apiPost.created_at || new Date().toISOString(),
+    channel: channelData.value?.slug || channel.value,
+    images: apiPost.image ? [`${baseImageUrl}/${apiPost.image}`] : [],
+    upvotes: apiPost.upvote || 0,
+    downvotes: apiPost.downvote || 0,
+    userVote: null,
+    commentsCount: apiPost.reply_count || 0,
+    isPinned: apiPost.is_pinned || false,
+    views: apiPost.views || 0
+  }
+}
+
 // Fetch posts for current channel
 const fetchPosts = async () => {
   try {
@@ -184,14 +225,28 @@ const fetchPosts = async () => {
     const response: any = await api.forumPost.getAll()
     const allPosts = response.data || response || []
 
-    // Filter posts by current channel (by section_id)
+    console.log('🔍 All posts from API:', allPosts)
+    console.log('📍 Current channel data:', channelData.value)
+
+    // Filter posts by current channel (by section.id)
+    let filteredPosts = allPosts
     if (channelData.value) {
-      posts.value = allPosts.filter((post: any) => post.section_id === channelData.value.id)
-    } else {
-      posts.value = allPosts
+      filteredPosts = allPosts.filter((post: any) => post.section?.id === channelData.value.id)
+      console.log(`✅ Filtered posts for section ID ${channelData.value.id}:`, filteredPosts)
     }
+
+    // Sort posts by created_at (newest first)
+    filteredPosts.sort((a: any, b: any) => {
+      const dateA = new Date(a.created_at).getTime()
+      const dateB = new Date(b.created_at).getTime()
+      return dateB - dateA // Descending order (newest first)
+    })
+
+    // Transform API data to match Post interface
+    posts.value = filteredPosts.map(transformPostData)
+    console.log('🎨 Transformed posts:', posts.value)
   } catch (err) {
-    console.error('Error fetching posts:', err)
+    console.error('❌ Error fetching posts:', err)
     // Fallback to mock data
     const { mockPosts } = await import('~/utils/mockData')
     posts.value = mockPosts.filter(post => post.channel === channel.value)
@@ -254,24 +309,8 @@ const handleDownvote = async (postId: string) => {
 }
 
 const handleCreatePost = async (postData: any) => {
-  try {
-    if (!channelData.value) {
-      console.error('No channel data')
-      return
-    }
-
-    await api.forumPost.create({
-      section_id: channelData.value.id,
-      title: postData.title,
-      content: postData.content,
-      image: postData.image
-    })
-
-    showCreatePost.value = false
-    // Refresh posts to show new post
-    await fetchPosts()
-  } catch (err) {
-    console.error('Error creating post:', err)
-  }
+  // Post sudah dibuat di dalam modal, tinggal refresh posts
+  showCreatePost.value = false
+  await fetchPosts()
 }
 </script>

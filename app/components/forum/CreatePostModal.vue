@@ -18,8 +18,8 @@
       <div class="p-3 sm:p-4">
         <!-- User Info -->
         <div class="flex items-center space-x-3 mb-4">
-          <NuxtImg 
-            :src="currentUser?.avatar" 
+          <NuxtImg
+            :src="currentUser?.avatar"
             :alt="currentUser?.name"
             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
           />
@@ -29,6 +29,14 @@
           </div>
         </div>
 
+        <!-- Post Title -->
+        <input
+          v-model="title"
+          placeholder="Judul Post"
+          class="w-full p-2 sm:p-3 text-sm bg-primary-gray text-primary-text border border-primary-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-red mb-3"
+          maxlength="100"
+        >
+
         <!-- Post Content -->
         <textarea
           v-model="content"
@@ -36,9 +44,14 @@
           class="w-full h-28 sm:h-32 p-2 sm:p-3 text-sm bg-primary-gray text-primary-text border border-primary-white/20 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-secondary-red"
           maxlength="500"
         ></textarea>
-        
+
         <div class="text-right text-xs sm:text-sm text-primary-white/60 mt-1">
           {{ content.length }}/500
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="error" class="mt-3 p-2 sm:p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+          <p class="text-xs sm:text-sm text-red-500">{{ error }}</p>
         </div>
 
         <!-- Image Upload -->
@@ -51,16 +64,16 @@
             class="hidden"
             @change="handleImageUpload"
           >
-          
+
           <!-- Image Preview -->
           <div v-if="images.length > 0" class="grid grid-cols-2 gap-1.5 sm:gap-2 mb-3">
-            <div 
-              v-for="(image, index) in images" 
+            <div
+              v-for="(image, index) in images"
               :key="index"
               class="relative"
             >
-              <NuxtImg 
-                :src="image.preview" 
+              <NuxtImg
+                :src="image.preview"
                 :alt="`Upload ${index + 1}`"
                 class="w-full h-24 sm:h-32 object-cover rounded-lg"
               />
@@ -103,7 +116,7 @@
           </button>
           <button
             @click="handleSubmit"
-            :disabled="!content.trim() || submitting"
+            :disabled="!title.trim() || !content.trim() || submitting"
             class="px-3 sm:px-4 py-1.5 sm:py-2 text-sm bg-secondary-red text-primary-text rounded-lg hover:bg-secondary-red/80 disabled:bg-primary-gray disabled:cursor-not-allowed transition-colors"
           >
             {{ submitting ? 'Posting...' : 'Post' }}
@@ -117,30 +130,49 @@
 <script setup lang="ts">
 const props = defineProps<{
   channel: string
+  sectionId: number
 }>()
+
+const { forumPost } = useApi()
 
 const emit = defineEmits<{
   close: []
   post: [data: any]
 }>()
 
+const title = ref('')
 const content = ref('')
 const images = ref<Array<{file: File, preview: string}>>([])
 const submitting = ref(false)
 const fileInput = ref<HTMLInputElement>()
+const error = ref('')
 
-// Mock current user
-const currentUser = ref({
-  id: '1',
-  name: 'John Doe',
-  username: 'john_doe',
-  avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John'
+// Get current user from auth or localStorage
+const auth = useAuth()
+const currentUser = computed(() => {
+  if (auth.user.value) {
+    return {
+      id: auth.user.value.id,
+      name: auth.user.value.name,
+      avatar: auth.user.value.photo_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${auth.user.value.name}`
+    }
+  }
+
+  // Fallback to localStorage
+  const userId = localStorage.getItem('userId')
+  const userName = localStorage.getItem('userName')
+
+  return {
+    id: userId || '1',
+    name: userName || 'User',
+    avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${userName || 'User'}`
+  }
 })
 
 const handleImageUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const files = Array.from(target.files || [])
-  
+
   files.forEach(file => {
     if (file.type.startsWith('image/') && images.value.length < 4) {
       const reader = new FileReader()
@@ -160,21 +192,35 @@ const removeImage = (index: number) => {
 }
 
 const handleSubmit = async () => {
-  if (!content.trim()) return
-  
+  if (!title.value.trim() || !content.value.trim()) return
+
   submitting.value = true
-  
+  error.value = ''
+
   try {
-    const postData = {
-      content: content.trim(),
-      channel: props.channel,
-      images: images.value.map(img => img.preview)
+    // Prepare post data
+    const postData: any = {
+      section_id: props.sectionId,
+      title: title.value.trim(),
+      content: content.value.trim()
     }
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    emit('post', postData)
+
+    // Add first image if exists (API only supports single image)
+    if (images.value.length > 0) {
+      postData.image = images.value[0].file
+    }
+
+    // Create post using API
+    const response = await forumPost.create(postData)
+
+    // Emit success
+    emit('post', response.data)
+
+    // Close modal
+    emit('close')
+  } catch (err: any) {
+    console.error('Error creating post:', err)
+    error.value = err.data?.message || 'Gagal membuat post. Silakan coba lagi.'
   } finally {
     submitting.value = false
   }

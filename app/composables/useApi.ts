@@ -18,7 +18,7 @@ import type {
 
 export const useApi: any = () => {
   const config = useRuntimeConfig();
-  const BASE_URL = config.public.apiBaseUrl || "http://localhost:3001/api";
+  const BASE_URL = config.public.apiBaseUrl || "https://infra.synchronizeteams.my.id/api";
   const API_VERSION = config.public.apiVersion || "v1";
 
   // Helper untuk membuat endpoint URL
@@ -160,11 +160,11 @@ export const useApi: any = () => {
       create: async (linkData: { title: string; url: string; icon: string | File }) => {
         try {
           const { iconToFile } = await import('~/utils/socialIcons');
-          
+
           const formData = new FormData();
           formData.append("title", linkData.title);
           formData.append("url", linkData.url);
-          
+
           // Convert icon to File object for backend
           let iconFile: File;
           if (linkData.icon instanceof File) {
@@ -198,11 +198,11 @@ export const useApi: any = () => {
       update: async (id: number, linkData: { title: string; url: string; icon: string | File }) => {
         try {
           const { iconToFile } = await import('~/utils/socialIcons');
-          
+
           const formData = new FormData();
           formData.append("title", linkData.title);
           formData.append("url", linkData.url);
-          
+
           // Convert icon to File object for backend
           let iconFile: File;
           if (linkData.icon instanceof File) {
@@ -591,7 +591,7 @@ export const useApi: any = () => {
       },
 
       getAll: async () => {
-        const url = buildEndpoint(`/public${config.public.apiPortalEndpoint}/showAll`);
+        const url = buildEndpoint(`/public/${config.public.apiPortalEndpoint}/showAll`);
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",

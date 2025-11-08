@@ -62,7 +62,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
               <div class="relative">
-                <div v-if="photoPreview || userData.photo_url" class="w-16 h-16 rounded-full overflow-hidden">
+                <div v-if="photoPreview || userData.photo_url" class="w-16 h-16 object-fit rounded-full overflow-hidden">
                   <img :src="photoPreview || userData.photo_url" :alt="userData.name" class="w-full h-full object-cover" />
                 </div>
                 <div v-else class="w-16 h-16 rounded-full bg-gradient-to-br from-secondary-red/20 to-primary-gray/10 flex items-center justify-center">
@@ -666,22 +666,34 @@ const updateProfile = async () => {
 
   isUpdatingProfile.value = true
   try {
-    // Prepare profile data
-    const profileData: any = {
-      name: userData.value.name,
-      email: userData.value.email
+    // Only send photo_url if a new photo was uploaded
+    if (!photoFile.value) {
+      alert('Tidak ada perubahan untuk disimpan')
+      isUpdatingProfile.value = false
+      return
     }
 
-    // Add photo if a new one was uploaded
-    if (photoFile.value) {
-      profileData.photo_url = photoFile.value
+    // Prepare profile data - only photo_url
+    const profileData: any = {
+      photo_url: photoFile.value
     }
 
     // Call the API
     const result = await editProfile(profileData)
 
-    if (result.success) {
-      alert('Profile berhasil diperbarui!')
+    console.log('📸 Edit profile response:', result)
+
+    // Handle different response formats
+    const responseData = result?.data || result
+
+    // Response is the updated user object directly or wrapped in data
+    if (responseData && (responseData.id || responseData.photo_url)) {
+      alert('Foto profile berhasil diperbarui!')
+
+      // Update userData with new photo_url
+      if (responseData.photo_url) {
+        userData.value.photo_url = getPhotoUrl(responseData.photo_url)
+      }
 
       // Clear photo preview after successful update
       photoPreview.value = null
@@ -690,11 +702,11 @@ const updateProfile = async () => {
         photoInput.value.value = ''
       }
     } else {
-      alert(result.error || 'Gagal memperbarui profile')
+      alert('Gagal memperbarui foto profile')
     }
   } catch (error: any) {
     console.error('Error updating profile:', error)
-    alert(error.message || 'Gagal memperbarui profile')
+    alert(error.data?.message || error.message || 'Gagal memperbarui foto profile')
   } finally {
     isUpdatingProfile.value = false
   }

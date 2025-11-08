@@ -26,6 +26,7 @@
 
           <!-- Post Content -->
           <div class="mt-1">
+            <h3 v-if="post.title" class="text-primary-gray font-bold text-base mb-1">{{ post.title }}</h3>
             <p class="text-primary-gray text-[15px] leading-relaxed whitespace-pre-wrap">{{ post.content }}</p>
           </div>
         </div>

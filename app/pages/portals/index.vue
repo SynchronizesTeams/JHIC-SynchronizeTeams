@@ -32,7 +32,7 @@
           </div>
 
           <!-- Username & Display Name -->
-          <h1 class="text-2xl font-bold text-secondary-red mb-1">@smkpnb</h1>
+          <h1 class="text-2xl font-bold text-secondary-red mb-1">@smkpluspnb</h1>
           <p class="text-primary-gray/60 text-sm mb-4">{{ profile.bio }}</p>
         </div>
       </div>
