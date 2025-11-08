@@ -36,7 +36,7 @@
           :to="`/forums/${channel.slug}`"
           class="group block h-full"
         >
-          <div class="flex h-full flex-col rounded-2xl bg-primary-white p-5 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex mx-5 md:mx-0 h-full flex-col rounded-2xl bg-primary-white p-5 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
             <div class="mb-4 flex items-center gap-3">
               <div
                 class="flex h-12 w-12 items-center justify-center rounded-xl"
@@ -127,6 +127,7 @@ useHead({
 
 const api = useApi()
 const channels = ref<any[]>([])
+const posts = ref<any[]>([])
 const loading = ref(true)
 const error = ref('')
 
@@ -148,14 +149,24 @@ const fetchForumSections = async () => {
   }
 }
 
+// Fetch all posts untuk menghitung jumlah post per section
+const fetchAllPosts = async () => {
+  try {
+    const response: any = await api.forumPost.getAll()
+    posts.value = response.data || response || []
+  } catch (err: any) {
+    console.error('Error fetching posts:', err)
+  }
+}
+
 // Fetch data saat komponen mounted
-onMounted(() => {
-  fetchForumSections()
+onMounted(async () => {
+  await fetchForumSections()
+  await fetchAllPosts()
 })
 
 const getChannelPostCount = (channelId: number) => {
-  // TODO: implement with real API data
-  return 0
+  return posts.value.filter((post: any) => post.section?.id === channelId).length
 }
 
 const getChannelColorClasses = (color?: string) => {

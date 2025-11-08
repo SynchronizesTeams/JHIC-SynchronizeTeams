@@ -28,10 +28,10 @@
           <div class="flex justify-center mb-4">
             <div class="relative" :class="profile?.coverImage ? '-mt-16' : ''">
               <div class="w-24 h-24 rounded-full bg-gradient-to-br from-secondary-red/20 to-primary-gray/10 absolute inset-0"></div>
-              <NuxtImg
+              <img
                 :src="profile?.avatar || '/penus-icon.webp'"
                 :alt="profile?.name"
-                class="w-24 h-24 rounded-full border-4 border-primary-white shadow-lg relative z-10"
+                class="w-24 h-24 object-cover rounded-full border-4 border-primary-white shadow-lg relative z-10"
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ const error = ref<string | null>(null)
 // Computed profile from response
 const profile = computed(() => {
   if (!profileData.value) return null
-  
+
   const user = profileData.value.user || {}
   return {
     name: user.name || 'User',
@@ -173,7 +173,7 @@ const profile = computed(() => {
     email: user.email || '',
     phone: user.phone || '',
     jabatan: user.jabatan || '',
-    avatar: user.photo_url && user.photo_url !== '' 
+    avatar: user.photo_url && user.photo_url !== ''
       ? (user.photo_url.startsWith('http') ? user.photo_url : `${BASE_URL}/${user.photo_url}`)
       : '/penus-icon.webp',
     bio: user.jabatan || 'Member'
@@ -194,10 +194,10 @@ const activeLinks = computed(() => {
 const fetchProfile = async (userId: number) => {
   isLoading.value = true
   error.value = null
-  
+
   try {
     const response: any = await api.userLinks.getByUserId(userId)
-    
+
     if (response && response.length > 0) {
       profileData.value = response[0]
       links.value = response.map((item: any) => ({
@@ -272,13 +272,13 @@ const trackLinkClick = (linkId: number) => {
 // On mount, fetch profile by user ID
 onMounted(async () => {
   const userId = userIdParam.value
-  
+
   if (isNaN(userId) || userId <= 0) {
     error.value = 'Invalid user ID'
   } else {
     await fetchProfile(userId)
   }
-  
+
   if (error.value) {
     throw createError({
       statusCode: 404,
