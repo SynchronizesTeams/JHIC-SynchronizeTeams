@@ -5,7 +5,7 @@
       <div class="flex items-center gap-3 mb-12">
         <span class="text-4xl md:text-5xl font-bold text-secondary-red">|</span>
         <h1 class="text-4xl md:text-5xl font-bold text-primary-gray">
-          SPMB 2025
+          SPMB 2025 - 2026
         </h1>
       </div>
 
