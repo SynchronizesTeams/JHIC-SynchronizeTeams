@@ -104,7 +104,7 @@
             <br>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              :to="`/dashboard/links`"
+              to="/dashboard/links"
               >Dashboard Personal</NuxtLink
             >
           </li>
@@ -123,14 +123,51 @@
     <div class="mt-8 pt-6 border-t border-gray-200">
       <div class="flex flex-col items-center justify-center space-y-6">
         <h3 class="text-lg sm:text-xl font-bold text-gray-700">Support and aims to</h3>
-        <div class="flex justify-center w-full">
-          <div class="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-4xl">
-            <img
-              loading="lazy"
-              src="/images/all-logo.png"
-              alt="Support Partners"
-              class="w-full h-auto object-contain"
-            />
+        <div class="flex justify-center w-full px-4">
+          <div class="bg-gray-50 rounded-2xl shadow-md p-6 sm:p-8 w-full max-w-5xl">
+            <!-- replacing single logo with individual logos and a vertical divider -->
+            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+              <!-- Infra Competition Logo -->
+              <div class="flex-shrink-0">
+                <img
+                  loading="lazy"
+                  src="/images/penus/Logo-RPL.webp"
+                  alt="Infra Competition"
+                  class="h-14 sm:h-20 md:h-24 w-auto object-contain"
+                />
+              </div>
+
+              <!-- Vertical Divider -->
+              <div class="hidden md:block h-16 w-px bg-gray-300 mx-2"></div>
+
+              <!-- Other Partners Group -->
+              <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-12">
+                <img
+                  loading="lazy"
+                  src="/images/penus/Logo-TKJ.webp"
+                  alt="Jagoan Hosting"
+                  class="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                />
+                <img
+                  loading="lazy"
+                  src="/images/penus/Logo-DKV.webp"
+                  alt="Komdigi"
+                  class="h-10 sm:h-14 md:h-18 w-auto object-contain"
+                />
+                <img
+                  loading="lazy"
+                  src="/images/penus/Logo-PKM.webp"
+                  alt="Maspion IT"
+                  class="h-10 sm:h-14 md:h-18 w-auto object-contain"
+                />
+                <img
+                  loading="lazy"
+                  src="/images/penus/Logo-TOI.webp"
+                  alt="Garuda Spark"
+                  class="h-10 sm:h-12 md:h-16 w-auto object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -144,25 +181,5 @@
     </div>
   </footer>
 </template>
-
-<script setup lang="ts">
-const currentYear = ref(new Date().getFullYear())
-const userIdFromLocalStorage = ref<string | null>(null)
-
-onMounted(() => {
-  if (process.client) {
-    const userData = localStorage.getItem('user_data')
-    if (userData) {
-      try {
-        const parsedData = JSON.parse(userData)
-        userIdFromLocalStorage.value = parsedData.id ? String(parsedData.id) : null
-      } catch (e) {
-        console.error('Error parsing user_data from localStorage:', e)
-      }
-    }
-  }
-})
-const { user } = useAuth()
-</script>
 
 <style scoped></style>

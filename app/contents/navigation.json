@@ -6,6 +6,6 @@
     { "name": "Berita", "path": "/news", "section": "news" },
     { "name": "Forum", "path": "/forums", "section": null },
     { "name": "Portals", "path": "/portals", "section": null },
-    { "name": "PPDB", "path": "https://ppdb.smkpluspnb.sch.id", "section": null }
+    { "name": "PPDB", "path": "/spmb", "section": null }
   ]
 }
