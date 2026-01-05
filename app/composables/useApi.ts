@@ -18,7 +18,7 @@ import type {
 
 export const useApi: any = () => {
   const config = useRuntimeConfig();
-  const BASE_URL = config.public.apiBaseUrl || "https://infra.synchronizeteams.my.id/api";
+  const BASE_URL = config.public.apiBaseUrl || "https://penus.synchronizeteams.com/api";
   const API_VERSION = config.public.apiVersion || "v1";
 
   // Helper untuk membuat endpoint URL
