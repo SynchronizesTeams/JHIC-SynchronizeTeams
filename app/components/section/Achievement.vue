@@ -95,17 +95,37 @@ const formatDate = (dateString: string) => {
 
 // Fungsi untuk mengambil data dari API
 const fetchAchievements = async () => {
+  console.log('FETCH ACHIEVEMENTS START');
+
   try {
     isLoading.value = true;
-    const data = await achievementApi.getAll();
-    achievements.value = data;
+
+    console.log('achievementApi:', achievementApi);
+    console.log('getAll fn:', achievementApi?.getAll);
+
+    const res = await achievementApi.getAll();
+achievements.value =
+  Array.isArray(res) ? res :
+  Array.isArray(res?.data) ? res.data :
+  [];
+
+    console.log('RAW ACHIEVEMENT RESPONSE:', res);
+
+    achievements.value =
+      Array.isArray(res) ? res :
+      Array.isArray(res?.data) ? res.data :
+      [];
+
+    console.log('FINAL ACHIEVEMENTS:', achievements.value);
   } catch (e) {
-    console.error("Gagal mengambil data prestasi:", e);
+    console.error('GAGAL FETCH ACHIEVEMENT:', e);
     error.value = e;
   } finally {
+    console.log('FETCH ACHIEVEMENTS DONE');
     isLoading.value = false;
   }
 };
+
 
 onMounted(() => {
   fetchAchievements();
