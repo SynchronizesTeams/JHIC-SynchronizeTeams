@@ -50,13 +50,13 @@ export default defineNuxtConfig({
       apiNewsEndpoint: process.env.NUXT_PUBLIC_API_NEWS_ENDPOINT || "/news",
       apiUserLinksEndpoint:
         process.env.NUXT_PUBLIC_API_USER_LINKS_ENDPOINT || "/user-links",
-      apiAchievementEndpoint: process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "/achievement",
-      apiTeacherEndpoint: process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "/teacher",
+      apiAchievementEndpoint: process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "achievement",
+      apiTeacherEndpoint: process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "teacher",
       apiForumEndpoint: process.env.NUXT_PUBLIC_API_FORUM_ENDPOINT || "/forum",
       apiEventEndpoint: process.env.NUXT_PUBLIC_API_EVENT_ENDPOINT || "/event",
       apiImageEndpoint: process.env.NUXT_PUBLIC_API_IMAGE_ENDPOINT || "/image",
-      apiEskulEndpoint: process.env.NUXT_PUBLIC_API_ESKUL_ENDPOINT || "/eskul",
-      apiIndustryEndpoint: process.env.NUXT_PUBLIC_API_INDUSTRY_ENDPOINT || "/industry",
+      apiEskulEndpoint: process.env.NUXT_PUBLIC_API_ESKUL_ENDPOINT || "eskul",
+      apiIndustryEndpoint: process.env.NUXT_PUBLIC_API_INDUSTRY_ENDPOINT || "industry",
       apiPortalEndpoint:
         process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || "/portal",
       apiGuestBookEndpoint:
