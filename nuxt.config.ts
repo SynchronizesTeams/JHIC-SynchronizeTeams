@@ -16,7 +16,7 @@ export default defineNuxtConfig({
               "/api": {
                 target:
                   process.env.NUXT_PUBLIC_API_BASE_URL ||
-                  "https://penus.synchronizeteams.com/api",
+                  "http://api-penus.synchronizeteams.com",
                 changeOrigin: true,
                 secure: true,
               },
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       // API Configuration
       apiBaseUrl:
         process.env.NUXT_PUBLIC_API_BASE_URL ||
-        "https://penus.synchronizeteams.com/api",
+        "http://api-penus.synchronizeteams.com",
       apiVersion: process.env.NUXT_PUBLIC_API_VERSION || "v1",
 
       // API Endpoints
@@ -101,6 +101,10 @@ export default defineNuxtConfig({
   },
 
   ssr: false,
+
+  nitro: {
+    preset: "static",
+  },
 
   site: {
     url: "https://smkpluspelitanusantara.sch.id",
