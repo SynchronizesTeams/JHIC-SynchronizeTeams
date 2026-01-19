@@ -22,7 +22,7 @@
       >
         <div
           v-if="isVisible"
-          class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+          class="relative bg-white rounded-2xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-auto"
           @click.stop
         >
           <button
@@ -51,7 +51,7 @@
               ref="infographicImage"
               :src="imageSrc"
               alt="Infografis SMK PLUS PELITA NUSANTARA"
-              class="w-full h-auto rounded-t-2xl"
+              class="w-full max-w-2xl mx-auto h-auto rounded-t-2xl"
               format="webp"
               quality="80"
               loading="lazy"
@@ -64,13 +64,13 @@
                 Selamat Datang di SMK PLUS PELITA NUSANTARA
               </h3>
               <p class="text-primary-gray/80">
-                Mari jelajahi lebih lanjut tentang kami
+               Daftar sekarang melalui portal SPMB resmi kami dan jadilah bagian dari keluarga besar SMK Plus PNB
               </p>
               <button
-                @click="closePopup"
+                @click="goToPPDB"
                 class="mt-4 px-6 py-2 bg-secondary-red text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
               >
-                Mulai Eksplorasi
+                Daftar Sekarang
               </button>
             </div>
           </div>
@@ -82,21 +82,20 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 interface Props {
   modelValue?: boolean
   imageSrc?: string
   autoShow?: boolean
   showFooter?: boolean
-  storageKey?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
-  imageSrc: '/images/penus/main-logo.png',
+  imageSrc: '/images/popup/foto1.jpg',
   autoShow: true,
   showFooter: true,
-  storageKey: 'infographic-popup-shown'
 })
 
 const emit = defineEmits<{
@@ -106,7 +105,7 @@ const emit = defineEmits<{
   'imageLoad': []
   'imageError': []
 }>()
-
+const router = useRouter()
 const isVisible = ref(props.modelValue || false)
 const infographicImage = ref<HTMLImageElement | null>(null)
 
@@ -126,12 +125,13 @@ watch(isVisible, (newVal) => {
 
 const closePopup = () => {
   isVisible.value = false
-  if (props.autoShow && props.storageKey) {
-    // Save current timestamp to localStorage
-    const currentTime = new Date().getTime()
-    localStorage.setItem(props.storageKey, currentTime.toString())
-  }
 }
+
+const goToPPDB = () => {
+  closePopup()
+  router.push('/spmb')
+}
+
 
 const handleBackdropClick = () => {
   closePopup()
@@ -148,34 +148,9 @@ const handleImageError = () => {
   }
 }
 
-const shouldShowPopup = () => {
-  if (props.autoShow && props.storageKey) {
-    const lastShownTime = localStorage.getItem(props.storageKey)
-    
-    if (!lastShownTime) {
-      // Never shown before, should show
-      return true
-    }
-    
-    const currentTime = new Date().getTime()
-    const timeDiff = currentTime - parseInt(lastShownTime)
-    const hoursInMs = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
-    
-    // Show popup if more than 24 hours have passed
-    return timeDiff >= hoursInMs
-  }
-  return props.modelValue || false
-}
-
 onMounted(() => {
-  if (props.autoShow && shouldShowPopup()) {
-    setTimeout(() => {
-      isVisible.value = true
-      emit('open')
-    }, 500)
-  } else if (props.modelValue) {
-    isVisible.value = true
-  }
+  isVisible.value = true
+  emit('open')
 })
 
 defineExpose({
