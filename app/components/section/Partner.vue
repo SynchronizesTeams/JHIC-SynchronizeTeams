@@ -73,7 +73,8 @@ onMounted(() => {
 <style scoped>
 .animate-partner-scroll {
   width: max-content;
-  animation: scroll 40s linear infinite; 
+  animation: scroll 500s linear infinite; 
+  will-change: transform;
 }
 
 @keyframes scroll {

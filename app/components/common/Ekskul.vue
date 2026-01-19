@@ -1,5 +1,5 @@
 <template>
-  <section class.="bg-white/50 rounded-xl mx-6 my-6 py-8 md:py-16">
+  <section class="bg-white/50 rounded-xl mx-6 my-6 py-8 md:py-16">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div v-if="isLoading" class="text-center text-gray-500 py-20">
         Memuat data ekstrakurikuler...
@@ -94,24 +94,25 @@ const currentIndex = ref(0);
 const fetchEskul = async () => {
   try {
     isLoading.value = true;
-    const data: EskulApiResponse[] = await eskulApi.getAll();
+    const res = await eskulApi.getAll();
+const data = Array.isArray(res) ? res : res?.data ?? [];
 
-    ekskulList.value = data.map((item) => {
-      const slug = item.name.toLowerCase().replace(/[\s_]+/g, '-');
-      const imageUrl = `${apiUrl}/${item.image}`
+ekskulList.value = data.map((item) => {
+  const slug = item.name.toLowerCase().replace(/[\s_]+/g, '-');
+  const imageUrl = item.image
+    ? `${apiUrl}/${item.image}`
+    : '/placeholder.webp';
 
-      // Logo gher
-      const logoUrl = 'logo';
+  return {
+    id: item.id,
+    slug,
+    title: item.name,
+    description: item.description,
+    image: imageUrl,
+    logo: 'logo',
+  };
+});
 
-      return {
-        id: item.id,
-        slug: slug,
-        title: item.name,
-        description: item.description,
-        image: imageUrl,
-        logo: logoUrl,
-      };
-    });
 
     if (ekskulList.value.length > 1) {
       startRotation();
