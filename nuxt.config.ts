@@ -16,7 +16,7 @@ export default defineNuxtConfig({
               "/api": {
                 target:
                   process.env.NUXT_PUBLIC_API_BASE_URL ||
-                  "http://api-penus.synchronizeteams.com",
+                  "https://api-penus.synchronizeteams.com",
                 changeOrigin: true,
                 secure: true,
               },
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       // API Configuration
       apiBaseUrl:
         process.env.NUXT_PUBLIC_API_BASE_URL ||
-        "http://api-penus.synchronizeteams.com",
+        "https://api-penus.synchronizeteams.com",
       apiVersion: process.env.NUXT_PUBLIC_API_VERSION || "v1",
 
       // API Endpoints
