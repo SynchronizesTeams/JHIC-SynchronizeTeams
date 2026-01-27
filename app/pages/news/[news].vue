@@ -45,35 +45,65 @@
 
       <div class="aspect-video rounded-2xl overflow-hidden mb-10">
         <NuxtImg
-          :src="article.cover"
+          :src="article?.cover"
           alt="cover"
           class="object-cover w-full h-full" />
       </div>
 
       <div
         class="prose text-primary-gray max-w-none text-lg leading-relaxed"
-        v-html="article.content" />
+        v-html="article?.content" />
     </div>
   </div>
 </template>
 
-<script setup>
-const route = useRoute();
-const { newsList, load, loading } = useNews();
+<script setup lang="ts">
+import type { News } from '~/types/news';
 
-const article = computed(() => {
-  return newsList.value.find((n) => n.slug === route.params.news) || {
-    title: "Memuat...",
-    date: new Date().toISOString(),
-    author: "Admin",
-    cover: "/penus-icon.webp",
-    content: "",
-  };
+const route = useRoute();
+const { newsList, mapNewsItem, load } = useNews();
+const api = useApi();
+const news = ref<News | undefined>();
+
+const article = ref<News>({
+  id: 0,
+  title: "Memuat...",
+  slug: "",
+  excerpt: "",
+  date: new Date().toISOString(),
+  author: "Admin",
+  cover: "/penus-icon.webp",
+  content: "",
 });
 
-onMounted(() => {
+const fetchDetail = async () => {
   if (!newsList.value.length) {
-    load();
+    await load();
+  }
+
+  const fromList = newsList.value.find(
+    n => n.slug === route.params.news
+  );
+
+  if (!fromList?.id) return;
+
+  const resp: any = await api.news.getById(fromList.id);
+
+  const item = Array.isArray(resp) ? resp[0] : resp;
+  if (item) {
+    article.value = mapNewsItem(item); // 🔥 INI KUNCI
+  }
+};
+
+watchEffect(() => {
+  console.log("ARTICLE:", article.value);
+});
+
+
+onMounted(async () => {
+  await fetchDetail();
+  if (!newsList.value.length) {
+    await load();
   }
 });
 

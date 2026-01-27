@@ -40,6 +40,7 @@ export const useNews = () => {
         : item?.author ?? "Admin";
 
     return {
+      id: item?.id ?? 0,
       slug,
       title,
       excerpt,
@@ -69,10 +70,10 @@ export const useNews = () => {
 
   const getNews = (slug: string): News | undefined =>
     newsList.value.find((n) => n.slug === slug);
-
+  
   onMounted(() => {
     load();
   });
 
-  return { newsList, getNews, load, loading, error };
+  return { newsList, getNews, mapNewsItem, load, loading, error };
 };
