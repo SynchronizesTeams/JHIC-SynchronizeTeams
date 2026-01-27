@@ -192,7 +192,7 @@ const fetchForumSections = async () => {
 // Transform API response to match Post interface
 const transformPostData = (apiPost: any) => {
   const config = useRuntimeConfig()
-  const baseImageUrl = config.public.apiBaseUrl || 'https://infra.synchronizeteams.my.id/api'
+  const baseImageUrl = config.public.apiBaseUrl
 
   return {
     id: apiPost.id?.toString() || '',
