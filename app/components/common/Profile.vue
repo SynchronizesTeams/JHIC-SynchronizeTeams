@@ -2,12 +2,12 @@
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
     <div
       class="h-64 md:h-80 rounded-lg overflow-hidden relative bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 shadow-inner flex items-center justify-center">
-      <div class="w-full h-full flex items-center justify-center">
+      <div class="flex items-center justify-center">
         <img
           loading="lazy"
           :src="content.image"
           :alt="content.title"
-          class="hover:scale-110 transition-all duration-500" />
+          class="hover:scale-110 transition-all duration-500 object-cover" />
       </div>
     </div>
 

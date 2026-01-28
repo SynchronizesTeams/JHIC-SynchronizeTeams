@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-    <div class="mb-6 h-32">
+    <div class="mb-6 h-32 overflow-auto">
       <p class="text-gray-600 italic">"{{ testimonial.testimonial }}"</p>
     </div>
     

@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-import { defineNuxtConfig } from 'nuxt/config'
+import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -16,7 +16,7 @@ export default defineNuxtConfig({
               "/api": {
                 target:
                   process.env.NUXT_PUBLIC_API_BASE_URL ||
-                  "https://api-penus.synchronizeteams.com",
+                  "https://api-penus.smkpluspnb.sch.id",
                 changeOrigin: true,
                 secure: true,
               },
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/image", "@nuxtjs/sitemap"],
+  modules: ["@nuxt/image", "@nuxtjs/sitemap", "@nuxtjs/robots"],
 
   image: {
     provider: "ipx",
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       // API Configuration
       apiBaseUrl:
         process.env.NUXT_PUBLIC_API_BASE_URL ||
-        "https://api-penus.synchronizeteams.com",
+        "https://api-penus.smkpluspnb.sch.id",
       apiVersion: process.env.NUXT_PUBLIC_API_VERSION || "v1",
 
       // API Endpoints
@@ -50,13 +50,16 @@ export default defineNuxtConfig({
       apiNewsEndpoint: process.env.NUXT_PUBLIC_API_NEWS_ENDPOINT || "/news",
       apiUserLinksEndpoint:
         process.env.NUXT_PUBLIC_API_USER_LINKS_ENDPOINT || "/user-links",
-      apiAchievementEndpoint: process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "achievement",
-      apiTeacherEndpoint: process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "teacher",
+      apiAchievementEndpoint:
+        process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "achievement",
+      apiTeacherEndpoint:
+        process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "teacher",
       apiForumEndpoint: process.env.NUXT_PUBLIC_API_FORUM_ENDPOINT || "/forum",
       apiEventEndpoint: process.env.NUXT_PUBLIC_API_EVENT_ENDPOINT || "/event",
       apiImageEndpoint: process.env.NUXT_PUBLIC_API_IMAGE_ENDPOINT || "/image",
       apiEskulEndpoint: process.env.NUXT_PUBLIC_API_ESKUL_ENDPOINT || "eskul",
-      apiIndustryEndpoint: process.env.NUXT_PUBLIC_API_INDUSTRY_ENDPOINT || "industry",
+      apiIndustryEndpoint:
+        process.env.NUXT_PUBLIC_API_INDUSTRY_ENDPOINT || "industry",
       apiPortalEndpoint:
         process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || "/portal",
       apiGuestBookEndpoint:
@@ -72,8 +75,7 @@ export default defineNuxtConfig({
       // App Configuration
       appName: process.env.NUXT_PUBLIC_APP_NAME || "SMK Plus Pelita Nusantara",
       appUrl:
-        process.env.NUXT_PUBLIC_APP_URL ||
-        "https://smkpluspelitanusantara.sch.id",
+        process.env.NUXT_PUBLIC_APP_URL || "https://www.smkpluspnb.sch.id",
       appDescription:
         process.env.NUXT_PUBLIC_APP_DESCRIPTION ||
         "SMK Plus Pelita Nusantara - Sekolah Menengah Kejuruan Terbaik",
@@ -103,26 +105,28 @@ export default defineNuxtConfig({
   ssr: false,
 
   nitro: {
-    preset: "static",
+    preset: "bun",
   },
 
   site: {
-    url: "https://smkpluspelitanusantara.sch.id",
+    url: "https://www.smkpluspnb.sch.id",
     name: "SMK Plus Pelita Nusantara",
+    description:
+      "Sekolah Menengah Kejuruan unggulan dengan program keahlian teknologi dan komunikasi.",
+    defaultLocale: "id",
   },
 
-  sitemap: {
-    hostname: "https://smkpluspelitanusantara.sch.id",
-    gzip: true,
-    routes: async () => {
-      return ["/", "/news", "/forums", "/achievements", "/Galery", "/portals"];
-    },
-  },
+  // sitemap: {
+  //   hostname: "https://www.smkpluspnb.sch.id",
+  //   gzip: true,
+  //   routes: async () => {
+  //     return ["/", "/news", "/forums", "/achievements", "/Galery", "/portals"];
+  //   },
+  // },
 
   robots: {
-    UserAgent: "*",
-    Allow: "/",
-    Sitemap: "https://smkpluspelitanusantara.sch.id/sitemap.xml",
+    allow: "/",
+    sitemap: "https://www.smkpluspnb.sch.id/sitemap.xml",
   },
 
   app: {
@@ -132,16 +136,17 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "id",
       },
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
       link: [
         { rel: "manifest", href: "/manifest.webmanifest" },
-        { rel: "icon", type: "image/webp", href: "/penus-icon.webp" },
+        { rel: "icon", type: "image/x-icon", href: "/penus-icon.webp" },
         { rel: "apple-touch-icon", href: "/penus-icon.webp" },
         { rel: "shortcut icon", type: "image/webp", href: "/penus-icon.webp" },
-        { rel: "canonical", href: "https://smkpluspelitanusantara.sch.id" },
+        { rel: "canonical", href: "https://www.smkpluspnb.sch.id" },
       ],
       meta: [
         { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
@@ -183,14 +188,14 @@ export default defineNuxtConfig({
         },
         {
           property: "og:image",
-          content: "https://smkpluspelitanusantara.sch.id/penus-icon.webp",
+          content: "https://www.smkpluspnb.sch.id/penus-icon.webp",
         },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { property: "og:image:alt", content: "Logo SMK Plus Pelita Nusantara" },
         {
           property: "og:url",
-          content: "https://smkpluspelitanusantara.sch.id",
+          content: "https://www.smkpluspnb.sch.id",
         },
         { property: "og:locale", content: "id_ID" },
         // Twitter Card
@@ -208,7 +213,7 @@ export default defineNuxtConfig({
         },
         {
           name: "twitter:image",
-          content: "https://smkpluspelitanusantara.sch.id/penus-icon.webp",
+          content: "https://www.smkpluspnb.sch.id/penus-icon.webp",
         },
         {
           name: "twitter:image:alt",
@@ -223,8 +228,8 @@ export default defineNuxtConfig({
             "@type": "EducationalOrganization",
             name: "SMK Plus Pelita Nusantara",
             alternateName: "SMK Pelita Nusantara",
-            url: "https://smkpluspelitanusantara.sch.id",
-            logo: "https://smkpluspelitanusantara.sch.id/penus-icon.webp",
+            url: "https://www.smkpluspnb.sch.id",
+            logo: "https://www.smkpluspnb.sch.id/penus-icon.webp",
             description:
               "SMK Plus Pelita Nusantara adalah sekolah menengah kejuruan unggulan yang menyediakan pendidikan berkualitas dengan program keahlian teknologi, komunikasi, dan keterampilan profesional.",
             address: {
