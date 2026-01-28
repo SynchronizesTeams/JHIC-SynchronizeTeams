@@ -8,7 +8,7 @@
     <section id="about" class="px-6 bg-gradient-to-b">
       <SectionInfo />
     </section>
-    <HeaderTitle title="TENAGA PENDIDIKAN" align="right" />
+    <HeaderTitle title="TENAGA PENDIDIKAN" align="center" />
     <section id="teachers" class="px-6">
       <SectionTeachers />
     </section>
@@ -47,11 +47,11 @@
     <section id="calendar" class="px-6">
       <SectionCalendarGuestBook />
     </section>
-    <HeaderTitle title="EKSTRAKULIKULER" align="left" />
+    <HeaderTitle title="EKSTRAKULIKULER" align="center" />
     <section>
       <CommonEkskul />
     </section>
-    <HeaderTitle title="PRESTASI" align="left" />
+    <HeaderTitle title="PRESTASI" align="center" />
     <section id="achievment" class="px-6">
       <SectionAchievement :achievements="achievementsData" :display-count="3" />
 
@@ -79,7 +79,7 @@
     <section id="testimonials" class="px-6">
       <SectionTestimonials :testimonials="testimonialsData" />
     </section>
-    <HeaderTitle title="GALERI" align="right" />
+    <HeaderTitle title="GALERI" align="center" />
     <section id="galery" class="px-6">
       <SectionGalery :images="galleryImages" :display-count="7" />
     </section>

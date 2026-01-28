@@ -122,7 +122,7 @@
     <!-- Support and Aims To Section -->
     <div class="mt-8 pt-6 border-t border-gray-200">
       <div class="flex flex-col items-center justify-center space-y-6">
-        <h3 class="text-lg sm:text-xl font-bold text-gray-700">Support and aims to</h3>
+        <!-- <h3 class="text-lg sm:text-xl font-bold text-gray-700">Support and aims to</h3> -->
         <div class="flex justify-center w-full">
           <div class="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-4xl">
             <img
