@@ -39,12 +39,12 @@ const displayedTestimonials = computed(() => {
 <style scoped>
 .animate-testimonial-scroll {
   width: max-content;
-  animation: scroll 60s linear infinite; 
+  animation: scroll 10s linear infinite; 
 }
 
 @keyframes scroll {
   from {
-    transform: translateX(0);
+    transform: translateX(10);
   }
   to {
     transform: translateX(calc(-100% / 3));

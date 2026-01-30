@@ -507,7 +507,7 @@ export const useApi: any = () => {
       }) => {
         const formData = createFormData(guestBookData);
         const url = buildEndpoint(
-          `${config.public.apiGuestBookEndpoint}/create`
+          `/public${config.public.apiGuestBookEndpoint}/create`
         );
         logRequest("POST", url, "FormData");
         return await $fetch(url, {
@@ -591,7 +591,7 @@ export const useApi: any = () => {
       },
 
       getAll: async () => {
-        const url = buildEndpoint(`/public/${config.public.apiPortalEndpoint}/showAll`);
+        const url = buildEndpoint(`/public${config.public.apiPortalEndpoint}/showAll`);
         logRequest("GET", url);
         return await $fetch(url, {
           method: "GET",
@@ -674,7 +674,7 @@ export const useApi: any = () => {
     achievement: {
       getById: async (id: number) => {
         const url = buildEndpoint(
-          `/public/${config.public.apiAchievementEndpoint}/show/${id}`
+          `/public${config.public.apiAchievementEndpoint}/show/${id}`
         );
         logRequest("GET", url);
         return await $fetch(url, {
@@ -685,7 +685,7 @@ export const useApi: any = () => {
 
       getAll: async () => {
         const url = buildEndpoint(
-          `/public/${config.public.apiAchievementEndpoint}/showAll`
+          `/public${config.public.apiAchievementEndpoint}/showAll`
         );
         logRequest("GET", url);
         return await $fetch(url, {
