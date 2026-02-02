@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       apiUserLinksEndpoint:
         process.env.NUXT_PUBLIC_API_USER_LINKS_ENDPOINT || "/user-links",
       apiAchievementEndpoint:
-        process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "achievement",
+        process.env.NUXT_PUBLIC_API_ACHIEVEMENT_ENDPOINT || "/achievement",
       apiTeacherEndpoint:
         process.env.NUXT_PUBLIC_API_TEACHER_ENDPOINT || "teacher",
       apiForumEndpoint: process.env.NUXT_PUBLIC_API_FORUM_ENDPOINT || "/forum",
@@ -63,7 +63,7 @@ export default defineNuxtConfig({
       apiPortalEndpoint:
         process.env.NUXT_PUBLIC_API_PORTAL_ENDPOINT || "/portal",
       apiGuestBookEndpoint:
-        process.env.NUXT_PUBLIC_API_GUEST_BOOK_ENDPOINT || "/guest-book",
+        process.env.NUXT_PUBLIC_API_GUEST_BOOK_ENDPOINT || "/guest",
       apiTestimonialEndpoint:
         process.env.NUXT_PUBLIC_API_TESTIMONIAL_ENDPOINT || "/testimonial",
 
