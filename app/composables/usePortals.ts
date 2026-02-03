@@ -33,7 +33,7 @@ export const usePortals = () => {
       
       // Transform response and construct full logo URLs
       const config = useRuntimeConfig()
-      const BASE_URL = config.public.apiBaseUrl.replace('/api', '') // Remove /api suffix
+      const BASE_URL = config.public.apiBaseUrl.replace(/\/api$/, '') // Remove /api suffix
       
       const transformedPortals = (response || []).map((portal: any) => ({
         ...portal,
