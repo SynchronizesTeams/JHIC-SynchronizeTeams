@@ -11,9 +11,11 @@ export const useNews = () => {
 
   const resolveSrc = (path: string) => {
     if (!path) return "/penus-icon.webp";
-    if (path.startsWith("http")) return path;
-    if (path.startsWith("/")) return `${BASE_URL}${path}`;
-    return `${BASE_URL}/${path}`;
+    const encodedPath = encodeURI(path);
+
+    if (encodedPath.startsWith("http")) return encodedPath;
+    if (encodedPath.startsWith("/")) return `${BASE_URL}${encodedPath}`;
+    return `${BASE_URL}/${encodedPath}`;
   };
 
   const mapNewsItem = (item: any): News => {
