@@ -106,8 +106,7 @@
         </div>
 
         <div class="px-6 py-6">
-          <p class="text-primary-gray/80 leading-relaxed">
-            {{ teacher.description }}
+          <p class="text-primary-gray/80 leading-relaxed" v-html="teacher.description">
           </p>
         </div>
       </div>
