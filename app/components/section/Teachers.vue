@@ -10,10 +10,10 @@
       </div>
 
       <div v-else class="relative">
-        <button
+        <!-- <button
           @click="scrollLeft"
           class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white hover:bg-red-50 text-gray-800 hover:text-secondary-red rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-secondary-red"
-          aria-label="Scroll left">
+          aria-label= "Scroll left">
           <svg
             class="w-6 h-6"
             fill="none"
@@ -42,20 +42,21 @@
               stroke-width="2"
               d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </button> -->
 
         <div
           ref="scrollContainer"
-          class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-2 cursor-grab active:cursor-grabbing"
+          class="overflow-hidden" 
           style="
             scrollbar-width: none;
             -ms-overflow-style: none;
             touch-action: pan-x pan-y;
             -webkit-overflow-scrolling: touch;
-          ">
+          "> <!--  snap-x snap-mandatory scroll-smooth pb-4 px-2 cursor-grab active:cursor-grabbing -->
+          <div class="animate-teacher-scroll flex space-x-6 py-5">
           <div
-            v-for="teacher in teachers"
-            :key="teacher.id"
+            v-for="(teacher, index) in displayedTeachers"
+            :key="index"
             class="flex-shrink-0 w-52 snap-center pt-4">
             <button
               @click="goToTeacher(teacher.id)"
@@ -90,6 +91,7 @@
                 <p class="text-gray-600 text-xs mb-2">{{ teacher.subject }}</p>
               </div>
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -144,57 +146,92 @@ const fetchTeachers = async () => {
   }
 };
 
-const scrollLeft = () => {
-  const el = scrollContainer.value;
-  if (el) {
-    const cardWidth = el.firstElementChild?.clientWidth || 232; // 208px (w-52) + 24px (gap)
-    const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
-    el.scrollTo({ left: el.scrollLeft - scrollAmount, behavior: "smooth" });
-  }
-};
+// const scrollLeft = () => {
+//   const el = scrollContainer.value;
+//   if (el) {
+//     const cardWidth = el.firstElementChild?.clientWidth || 232; // 208px (w-52) + 24px (gap)
+//     const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
+//     el.scrollTo({ left: el.scrollLeft - scrollAmount, behavior: "smooth" });
+//   }
+// };
 
-const scrollRight = () => {
-  const el = scrollContainer.value;
-  if (el) {
-    const cardWidth = el.firstElementChild?.clientWidth || 232;
-    const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
-    el.scrollTo({ left: el.scrollLeft + scrollAmount, behavior: "smooth" });
-  }
-};
+// const scrollRight = () => {
+//   const el = scrollContainer.value;
+//   if (el) {
+//     const cardWidth = el.firstElementChild?.clientWidth || 232;
+//     const scrollAmount = cardWidth * Math.floor(el.clientWidth / cardWidth);
+//     el.scrollTo({ left: el.scrollLeft + scrollAmount, behavior: "smooth" });
+//   }
+// };
+const displayedTeachers = computed(() => {
+  return [...teachers.value, ...teachers.value, ...teachers.value];
+});
 
 onMounted(() => {
   // Panggil fungsi fetch data saat komponen dimuat
-  fetchTeachers();
-  
-  const el = scrollContainer.value;
-  if (!el) return;
+ fetchTeachers();
 
-  let isDown = false;
-  let startX: number;
-  let scrollLeftVal: number;
+  // const el = scrollContainer.value;
+  // if (!el) return;
 
-  el.addEventListener("mousedown", (e: MouseEvent) => {
-    isDown = true;
-    el.classList.add("active");
-    startX = e.pageX - el.offsetLeft;
-    scrollLeftVal = el.scrollLeft;
-  });
+  // let isDown = false;
+  // let startX: number;
+  // let scrollLeftVal: number;
 
-  el.addEventListener("mouseleave", () => (isDown = false));
-  el.addEventListener("mouseup", () => (isDown = false));
+  // el.addEventListener("mousedown", (e: MouseEvent) => {
+  //   isDown = true;
+  //   el.classList.add("active");
+  //   startX = e.pageX - el.offsetLeft;
+  //   scrollLeftVal = el.scrollLeft;
+  // });
 
-  el.addEventListener("mousemove", (e: MouseEvent) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    el.scrollLeft = scrollLeftVal - walk;
-  });
+  // el.addEventListener("mouseleave", () => (isDown = false));
+  // el.addEventListener("mouseup", () => (isDown = false));
+  // el.addEventListener("mousemove", (e: MouseEvent) => {
+  //   if (!isDown) return;
+  //   e.preventDefault();
+  //   const x = e.pageX - el.offsetLeft;
+  //   const walk = (x - startX) * 1.5;
+  //   el.scrollLeft = scrollLeftVal - walk;
+  // });
 });
 </script>
 
 <style>
 .overflow-x-auto::-webkit-scrollbar {
   display: none;
+}
+</style>
+
+<style scoped>
+.animate-teacher-scroll {
+  width: max-content;
+  animation: scroll 90s linear infinite; 
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(10);
+  }
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.overflow-hidden {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
 }
 </style>
