@@ -43,7 +43,7 @@
         {{ formatDate(article.date) }} • {{ article.author }}
       </div>
 
-      <div class="aspect-video rounded-2xl overflow-hidden mb-10">
+      <div class="aspect-square rounded-2xl overflow-hidden mb-10">
         <NuxtImg
           :src="article?.cover"
           alt="cover"

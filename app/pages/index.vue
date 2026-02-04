@@ -8,7 +8,7 @@
     <section id="about" class="px-6 bg-gradient-to-b">
       <SectionInfo />
     </section>
-    <HeaderTitle title="TENAGA PENDIDIKAN" align="center" />
+    <HeaderTitle title="TENAGA PENDIDIK" align="center" />
     <section id="teachers" class="px-6">
       <SectionTeachers />
     </section>
