@@ -47,7 +47,7 @@
     <section id="calendar" class="px-6">
       <SectionCalendarGuestBook />
     </section>
-    <HeaderTitle title="EKSTRAKULIKULER" align="center" />
+    <HeaderTitle title="PROGRAM UNGGULAN" align="center" />
     <section>
       <CommonEkskul />
     </section>

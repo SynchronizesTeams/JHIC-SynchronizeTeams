@@ -38,7 +38,7 @@
           class="bg-primary-white border border-primary-gray/20 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all group">
           <div class="relative h-48 overflow-hidden">
             <NuxtImg
-              :src="achievement.image"
+              :src="`${apiUrl}/${achievement.image}`"
               :alt="achievement.title"
               class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -83,10 +83,14 @@
 </template>
 
 <script lang="ts" setup>
-import { mockAchievements } from '~/utils/mockData'
-import type { Achievement } from '~/types/achievement'
+import type { Achievement, AchievementNews } from "~/types/achievement";
+const { achievement: achievementApi } = useApi();
+const apiUrl = useRuntimeConfig().public.apiBaseUrl;
 
-const achievements = ref<Achievement[]>(mockAchievements)
+// State management
+const achievements = ref<Achievement[]>([]);
+const isLoading = ref(true);
+const error = ref<any>(null);
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
@@ -96,6 +100,44 @@ const formatDate = (dateString: string) => {
     day: 'numeric'
   })
 }
+
+// Fungsi untuk mengambil data dari API
+const fetchAchievements = async () => {
+  console.log('FETCH ACHIEVEMENTS START');
+
+  try {
+    isLoading.value = true;
+
+    console.log('achievementApi:', achievementApi);
+    console.log('getAll fn:', achievementApi?.getAll);
+
+    const res = await achievementApi.getAll();
+achievements.value =
+  Array.isArray(res) ? res :
+  Array.isArray(res?.data) ? res.data :
+  [];
+
+    console.log('RAW ACHIEVEMENT RESPONSE:', res);
+
+    achievements.value =
+      Array.isArray(res) ? res :
+      Array.isArray(res?.data) ? res.data :
+      [];
+
+    console.log('FINAL ACHIEVEMENTS:', achievements.value);
+  } catch (e) {
+    console.error('GAGAL FETCH ACHIEVEMENT:', e);
+    error.value = e;
+  } finally {
+    console.log('FETCH ACHIEVEMENTS DONE');
+    isLoading.value = false;
+  }
+};
+
+
+onMounted(() => {
+  fetchAchievements();
+});
 
 // Enhanced SEO Meta Tags
 useSeoMeta({
