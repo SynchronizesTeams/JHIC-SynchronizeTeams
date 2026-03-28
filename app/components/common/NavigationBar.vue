@@ -25,7 +25,7 @@
       <div
         class="hidden md:flex items-center gap-8 text-lg font-medium transition-colors"
         :class="[
-          isScrolled ? 'text-primary-gray' : 'text-primary-text',
+          isScrolled ? 'text-primary-gray' : 'text-primary-gray',
           !isScrolled && 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]'
         ]">
         <button
