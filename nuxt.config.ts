@@ -105,7 +105,7 @@ export default defineNuxtConfig({
   ssr: false,
 
   nitro: {
-    preset: "bun",
+    preset: "static",
   },
 
   site: {
