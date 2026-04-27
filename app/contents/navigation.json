@@ -6,6 +6,8 @@
     { "name": "Berita", "path": "/news", "section": "news" },
     { "name": "Forum", "path": "/forums", "section": null },
     { "name": "Portals", "path": "/portals", "section": null },
-    { "name": "PPDB", "path": "/spmb", "section": null }
+    { "name": "PPDB", "path": "/spmb", "section": null },
+    { "name": "Wawancara", "path": "https://wawancara.smkpluspnb.sch.id", "section": null },
+    { "name": "Kelulusan", "path": "https://wawancara.smkpluspnb.sch.id/pengumuman-kelulusan", "section": null }
   ]
 }
