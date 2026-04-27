@@ -20,3 +20,4 @@ jobs:
             cd /www/wwwroot/JHIC-SynchronizeTeams
             git pull origin main
             ~/.bun/bin/bunx nuxi build
+            cp -r .output/public/* ../smkpluspnb.sch.id/
