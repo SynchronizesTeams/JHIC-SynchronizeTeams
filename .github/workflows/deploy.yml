@@ -21,3 +21,4 @@ jobs:
             git pull origin main
             ~/.bun/bin/bunx nuxi build
             cp -r .output/public/* ../smkpluspnb.sch.id/
+            cp -r .output/public/* ../www.smkpluspnb.sch.id/
