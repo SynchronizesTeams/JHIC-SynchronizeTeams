@@ -1,0 +1,147 @@
+{
+  "seo": {
+    "title": "Mikrotik Academy",
+    "ogTitle": "Mikrotik Academy | SMK Plus Pelita Nusantara",
+    "description": "Mikrotik Academy SMK Plus Pelita Nusantara: program kelas MikroTik bersertifikasi untuk jurusan TKJ dengan ujian sertifikasi internasional MTCNA dari MikroTik Latvia.",
+    "canonical": "https://www.smkpluspnb.sch.id/mikrotik-academy"
+  },
+  "hero": {
+    "judulUtama": "Mikrotik Academy",
+    "subjudul": "SMK Plus Pelita Nusantara",
+    "deskripsi": "Selamat datang di Mikrotik Academy SMK Plus Pelita Nusantara, Cibinong – Bogor. Kami mempersiapkan siswa dengan keahlian jaringan kelas dunia melalui sertifikasi industri internasional, sejalan dengan semangat Success by Character.",
+    "gambar": {
+      "src": "/images/sapras/mikrotik.jpg",
+      "alt": "Ruang lab MikroTik SMK Plus Pelita Nusantara dengan rak perangkat, monitor, dan deretan meja praktik"
+    },
+    "cta": { "label": "Lihat 8 Modul MTCNA", "href": "#kurikulum" },
+    "kredensial": ["Official Partner MikroTik Latvia", "MTCNA Ready", "Certification Center"]
+  },
+  "tentang": {
+    "label": "Tentang Kami",
+    "judul": "Membangun Kompetensi Jaringan",
+    "subbagian": [
+      {
+        "judul": "Apa itu MikroTik?",
+        "teks": "MikroTik adalah sistem operasi berbasis perangkat lunak (software) yang digunakan untuk menjadikan komputer sebagai router sebuah jaringan. MikroTik juga menggunakan sistem operasi berbasis Linux dan menjadi dasar network router. Sistem operasi (OS) ini sangat cocok untuk membangun administrasi jaringan komputer berskala kecil hingga besar."
+      },
+      {
+        "judul": "MikroTik Academy",
+        "teks": "Program Mikrotik Academy adalah program khusus Teknik Komputer dan Jaringan (TKJ) SMK Plus Pelita Nusantara. Program ini memungkinkan sekolah membuka kelas MikroTik bersertifikasi sebagai bagian dari kurikulum pembelajaran serta menyelenggarakan ujian sertifikasi resmi bagi siswanya."
+      }
+    ],
+    "gambar": {
+      "src": "/images/sapras/wstkj.jpg",
+      "alt": "Workshop TKJ berisi perangkat jaringan, komputer, dan alat praktik di meja kerja"
+    },
+    "sertifikasi": {
+      "judul": "Sertifikasi MTCNA",
+      "teks": "Sertifikat kompetensi MTCNA dikeluarkan langsung oleh MikroTik Latvia dan diakui serta berlaku secara internasional. Lulusan yang lulus ujian berhak menyandang gelar MikroTik Certified Network Associate (MTCNA), pengakuan yang diakui pemberi kerja di seluruh dunia.",
+      "kemitraanLabel": "Kemitraan resmi",
+      "kemitraan": "MikroTik (Latvia)",
+      "logo": {
+        "src": "/images/mikrotik-academy/logo-mikrotik.svg",
+        "alt": "Logo MikroTik"
+      }
+    }
+  },
+  "kepalaSekolah": {
+    "label": "Kepala Sekolah",
+    "nama": "Ibu Sri Mildawati, M.Pd",
+    "jabatan": "Kepala Sekolah SMK Plus Pelita Nusantara",
+    "pernyataan": "Melalui kerja sama strategis dengan MikroTik, kami berkomitmen memberikan fasilitas terbaik bagi siswa jurusan TKJ untuk meraih mimpi menjadi tenaga ahli jaringan yang profesional.",
+    "quote": "Menciptakan lulusan yang Terampil, Entrepreneur, dan Religius, siap bersaing secara global di industri IT.",
+    "foto": {
+      "src": "/images/mikrotik-academy/kepala-sekolah.webp",
+      "alt": "Foto Ibu Sri Mildawati, M.Pd, Kepala Sekolah SMK Plus Pelita Nusantara"
+    }
+  },
+  "trainer": {
+    "label": "Our Experts",
+    "judul": "MikroTik Certified Trainers",
+    "quoteSection": "Fokus kami bukan sekadar teori, tapi penguasaan teknis praktis yang dibutuhkan di dunia kerja nyata.",
+    "labelSertifikasi": "Sertifikasi:",
+    "daftar": [
+      {
+        "nama": "Luthfi Abdul Rahman, S.Pd.",
+        "peran": "Lead Instructor Academy",
+        "badgeSertifikasi": ["MTCNA", "MTCRE", "Trainer"],
+        "foto": {
+          "src": "/images/mikrotik-academy/trainer-1.svg",
+          "alt": "Foto Luthfi Abdul Rahman, S.Pd., Lead Instructor Academy"
+        },
+        "sertifikat": [
+          {
+            "judul": "Sertifikat MTCNA",
+            "gambar": {
+              "src": "/images/mikrotik-academy/MTCNA LUTHFI IDN_page-0001.webp",
+              "alt": "Sertifikat MikroTik Certified Network Associate (MTCNA) atas nama Luthfi Abdul Rahman"
+            }
+          },
+          {
+            "judul": "Sertifikat MTCRE",
+            "gambar": {
+              "src": "/images/mikrotik-academy/MTCRE LUTHFI_page-0001.webp",
+              "alt": "Sertifikat MikroTik Certified Routing Engineer (MTCRE) atas nama Luthfi Abdul Rahman"
+            }
+          }
+        ]
+      },
+      {
+        "nama": "Ryan Syahrul",
+        "peran": "MikroTik Trainer",
+        "badgeSertifikasi": ["MTCNA"],
+        "foto": {
+          "src": "/images/mikrotik-academy/trainer-2.svg",
+          "alt": "Foto Ryan Syahrul, MikroTik Trainer"
+        },
+        "sertifikat": [
+          {
+            "judul": "Sertifikat MTCNA",
+            "gambar": {
+              "src": "/images/mikrotik-academy/sertifikat-trainer-2.svg",
+              "alt": "Sertifikat MTCNA milik Ryan Syahrul, MikroTik Trainer"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "metode": {
+    "label": "Metode Pembelajaran",
+    "judul": "Cara Kami Mengajar",
+    "daftar": [
+      { "judul": "Theory 25%", "deskripsi": "Pemahaman Konsep", "porsi": 25 },
+      { "judul": "Hands-on Lab 75%", "deskripsi": "Praktik Langsung", "porsi": 75 },
+      { "judul": "Real Device Use", "deskripsi": "Perangkat Fisik", "porsi": null }
+    ]
+  },
+  "kurikulum": {
+    "label": "Outline",
+    "judul": "MTCNA Course Modules",
+    "deskripsi": "Kurikulum standar internasional yang mencakup seluruh modul dasar MikroTik Certified Network Associate (MTCNA) dengan metode pengajaran intensif.",
+    "labelModul": "Modul",
+    "labelTopik": "topik",
+    "modul": [
+      { "nomor": 1, "nama": "Introduction", "topik": ["Accessing router", "Internet Connection", "Basic TCP/IP", "Upgrade RouterOS", "Login & Services", "Backup Configuration", "RouterOS License", "NTP & NET install"] },
+      { "nomor": 2, "nama": "Firewall", "topik": ["Firewall Principle", "Firewall Filtering", "Connection Tracking", "Basic Address-List", "Source NAT", "Destination NAT", "NAT Limitations"] },
+      { "nomor": 3, "nama": "Quality of Service", "topik": ["Simple Queuing", "Traffic Prioritization", "Mangle", "Tree Queuing", "PCQ Queuing", "Bandwidth Test", "Monitoring"] },
+      { "nomor": 4, "nama": "Network Management", "topik": ["ARP", "DHCP Server & Client", "Hotspot", "Proxy", "Store", "Netwatch"] },
+      { "nomor": 5, "nama": "Wireless", "topik": ["802.11a/b/g/n Concepts", "Setup Wireless Link", "MAC Address Filtering", "Security & Encryption", "802.11n Setting", "Nstreme Protocol", "Wireless Scan"] },
+      { "nomor": 6, "nama": "Bridging", "topik": ["Bridging Concepts", "Wireless Bridging", "WDS & Pseudobridge", "EoIP Tunnel", "VPLS Tunnel"] },
+      { "nomor": 7, "nama": "Routing", "topik": ["Routing Overview", "Static Routing", "OSPF"] },
+      { "nomor": 8, "nama": "Tunnel", "topik": ["Point-To-Point", "PPPoE", "PPTP", "L2TP"] }
+    ]
+  },
+  "kontak": {
+    "label": "Kunjungi Kami",
+    "judul": "Hubungi Kami",
+    "namaSekolah": "SMK Plus Pelita Nusantara",
+    "whatsapp": { "label": "WhatsApp", "teks": "+62 812-1086-8958", "href": "https://wa.me/6281210868958" },
+    "email": { "label": "Email", "teks": "smkpluspnb@gmail.com", "href": "mailto:smkpluspnb@gmail.com" },
+    "alamat": { "label": "Alamat", "teks": "Jl. Golf RT06/08, Ciriung, Cibinong, Kabupaten Bogor, Jawa Barat 16918" },
+    "gambar": {
+      "src": "/images/penus/Gedung_Utama.webp",
+      "alt": "Gedung utama SMK Plus Pelita Nusantara tampak depan dengan tulisan Success by Character"
+    }
+  }
+}
