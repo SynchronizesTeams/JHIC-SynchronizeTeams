@@ -61,7 +61,7 @@
           <li>
             <NuxtLink
               class="hover:text-secondary-red transition-all duration-300"
-              to="/#calendar"
+              to="/guest-book"
               >Buku Tamu</NuxtLink
             >
           </li>
